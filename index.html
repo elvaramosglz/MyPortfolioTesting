@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Portafolio – Tu Nombre</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <title>Portafolio – Elva Ramos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    /* Fondo blanco y negro */
+    /* Fondo blanco + negro */
     body {
       margin: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -13,10 +13,10 @@
       color: #111;
     }
 
-    /* Capa para que el contenido se lea bien */
+    /* Capa clara para que el texto se lea */
     .overlay {
       min-height: 100vh;
-      background: rgba(255, 255, 255, 0.90);
+      background: rgba(255, 255, 255, 0.94);
       padding: 32px 16px 48px;
     }
 
@@ -25,10 +25,10 @@
       margin: 0 auto;
     }
 
-    /* Header tipo “hero” muy sencillo */
+    /* Hero */
     .hero {
       display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.6fr);
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.7fr);
       gap: 24px;
       align-items: flex-start;
       margin-bottom: 32px;
@@ -37,7 +37,7 @@
     .hero-name {
       font-size: clamp(32px, 4vw, 40px);
       font-weight: 700;
-      letter-spacing: 0.03em;
+      letter-spacing: 0.04em;
     }
 
     .hero-role {
@@ -48,25 +48,46 @@
       color: #555;
     }
 
-    .hero-text {
+    .hero-contact {
+      margin-top: 12px;
+      font-size: 13px;
+      color: #333;
+      line-height: 1.5;
+    }
+
+    .hero-contact a {
+      color: #111;
+      text-decoration: none;
+      border-bottom: 1px solid #aaa;
+    }
+
+    .hero-summary {
       font-size: 14px;
-      line-height: 1.6;
+      line-height: 1.7;
       color: #333;
     }
 
-    /* Sección de experiencia */
+    /* Títulos de sección */
     h2 {
       font-size: 18px;
-      margin: 24px 0 12px;
+      margin: 28px 0 12px;
       text-transform: uppercase;
       letter-spacing: 0.16em;
       color: #444;
     }
 
+    /* Experiencia */
     .experience-item {
-      margin-bottom: 18px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid #ddd;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid #e2e2e2;
+    }
+
+    .experience-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
     }
 
     .experience-title {
@@ -77,18 +98,66 @@
     .experience-meta {
       font-size: 12px;
       color: #666;
-      margin: 2px 0 6px;
+      text-align: right;
     }
 
-    .experience-desc {
+    .experience-company {
+      font-size: 13px;
+      color: #444;
+      margin-top: 2px;
+    }
+
+    .experience-list {
+      margin: 8px 0 0 18px;
       font-size: 13px;
       color: #333;
     }
 
-    /* Responsive: en móvil se hace una sola columna */
+    /* Skills, educación, etc. */
+    .pill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 12px;
+      margin-top: 4px;
+    }
+
+    .pill {
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid #ddd;
+      background: #f7f7f7;
+    }
+
+    .edu-item {
+      font-size: 13px;
+      color: #333;
+    }
+
+    .edu-meta {
+      font-size: 12px;
+      color: #666;
+      margin-top: 2px;
+    }
+
+    footer {
+      margin-top: 40px;
+      font-size: 11px;
+      color: #777;
+      border-top: 1px solid #e2e2e2;
+      padding-top: 10px;
+    }
+
     @media (max-width: 768px) {
       .hero {
         grid-template-columns: 1fr;
+      }
+      .experience-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .experience-meta {
+        text-align: left;
       }
     }
   </style>
@@ -97,22 +166,23 @@
   <div class="overlay">
     <main class="container">
 
-      <!-- HERO / PRESENTACIÓN -->
+      <!-- HERO -->
       <section class="hero">
         <div>
-          <div class="hero-name">Tu Nombre Aquí</div>
-          <div class="hero-role">AI · DATA · SALESFORCE</div>
+          <div class="hero-name">Elva Ramos</div>
+          <div class="hero-role">Jira · Dev Tools · Automation</div>
+          <div class="hero-contact">
+            <div><a href="mailto:elvaramosglz@gmail.com">elvaramosglz@gmail.com</a></div>
+            <div>+52 866 173 1946 · Nuevo León, México</div>
+          </div>
         </div>
-        <div class="hero-text">
-          <p>
-            Soy una profesional enfocada en <strong>analytics, pricing, inteligencia artificial</strong> 
-            y soluciones sobre <strong>Salesforce</strong>. En este portafolio quiero mostrar proyectos
-            que conectan los datos con decisiones reales de negocio.
-          </p>
-          <p>
-            Este sitio está en construcción: iré agregando proyectos de
-            calculadoras, modelos de consistencia, agentes de AI y más.
-          </p>
+        <div class="hero-summary">
+          Profesional enfocada en la implementación y automatización de herramientas
+          de desarrollo para organizaciones globales, especialmente en
+          <strong>Jira, Confluence y ecosistemas Atlassian</strong>.  
+          He liderado migraciones masivas a la nube, diseñado workflows, permisos y
+          automatizaciones, y creado scripts para reducir trabajo manual y mejorar
+          la integridad de datos en entornos regulados.
         </div>
       </section>
 
@@ -120,28 +190,157 @@
       <section>
         <h2>Experiencia</h2>
 
+        <!-- Accenture bloque general -->
+        <p style="font-size:13px; margin-bottom:10px;">
+          <strong>Accenture · Monterrey</strong> — Julio 2021 – Presente
+        </p>
+
+        <!-- Jira Software Engineer II -->
         <article class="experience-item">
-          <div class="experience-title">Analytics / Pricing / Advanced Analytics</div>
-          <div class="experience-meta">Empresa · Ciudad · Año – Presente</div>
-          <p class="experience-desc">
-            Aquí puedes escribir 2–3 líneas sobre lo que haces: modelos de consumo,
-            proyectos de pricing, tableros, automatización, etc.
-          </p>
+          <div class="experience-header">
+            <div>
+              <div class="experience-title">Jira Software Engineer II</div>
+              <div class="experience-company">
+                Leading S&amp;P 500 Global Insurance Company
+              </div>
+            </div>
+            <div class="experience-meta">Mayo 2025 – Presente</div>
+          </div>
+          <ul class="experience-list">
+            <li>
+              Created and administered Jira Cloud, configuring users, roles, permission
+              schemes, workflows, issue types, automation rules, and custom fields, ensuring
+              continuity and data integrity across large-scale environments.
+            </li>
+            <li>
+              Developed Groovy scripts and leveraged the REST API to automate processes,
+              extract information, and generate reports, while producing technical
+              documentation that supported monitoring, troubleshooting, and knowledge
+              transfer.
+            </li>
+            <li>
+              Led phased migration projects, including pilots, incremental data migrations,
+              validations, and global rollouts by Business Units, with post-Go-Live support
+              ensuring data accuracy and compliance.
+            </li>
+            <li>
+              Currently participating in a global migration of 7M+ records from Jira/Confluence
+              Data Center to Cloud, successfully delivering pilot and incremental phases
+              under strict deadlines and regulatory standards.
+            </li>
+          </ul>
         </article>
 
+        <!-- Solution Architect -->
         <article class="experience-item">
-          <div class="experience-title">Rol anterior</div>
-          <div class="experience-meta">Empresa · Ciudad · Años</div>
-          <p class="experience-desc">
-            Breve descripción de tus responsabilidades, herramientas que usaste
-            (Python, SQL, PySpark, Salesforce, etc.) y resultados clave.
-          </p>
+          <div class="experience-header">
+            <div>
+              <div class="experience-title">Solution Architect</div>
+              <div class="experience-company">
+                Leading S&amp;P 500 Financial Services Company
+              </div>
+            </div>
+            <div class="experience-meta">Julio 2023 – Abril 2025</div>
+          </div>
+          <ul class="experience-list">
+            <li>
+              Engineered Groovy scripts and automation rules, reducing execution time by
+              91.6% and minimizing manual processes through ScriptRunner and workflow
+              optimization.
+            </li>
+            <li>
+              Collaborated with the client to gather requirements and migrated data from
+              Azure DevOps to Jira Cloud, ensuring data integrity, timely delivery, and
+              alignment with agile methodologies.
+            </li>
+            <li>
+              Created and maintained workflows, permissions, and technical documentation in
+              Confluence, enabling process adoption, troubleshooting, and long-term
+              knowledge retention within the team.
+            </li>
+          </ul>
         </article>
 
-        <!-- Puedes seguir agregando más bloques .experience-item -->
+        <!-- Application Developer -->
+        <article class="experience-item">
+          <div class="experience-header">
+            <div>
+              <div class="experience-title">Application Developer</div>
+              <div class="experience-company">
+                Leading S&amp;P 500 Telecommunications Company
+              </div>
+            </div>
+            <div class="experience-meta">Octubre 2021 – Mayo 2023</div>
+          </div>
+          <ul class="experience-list">
+            <li>
+              Managed CI/CD pipelines and analyzed Jenkins logs to automate key tasks and
+              ensure reliable, smooth deployments.
+            </li>
+            <li>
+              Utilized Kubernetes to orchestrate deployments, scaling, and management of
+              pods, maintaining optimal application performance.
+            </li>
+            <li>
+              Mentored and onboarded new team members, supporting knowledge transfer and
+              team efficiency.
+            </li>
+          </ul>
+        </article>
       </section>
+
+      <!-- SKILLS / CERTIFICACIONES / IDIOMAS -->
+      <section>
+        <h2>Skills &amp; Certificaciones</h2>
+
+        <p style="font-size:13px; margin-bottom:6px;"><strong>Technical Skills</strong></p>
+        <div class="pill-list">
+          <span class="pill">Jira</span>
+          <span class="pill">Agile Methodology</span>
+          <span class="pill">Groovy</span>
+          <span class="pill">Python</span>
+          <span class="pill">Git</span>
+          <span class="pill">Jenkins</span>
+          <span class="pill">Kubernetes</span>
+          <span class="pill">Docker</span>
+          <span class="pill">Linux</span>
+          <span class="pill">Bash</span>
+          <span class="pill">Azure</span>
+        </div>
+
+        <p style="font-size:13px; margin:14px 0 6px;"><strong>Certifications</strong></p>
+        <div class="pill-list">
+          <span class="pill">Atlassian Jira Software Essentials</span>
+          <span class="pill">Certified Entry-Level Python Programmer</span>
+        </div>
+
+        <p style="font-size:13px; margin:14px 0 6px;"><strong>Languages</strong></p>
+        <div class="pill-list">
+          <span class="pill">Spanish (native)</span>
+          <span class="pill">English (fluent)</span>
+        </div>
+      </section>
+
+      <!-- EDUCACIÓN -->
+      <section>
+        <h2>Educación</h2>
+        <div class="edu-item">
+          <strong>Architecture</strong>
+        </div>
+        <div class="edu-meta">
+          Tecnológico de Monterrey · Monterrey, Nuevo León · Agosto 2015 – Diciembre 2021
+        </div>
+      </section>
+
+      <footer>
+        © <span id="year"></span> Elva Ramos · Portafolio personal.
+      </footer>
 
     </main>
   </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
