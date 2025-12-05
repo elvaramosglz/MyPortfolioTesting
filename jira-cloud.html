@@ -1,1 +1,150 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Jira Cloud – Elva Ramos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #ffffff 0%, #000000 100%);
+      color: #111;
+    }
+
+    .overlay {
+      min-height: 100vh;
+      background: rgba(255, 255, 255, 0.94);
+      padding: 32px 16px 48px;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    /* Simple nav bar */
+    nav {
+      display: flex;
+      gap: 16px;
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #333;
+      border-bottom: 1px solid transparent;
+    }
+
+    nav a:hover {
+      border-bottom: 1px solid #000;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 8px;
+      letter-spacing: 0.04em;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 24px;
+    }
+
+    h2 {
+      font-size: 18px;
+      margin: 24px 0 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #444;
+    }
+
+    p {
+      font-size: 14px;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    ul {
+      font-size: 14px;
+      color: #333;
+      margin-left: 20px;
+    }
+
+    .back-note {
+      margin-top: 32px;
+      font-size: 12px;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <main class="container">
+
+      <!-- NAV BAR -->
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="jira-cloud.html"><strong>Jira Cloud</strong></a>
+      </nav>
+
+      <!-- PAGE TITLE -->
+      <h1>Jira Cloud Automation</h1>
+      <p class="subtitle">
+        Here I will showcase my work with Jira Cloud: automation, scripts, and tools
+        for large-scale administration.
+      </p>
+
+      <!-- PYTHON SCRIPTS SECTION -->
+      <section id="python">
+        <h2>Python Scripts</h2>
+        <p>
+          This section will include Python scripts that interact with the Jira Cloud
+          REST API. For example:
+        </p>
+        <ul>
+          <li>Create and update custom fields</li>
+          <li>Bulk update issues</li>
+          <li>Export workflows and permission schemes</li>
+        </ul>
+        <p>
+          Later, you can add links to your GitHub repository here, like:<br/>
+          <em>(Example)</em>  
+          <a href="https://github.com/your-user/jira-python-scripts" target="_blank">
+            View Python scripts on GitHub →
+          </a>
+        </p>
+      </section>
+
+      <!-- GROOVY SCRIPTS SECTION -->
+      <section id="groovy">
+        <h2>Groovy Scripts</h2>
+        <p>
+          This section will include Groovy scripts used with ScriptRunner for Jira.
+          For example:
+        </p>
+        <ul>
+          <li>Auto-assign issues based on rules</li>
+          <li>Validate transitions before changing status</li>
+          <li>Clean up old or inactive issues automatically</li>
+        </ul>
+        <p>
+          Later, you can add a link such as:<br/>
+          <em>(Example)</em>  
+          <a href="https://github.com/your-user/jira-groovy-scripts" target="_blank">
+            View Groovy scripts on GitHub →
+          </a>
+        </p>
+      </section>
+
+      <div class="back-note">
+        ← Go back to <a href="index.html">Home</a> to see my CV and overall profile.
+      </div>
+
+    </main>
+  </div>
+</body>
+</html>
