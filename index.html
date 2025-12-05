@@ -25,6 +25,24 @@
       margin: 0 auto;
     }
 
+    /* Top nav bar */
+    nav {
+      display: flex;
+      gap: 16px;
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #333;
+      border-bottom: 1px solid transparent;
+    }
+
+    nav a:hover {
+      border-bottom: 1px solid #000;
+    }
+
     /* Hero / top section */
     .hero {
       display: grid;
@@ -116,7 +134,7 @@
     /* Skills / education */
     .pill-list {
       display: flex;
-      flex-wrap: wrap;
+      flex-wrap: warmpe;
       gap: 8px;
       font-size: 12px;
       margin-top: 4px;
@@ -165,6 +183,12 @@
 <body>
   <div class="overlay">
     <main class="container">
+
+      <!-- TOP NAV -->
+      <nav>
+        <a href="index.html"><strong>Home</strong></a>
+        <a href="jira-cloud.html">Jira Cloud</a>
+      </nav>
 
       <!-- HERO -->
       <section class="hero">
