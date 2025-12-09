@@ -1,3 +1,8 @@
+<!-- Simple top navigation -->
+<nav style="margin-bottom: 20px;">
+  <a href="index.html" style="text-decoration:none; font-weight:bold;">Home</a>
+</nav>
+
 <section id="weekly-issue-generator">
   <h2>Weekly Issue Generator</h2>
 
@@ -67,49 +72,15 @@
 </section>
 
 <section id="jira-related-info">
-  <h3>Related Jira Information</h3>
+  <h3>Related Jira Issue</h3>
   <p>
-    This ScriptRunner job runs on a schedule and creates demo issues in Jira.
-    Below you can see some live-style statistics loaded from a JSON file in this portfolio.
+    This ScriptRunner job is currently configured to create weekly demo issues in a Jira Cloud project.
+    You can see an example of a generated issue here:
   </p>
-
-  <div id="jira-stats">
-    <p><strong>Last demo issue key:</strong> <span id="last-issue-key">Loading...</span></p>
-    <p><strong>Last issue created at:</strong> <span id="last-issue-created-at">Loading...</span></p>
-    <p><strong>Total demo issues created:</strong> <span id="total-demo-issues">Loading...</span></p>
-  </div>
-
-  <button id="refresh-jira-stats">Refresh Jira data</button>
-
-  <script>
-    async function loadJiraStats() {
-      try {
-        // Ruta relativa: weekly-issue-generation.html -> data/jira-demo-issue.json
-        const response = await fetch('data/jira-demo-issue.json');
-        if (!response.ok) {
-          throw new Error('Failed to load Jira stats JSON');
-        }
-
-        const data = await response.json();
-
-        document.getElementById('last-issue-key').textContent =
-          data.last_issue_key || 'N/A';
-        document.getElementById('last-issue-created-at').textContent =
-          data.last_issue_created_at || 'N/A';
-        document.getElementById('total-demo-issues').textContent =
-          data.total_demo_issues ?? 'N/A';
-      } catch (error) {
-        console.error(error);
-        document.getElementById('jira-stats').innerHTML =
-          '<p>Could not load Jira data at this time.</p>';
-      }
-    }
-
-    document
-      .getElementById('refresh-jira-stats')
-      .addEventListener('click', loadJiraStats);
-
-    // Load data on page load
-    loadJiraStats();
-  </script>
+  <p>
+    <!-- 🔁 Cambia esta URL por la de tu issue real -->
+    <a href="https://elvaramosglz.atlassian.net/browse/AS-2" target="_blank">
+      View example Jira issue (AS-2)
+    </a>
+  </p>
 </section>
