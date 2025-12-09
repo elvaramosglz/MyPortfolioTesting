@@ -8,7 +8,7 @@
 
   <h3>Description</h3>
   <p>
-       A simple scheduled ScriptRunner job that automatically creates a Jira issue in a given project.
+    A simple scheduled ScriptRunner job that automatically creates a Jira issue in a given project.
     The script runs on a recurring schedule (for example, weekly), builds a timestamped summary,
     and sets a rich-text description that documents the automation and links back to my public portfolio.
   </p>
@@ -64,4 +64,63 @@
       </ul>
     </li>
   </ul>
+</section>
+
+<section id="jira-related-info">
+  <h3>Related Jira Information</h3>
+  <p>
+    This ScriptRunner job runs on a schedule and creates demo issues in Jira.
+    Below you can see some live-style statistics loaded from a JSON file in this portfolio.
+  </p>
+
+  <div id="jira-stats">
+    <p><strong>Last demo issue key:</strong> <span id="last-issue-key">Loading...</span></p>
+    <p><strong>Last issue created at:</strong> <span id="last-issue-created-at">Loading...</span></p>
+    <p><strong>Total demo issues created:</strong> <span id="total-demo-issues">Loading...</span></p>
+    <p>
+      <strong>View in Jira:</strong>
+      <a id="jira-filter-link" href="#" target="_blank">Open Jira filter</a>
+    </p>
+  </div>
+
+  <button id="refresh-jira-stats">Refresh Jira data</button>
+
+  <script>
+    async function loadJiraStats() {
+      try {
+        // Ajusta la ruta si tu JSON está en otra carpeta
+        const response = await fetch('/data/jira-demo-issue.json');
+        if (!response.ok) {
+          throw new Error('Failed to load Jira stats JSON');
+        }
+
+        const data = await response.json();
+
+        document.getElementById('last-issue-key').textContent =
+          data.last_issue_key || 'N/A';
+        document.getElementById('last-issue-created-at').textContent =
+          data.last_issue_created_at || 'N/A';
+        document.getElementById('total-demo-issues').textContent =
+          data.total_demo_issues ?? 'N/A';
+
+        const link = document.getElementById('jira-filter-link');
+        if (data.jira_filter_url) {
+          link.href = data.jira_filter_url;
+        } else {
+          link.removeAttribute('href');
+        }
+      } catch (error) {
+        console.error(error);
+        document.getElementById('jira-stats').innerHTML =
+          '<p>Could not load Jira data at this time.</p>';
+      }
+    }
+
+    document
+      .getElementById('refresh-jira-stats')
+      .addEventListener('click', loadJiraStats);
+
+    // Load data on page load
+    loadJiraStats();
+  </script>
 </section>
