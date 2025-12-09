@@ -89,7 +89,7 @@
     async function loadJiraStats() {
       try {
         // Ajusta la ruta si tu JSON está en otra carpeta
-        const response = await fetch('/data/jira-demo-issue.json');
+        const response = await fetch('data/jira-demo-issue.json');
         if (!response.ok) {
           throw new Error('Failed to load Jira stats JSON');
         }
