@@ -2,50 +2,87 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Jira Cloud Automation – Portfolio</title>
+  <title>Jira Cloud Automation – Elva Ramos</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
     <nav>
-      <!-- Adjust this link if your Home is a different file -->
-      <a href="index.html">Home</a> › Jira Cloud
+      <a href="index.html">Home</a> · Jira Cloud
     </nav>
   </header>
 
   <main>
-    <h1>Jira Cloud Automation</h1>
-    <p>
-      Here I showcase my work with Jira Cloud: automation, scripts, and tools for large-scale administration.
-    </p>
-
     <section>
-      <h2>Groovy Scripts (ScriptRunner)</h2>
+      <h1>Jira Cloud Automation</h1>
       <p>
-        These examples use Groovy scripts with ScriptRunner for Jira Cloud to automate workflows,
-        create issues, and validate transitions.
+        I design and implement automation for Jira Cloud using Groovy (ScriptRunner) and Python (REST API),
+        focusing on reducing manual work, improving data integrity, and supporting large-scale migrations.
       </p>
-
-      <ul>
-        <li>
-          <a href="daily-demo-issue.html">
-            1. Daily Demo Issue Generator →
-          </a>
-        </li>
-        <!-- Later you can add more script pages here, for example:
-        <li><a href="field-sync.html">2. Field Sync Automation →</a></li>
-        <li><a href="transition-validation.html">3. Transition Validation Script →</a></li>
-        -->
-      </ul>
     </section>
 
+    <hr />
+
+    <!-- GROOVY SECTION -->
     <section>
-      <h2>Python Scripts (Jira REST API)</h2>
+      <h2>Groovy Scripts · ScriptRunner for Jira Cloud</h2>
       <p>
-        These scripts use Python to interact with the Jira Cloud REST API for administration and bulk operations.
+        These scripts run directly in Jira Cloud using ScriptRunner. They are ideal for workflow automation,
+        validations, and scheduled jobs inside the Atlassian ecosystem.
       </p>
+
+      <div>
+        <h3>1. <a href="daily-demo-issue.html">Daily Demo Issue Generator →</a></h3>
+        <p>
+          Scheduled job that automatically creates a demo issue in my
+          <strong>Automation Showcase (AS)</strong> project.  
+          It demonstrates scheduled automation, REST API calls, and logging best practices.
+        </p>
+        <ul>
+          <li>Creates a new issue once per day (or on demand).</li>
+          <li>Uses Groovy + ScriptRunner + <code>/rest/api/3/issue</code>.</li>
+          <li>Adds a portfolio footer in the description for recruiters.</li>
+        </ul>
+      </div>
+
+      <!-- Cuando tengas más scripts Groovy, puedes copiar este bloque y cambiar el título / texto -->
+      <!--
+      <div>
+        <h3>2. <a href="field-sync.html">Field Sync Automation →</a></h3>
+        <p>Short description here.</p>
+      </div>
+      -->
+    </section>
+
+    <hr />
+
+    <!-- PYTHON SECTION -->
+    <section>
+      <h2>Python Scripts · Jira Cloud REST API</h2>
+      <p>
+        These examples use Python to call the Jira Cloud REST API for administration, reporting,
+        and bulk operations. They complement the Groovy/ScriptRunner work.
+      </p>
+
       <ul>
-        <!-- Placeholder link – update when you have a repo -->
-        <li>
-          <a href="https://github.com/TU_USUARIO/jira-autom_
+        <li>Create and update custom fields via REST.</li>
+        <li>Bulk update issues based on CSV or business rules.</li>
+        <li>Export workflows, permission schemes, and configuration for documentation.</li>
+      </ul>
+
+      <p>
+        Source code will be published in a dedicated repository:<br />
+        <em>(Example)</em>
+        <a href="https://github.com/elvaramosglz/jira-automation-portfolio" target="_blank">
+          View Python scripts on GitHub →
+        </a>
+      </p>
+    </section>
+
+    <p>
+      ← <a href="index.html">Back to Home</a>
+    </p>
+  </main>
+</body>
+</html>
