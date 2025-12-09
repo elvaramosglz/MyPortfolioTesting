@@ -1,0 +1,67 @@
+<section id="weekly-issue-generator">
+  <h2>Weekly Issue Generator</h2>
+
+  <p><strong>Language:</strong> Groovy (ScriptRunner for Jira)</p>
+  <p><strong>Difficulty:</strong> Easy</p>
+
+  <hr>
+
+  <h3>Description</h3>
+  <p>
+    A simple scheduled ScriptRunner job that automatically creates a Jira issue in a given project.
+    The script runs on a recurring schedule (for example, weekly), builds a timestamped summary,
+    and sets a rich-text description that documents the automation and links back to my public portfolio.
+  </p>
+
+  <h3>Structure</h3>
+  <ol>
+    <li>
+      <strong>Configuration section</strong><br>
+      Defines the target Jira project (<code>projectKey</code>) and issue type (<code>issueTypeName</code>).
+    </li>
+    <li>
+      <strong>Dynamic content generation</strong><br>
+      Uses the current date and time to build a unique, human-readable issue summary.
+      Generates a multi-line description text explaining that the issue was created automatically
+      and includes a link to the portfolio page.
+    </li>
+    <li>
+      <strong>Payload construction</strong><br>
+      Builds a JSON payload using Jira’s Atlassian Document Format (ADF) for the
+      <code>description</code> field.
+    </li>
+    <li>
+      <strong>REST API call</strong><br>
+      Calls Jira’s <code>/rest/api/3/issue</code> endpoint via ScriptRunner’s <code>post()</code> helper.
+    </li>
+    <li>
+      <strong>Logging &amp; error handling</strong><br>
+      Logs a success message with the created issue key when the status is <code>201</code>.
+      Logs a warning with the HTTP status and response body if the issue is not created.
+    </li>
+  </ol>
+
+  <h3>Relevant Variables</h3>
+  <ul>
+    <li><code>projectKey</code> – Jira project key where the issue is created (e.g., <code>"JAL"</code>).</li>
+    <li><code>issueTypeName</code> – Name of the issue type to create (e.g., <code>"Task"</code>).</li>
+    <li><code>now</code> / <code>nowStr</code> – Current date and time, formatted as <code>"yyyy-MM-dd HH:mm"</code> for use in the summary.</li>
+    <li><code>summary</code> – Issue summary that includes the timestamp (e.g., <code>"Issue created with ScriptRunner - 2025-12-09 16:00"</code>).</li>
+    <li><code>descriptionText</code> – Multi-line plain-text description explaining that the issue was generated automatically and pointing to the portfolio URL.</li>
+    <li><code>payload</code> – Groovy map that represents the JSON body sent to Jira’s REST API, including project, summary, issue type, and the ADF description.</li>
+  </ul>
+
+  <h3>Results</h3>
+  <ul>
+    <li>Automatically generates a new Jira issue on the configured schedule without manual intervention.</li>
+    <li>Ensures every run leaves a traceable issue with a clear timestamp and explanation.</li>
+    <li>
+      Demonstrates how to:
+      <ul>
+        <li>Use ScriptRunner Groovy scripts to call Jira Cloud REST APIs.</li>
+        <li>Build Atlassian Document Format (ADF) payloads in Groovy.</li>
+        <li>Implement basic logging and error handling inside ScriptRunner jobs.</li>
+      </ul>
+    </li>
+  </ul>
+</section>
