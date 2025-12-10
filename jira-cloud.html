@@ -1,88 +1,66 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Jira Cloud Automation – Elva Ramos</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <header>
-    <nav>
-      <a href="index.html">Home</a> · Jira Cloud
-    </nav>
-  </header>
+<nav>
+  <a href="index.html">← Back to Home</a>
+</nav>
 
-  <main>
-    <section>
-      <h1>Jira Cloud Automation</h1>
-      <p>
-        I design and implement automation for Jira Cloud using Groovy (ScriptRunner) and Python (REST API),
-        focusing on reducing manual work, improving data integrity, and supporting large-scale migrations.
-      </p>
-    </section>
+<h1>Jira Cloud</h1>
 
-    <hr />
+<h2>Jira Cloud Automation</h2>
+<p>
+  I design and implement automation for Jira Cloud using Groovy (ScriptRunner) and Python (REST API),
+  focusing on reducing manual work, improving data integrity, and supporting large-scale migrations.
+</p>
 
-    <!-- GROOVY SECTION -->
-    <section>
-      <h2>Groovy Scripts · ScriptRunner for Jira Cloud</h2>
-      <p>
-        These scripts run directly in Jira Cloud using ScriptRunner. They are ideal for workflow automation,
-        validations, and scheduled jobs inside the Atlassian ecosystem.
-      </p>
+<h2>Groovy Scripts · ScriptRunner for Jira Cloud</h2>
+<p>
+  These scripts run directly in Jira Cloud using ScriptRunner. They are ideal for workflow automation,
+  validations, and scheduled jobs inside the Atlassian ecosystem.
+</p>
 
-      <div>
-        <h3>1. <a href="weekly-issue-generation.html">Weekly Issue Generator →</a></h3>
-        <p>
-          Scheduled job that automatically creates a demo issue in my
-          <strong>Automation Showcase (AS)</strong> project.  
-          It demonstrates scheduled automation, REST API calls, and logging best practices.
-        </p>
-        <ul>
-          <li>Creates a new issue once per day (or on demand).</li>
-          <li>Uses Groovy + ScriptRunner + <code>/rest/api/3/issue</code>.</li>
-          <li>Adds a portfolio footer in the description for recruiters.</li>
-        </ul>
-      </div>
+<ol>
+  <li>
+    <strong><a href="weekly-issue-generation.html">Weekly Issue Generator →</a></strong><br>
+    Scheduled job that automatically creates a demo issue in my Automation Showcase (AS) project.
+    It demonstrates scheduled automation, REST API calls, and logging best practices.
+    <ul>
+      <li>Creates a new issue once per day (or on demand).</li>
+      <li>Uses Groovy + ScriptRunner + <code>/rest/api/3/issue</code>.</li>
+      <li>Adds a portfolio footer in the issue description for recruiters.</li>
+    </ul>
+  </li>
+</ol>
 
-      <!-- Cuando tengas más scripts Groovy, puedes copiar este bloque y cambiar el título / texto -->
-      <!--
-      <div>
-        <h3>2. <a href="field-sync.html">Field Sync Automation →</a></h3>
-        <p>Short description here.</p>
-      </div>
-      -->
-    </section>
+<h2>Python Scripts · Jira Cloud REST API</h2>
+<p>
+  These examples use Python to call the Jira Cloud REST API for administration, reporting,
+  and bulk operations. They complement the Groovy/ScriptRunner work with configuration
+  inventory and data extraction.
+</p>
 
-    <hr />
+<ol>
+  <li>
+    <strong><a href="jira-cloud-custom-fields-inventory.html">Jira Cloud Custom Fields Inventory →</a></strong><br>
+    Python script that connects to Jira Cloud and builds a full inventory of custom fields,
+    their contexts, and their option values, exporting everything to JSON and CSV.
+    <ul>
+      <li>Uses <code>/rest/api/3/field</code>, field context, and option endpoints.</li>
+      <li>Resolves option lists via context APIs and editmeta fallback.</li>
+      <li>Runs via GitHub Actions with Jira credentials stored as encrypted secrets.</li>
+    </ul>
+  </li>
+  <li>
+    <em>(Planned)</em> Additional automation utilities:
+    <ul>
+      <li>Create and update custom fields via REST.</li>
+      <li>Bulk update issues based on CSV or business rules.</li>
+      <li>Export workflows, permission schemes, and configuration for documentation.</li>
+    </ul>
+  </li>
+</ol>
 
-    <!-- PYTHON SECTION -->
-    <section>
-      <h2>Python Scripts · Jira Cloud REST API</h2>
-      <p>
-        These examples use Python to call the Jira Cloud REST API for administration, reporting,
-        and bulk operations. They complement the Groovy/ScriptRunner work.
-      </p>
-
-      <ul>
-        <li>Create and update custom fields via REST.</li>
-        <li>Bulk update issues based on CSV or business rules.</li>
-        <li>Export workflows, permission schemes, and configuration for documentation.</li>
-      </ul>
-
-      <p>
-        Source code will be published in a dedicated repository:<br />
-        <em>(Example)</em>
-        <a href="https://github.com/elvaramosglz/jira-automation-portfolio" target="_blank">
-          View Python scripts on GitHub →
-        </a>
-      </p>
-    </section>
-
-    <p>
-      ← <a href="index.html">Back to Home</a>
-    </p>
-  </main>
-</body>
-</html>
+<p>
+  <strong>Source code:</strong> Python scripts will be published in a dedicated public repository.<br>
+  <span class="small-note">(Example)</span>
+  <a href="https://github.com/your-username/your-python-jira-repo" target="_blank" rel="noopener">
+    View Python scripts on GitHub →
+  </a>
+</p>
