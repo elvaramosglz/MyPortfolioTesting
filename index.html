@@ -59,7 +59,16 @@
       line-height: 1.1;
       letter-spacing: 0.12em;
       font-weight: 700;
-      margin-bottom: 2rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .role {
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.8rem;
     }
 
     .contact-item {
@@ -125,19 +134,14 @@
       padding: 2.5rem 3rem;
     }
 
-    .intro a {
-      color: var(--accent);
+    .intro-title {
       font-weight: 600;
-      text-decoration: underline;
-      text-decoration-thickness: 1px;
-    }
-
-    .intro a:hover {
-      color: #123353;
+      font-size: 1.05rem;
+      color: var(--accent);
+      margin-bottom: 0.25rem;
     }
 
     .intro p {
-      margin-top: 0.5rem;
       font-size: 1rem;
       line-height: 1.7;
       color: var(--text-muted);
@@ -203,6 +207,7 @@
         ELVA<br>
         RAMOS
       </div>
+      <div class="role">Tech Architecture Senior Analyst</div>
 
       <div class="contact">
         <div class="contact-item">
@@ -238,9 +243,8 @@
       <div>
         <div class="section-title">Certifications</div>
         <ul class="sidebar-list">
-          <li>Advanced Jira Cloud administration (project-based experience)</li>
-          <li>Hands-on training in ScriptRunner &amp; automation tooling</li>
-          <li>Continuous learning in Python, REST APIs, and DevOps practices</li>
+          <li>Atlassian Jira Software Essentials</li>
+          <li>Certified Entry-Level Python Programmer (PCEP)</li>
         </ul>
       </div>
 
@@ -264,12 +268,24 @@
           <li>Documentation &amp; knowledge transfer</li>
         </ul>
       </div>
+
+      <!-- Education -->
+      <div>
+        <div class="section-title">Education</div>
+        <ul class="sidebar-list">
+          <li>
+            Architecture, Tecnológico de Monterrey<br />
+            Monterrey, Nuevo León<br />
+            August 2015 – December 2021
+          </li>
+        </ul>
+      </div>
     </aside>
 
     <!-- RIGHT CONTENT -->
     <main class="content">
       <section class="intro">
-        <a href="#">Hi there!</a>
+        <div class="intro-title">Hi there!</div>
         <p>
           I’m Elva Ramos, a Jira and automation engineer focused on building reliable tools for global teams.
           Over the past years I’ve implemented Jira Cloud for large enterprises, designed workflows and permission
