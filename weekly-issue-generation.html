@@ -1,86 +1,238 @@
-<!-- Simple top navigation -->
-<nav style="margin-bottom: 20px;">
-  <a href="index.html" style="text-decoration:none; font-weight:bold;">Home</a>
-</nav>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Weekly Issue Generator (ScriptRunner · Jira Cloud)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      background: #fafafa;
+      color: #222;
+    }
+    header, main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 1.5rem 1rem 2rem;
+    }
+    nav a {
+      text-decoration: none;
+      color: #2563eb;
+      font-weight: 500;
+    }
+    h1, h2, h3 {
+      color: #111827;
+    }
+    section {
+      background: #ffffff;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-top: 1.25rem;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
+    }
+    code {
+      background: #f3f4f6;
+      padding: 0.1rem 0.25rem;
+      border-radius: 4px;
+      font-size: 0.95em;
+    }
+    pre {
+      background: #0b1120;
+      color: #e5e7eb;
+      padding: 1rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 0.9em;
+    }
+    ul {
+      padding-left: 1.2rem;
+    }
+    .meta p {
+      margin: 0.15rem 0;
+    }
+    .tag {
+      display: inline-block;
+      font-size: 0.8rem;
+      padding: 0.15rem 0.5rem;
+      border-radius: 999px;
+      background: #eff6ff;
+      color: #1d4ed8;
+      margin-right: 0.35rem;
+      margin-top: 0.25rem;
+    }
+    .small-note {
+      font-size: 0.85rem;
+      color: #6b7280;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="index.html">← Home</a>
+    </nav>
+  </header>
 
-<section id="weekly-issue-generator">
-  <h2>Weekly Issue Generator</h2>
+  <main>
+    <section id="weekly-issue-generator">
+      <h1>Weekly Issue Generator</h1>
 
-  <p><strong>Language:</strong> Groovy (ScriptRunner for Jira)</p>
-  <p><strong>Difficulty:</strong> Easy</p>
+      <div class="meta">
+        <p><strong>Language:</strong> Groovy (ScriptRunner for Jira Cloud)</p>
+        <p><strong>Difficulty:</strong> Easy</p>
+        <p>
+          <span class="tag">Jira Cloud REST API</span>
+          <span class="tag">ScriptRunner</span>
+          <span class="tag">Automation</span>
+          <span class="tag">Scheduled Jobs</span>
+          <span class="tag">Portfolio Demo</span>
+        </p>
+      </div>
 
-  <hr>
+      <hr>
 
-  <h3>Description</h3>
-  <p>
-    A simple scheduled ScriptRunner job that automatically creates a Jira issue in a given project.
-    The script runs on a recurring schedule (for example, weekly), builds a timestamped summary,
-    and sets a rich-text description that documents the automation and links back to my public portfolio.
-  </p>
+      <h2>Description</h2>
+      <p>
+        This ScriptRunner scheduled job automatically creates a Jira issue in a target project on a recurring schedule.
+        It is a small, self-contained example of how to use Groovy + ScriptRunner to call Jira Cloud REST APIs,
+        generate dynamic content, and leave a clear, timestamped trace of every automation run.
+      </p>
+      <p>
+        The script runs entirely inside Jira Cloud (ScriptRunner for Jira), using the
+        <code>/rest/api/3/issue</code> endpoint, and updates the issue description with a rich-text
+        Atlassian Document Format (ADF) payload that also points back to this public portfolio page.
+      </p>
 
-  <h3>Structure</h3>
-  <ol>
-    <li>
-      <strong>Configuration section</strong><br>
-      Defines the target Jira project (<code>projectKey</code>) and issue type (<code>issueTypeName</code>).
-    </li>
-    <li>
-      <strong>Dynamic content generation</strong><br>
-      Uses the current date and time to build a unique, human-readable issue summary.
-      Generates a multi-line description text explaining that the issue was created automatically
-      and includes a link to the portfolio page.
-    </li>
-    <li>
-      <strong>Payload construction</strong><br>
-      Builds a JSON payload using Jira’s Atlassian Document Format (ADF) for the
-      <code>description</code> field.
-    </li>
-    <li>
-      <strong>REST API call</strong><br>
-      Calls Jira’s <code>/rest/api/3/issue</code> endpoint via ScriptRunner’s <code>post()</code> helper.
-    </li>
-    <li>
-      <strong>Logging &amp; error handling</strong><br>
-      Logs a success message with the created issue key when the status is <code>201</code>.
-      Logs a warning with the HTTP status and response body if the issue is not created.
-    </li>
-  </ol>
+      <h2>Structure</h2>
+      <ol>
+        <li>
+          <strong>Configuration section</strong><br>
+          Defines the target Jira project (<code>projectKey</code>) and issue type
+          (<code>issueTypeName</code>). This makes it easy to repoint the job to a different project
+          without changing the logic.
+        </li>
+        <li>
+          <strong>Dynamic content generation</strong><br>
+          Uses the current date and time to build a unique, timestamped issue summary
+          (for example, <code>"Issue created with ScriptRunner - 2025-12-09 16:00"</code>).
+          Generates a multi-line description explaining that the issue was created automatically and
+          includes a link back to this portfolio page.
+        </li>
+        <li>
+          <strong>Payload construction</strong><br>
+          Builds a Groovy <code>Map</code> called <code>payload</code>, which represents the JSON body sent to the
+          Jira Cloud REST API. The <code>description</code> field is built using Atlassian Document Format (ADF)
+          so it renders correctly in Jira Cloud.
+        </li>
+        <li>
+          <strong>REST API call</strong><br>
+          Uses ScriptRunner’s <code>post("/rest/api/3/issue")</code> helper to create the issue.
+          The payload includes the project key, issue type, summary, and ADF description.
+        </li>
+        <li>
+          <strong>Logging &amp; error handling</strong><br>
+          After the REST call:
+          <ul>
+            <li>If the status is <code>201</code>, the script logs a success message with the created issue key.</li>
+            <li>Otherwise, it logs a warning with the HTTP status code and the response body to help diagnose errors.</li>
+          </ul>
+        </li>
+      </ol>
 
-  <h3>Relevant Variables</h3>
-  <ul>
-    <li><code>projectKey</code> – Jira project key where the issue is created (e.g., <code>"JAL"</code>).</li>
-    <li><code>issueTypeName</code> – Name of the issue type to create (e.g., <code>"Task"</code>).</li>
-    <li><code>now</code> / <code>nowStr</code> – Current date and time, formatted as <code>"yyyy-MM-dd HH:mm"</code> for use in the summary.</li>
-    <li><code>summary</code> – Issue summary that includes the timestamp (e.g., <code>"Issue created with ScriptRunner - 2025-12-09 16:00"</code>).</li>
-    <li><code>descriptionText</code> – Multi-line plain-text description explaining that the issue was generated automatically and pointing to the portfolio URL.</li>
-    <li><code>payload</code> – Groovy map that represents the JSON body sent to Jira’s REST API, including project, summary, issue type, and the ADF description.</li>
-  </ul>
-
-  <h3>Results</h3>
-  <ul>
-    <li>Automatically generates a new Jira issue on the configured schedule without manual intervention.</li>
-    <li>Ensures every run leaves a traceable issue with a clear timestamp and explanation.</li>
-    <li>
-      Demonstrates how to:
+      <h2>Key Variables</h2>
       <ul>
-        <li>Use ScriptRunner Groovy scripts to call Jira Cloud REST APIs.</li>
-        <li>Build Atlassian Document Format (ADF) payloads in Groovy.</li>
-        <li>Implement basic logging and error handling inside ScriptRunner jobs.</li>
+        <li>
+          <code>projectKey</code> –
+          Jira project key where the issue is created
+          (for example, an Automation Showcase project like <code>"AS"</code>).
+        </li>
+        <li>
+          <code>issueTypeName</code> –
+          Name of the issue type to create (e.g., <code>"Task"</code>, <code>"Story"</code>).
+        </li>
+        <li>
+          <code>now</code> / <code>nowStr</code> –
+          Current date and time. <code>nowStr</code> is formatted as
+          <code>"yyyy-MM-dd HH:mm"</code> and included in the summary so each run is clearly timestamped.
+        </li>
+        <li>
+          <code>summary</code> –
+          Human-readable issue summary including the timestamp
+          (for example, <code>"Issue created with ScriptRunner - 2025-12-09 16:00"</code>).
+        </li>
+        <li>
+          <code>descriptionText</code> –
+          Multi-line plain-text description that:
+          <ul>
+            <li>Explains that the issue was generated automatically by ScriptRunner.</li>
+            <li>Mentions the purpose of the automation.</li>
+            <li>Includes a link back to this portfolio page.</li>
+          </ul>
+        </li>
+        <li>
+          <code>payload</code> –
+          Groovy map that represents the JSON body sent to Jira Cloud’s
+          <code>/rest/api/3/issue</code> endpoint, including:
+          <ul>
+            <li><code>project</code> (key)</li>
+            <li><code>summary</code></li>
+            <li><code>issuetype</code></li>
+            <li><code>description</code> (ADF structure)</li>
+          </ul>
+        </li>
       </ul>
-    </li>
-  </ul>
-</section>
 
-<section id="jira-related-info">
-  <h3>Related Jira Issue</h3>
-  <p>
-    This ScriptRunner job is currently configured to create weekly demo issues in a Jira Cloud project.
-    You can see an example of a generated issue here:
-  </p>
-  <p>
-    <!-- 🔁 Cambia esta URL por la de tu issue real -->
-    <a href="https://elvaramosglz.atlassian.net/browse/AS-2" target="_blank">
-      View example Jira issue (AS-2)
-    </a>
-  </p>
-</section>
+      <h2>How It Runs (ScriptRunner Scheduled Job)</h2>
+      <p>
+        This script is configured as a <strong>ScriptRunner scheduled job</strong> in Jira Cloud. The schedule can be:
+      </p>
+      <ul>
+        <li>Daily</li>
+        <li>Weekly</li>
+        <li>Any custom cron expression supported by ScriptRunner</li>
+      </ul>
+      <p>
+        Each time the job runs:
+      </p>
+      <ul>
+        <li>ScriptRunner triggers the Groovy script according to the schedule.</li>
+        <li>The script builds a new payload with the current timestamp.</li>
+        <li>Jira Cloud receives a new issue via <code>/rest/api/3/issue</code>.</li>
+        <li>ScriptRunner logs whether the run succeeded or failed.</li>
+      </ul>
+
+      <h2>Results</h2>
+      <ul>
+        <li>Automatically generates a new Jira issue on the configured schedule without manual intervention.</li>
+        <li>Leaves a clear, timestamped history of when the automation ran.</li>
+        <li>Provides a simple, auditable example of ScriptRunner + Jira Cloud REST integration.</li>
+        <li>
+          Demonstrates:
+          <ul>
+            <li>How to call Jira Cloud REST APIs from ScriptRunner Groovy.</li>
+            <li>How to build Atlassian Document Format (ADF) payloads in code.</li>
+            <li>Basic logging and error handling inside ScriptRunner jobs.</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h2>Example Issue</h2>
+      <p>
+        This job is currently configured to create demo issues in my Jira Cloud Automation Showcase project.
+        Here is an example of a generated issue:
+      </p>
+      <p>
+        <a href="https://elvaramosglz.atlassian.net/browse/AS-2" target="_blank" rel="noopener">
+          View example Jira issue (AS-2) →
+        </a>
+      </p>
+      <p class="small-note">
+        (Access depends on Jira permissions; this link is mainly included as documentation for the portfolio.)
+      </p>
+    </section>
+  </main>
+</body>
+</html>
