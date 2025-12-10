@@ -2,370 +2,285 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Portfolio – Elva Ramos</title>
+  <title>Elva Ramos – Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome (icons) -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkfPWZC1Vjz6pJQdYx04FbFhFhFj5V9A6V8WqkC7H5YkPqU5V7o7RF7xA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
   <style>
-    /* Black & white background  */
-    body {
+    :root {
+      --bg-main: #f5f5f7;
+      --bg-sidebar: #e5edf4;
+      --accent: #1f4f7b;
+      --accent-soft: #88a8c6;
+      --text-main: #1a1a1a;
+      --text-muted: #555;
+      --border-light: #d0d7e2;
+    }
+
+    * {
+      box-sizing: border-box;
       margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: linear-gradient(135deg, #ffffff 0%, #000000 100%);
-      color: #111;
+      padding: 0;
     }
 
-    /* Light overlay so text is readable */
-    .overlay {
-      min-height: 100vh;
-      background: rgba(255, 255, 255, 0.94);
-      padding: 32px 16px 48px;
+    body {
+      font-family: "Source Sans Pro", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background-color: var(--bg-main);
+      color: var(--text-main);
     }
 
-    .container {
-      max-width: 960px;
-      margin: 0 auto;
-    }
-
-    /* Top nav bar */
-    nav {
-      display: flex;
-      gap: 16px;
-      font-size: 14px;
-      margin-bottom: 24px;
-    }
-
-    nav a {
-      text-decoration: none;
-      color: #333;
-      border-bottom: 1px solid transparent;
-    }
-
-    nav a:hover {
-      border-bottom: 1px solid #000;
-    }
-
-    /* Hero / top section */
-    .hero {
+    .page {
+      max-width: 1200px;
+      margin: 2rem auto;
+      background: #ffffff;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
       display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.7fr);
-      gap: 24px;
-      align-items: flex-start;
-      margin-bottom: 32px;
+      grid-template-columns: 320px 1fr;
+      min-height: 80vh;
     }
 
-    .hero-name {
-      font-size: clamp(32px, 4vw, 40px);
+    /* Sidebar */
+    .sidebar {
+      background: linear-gradient(180deg, var(--bg-sidebar), #dde7f2);
+      padding: 2.5rem 2rem;
+      border-right: 1px solid var(--border-light);
+    }
+
+    .name {
+      font-size: 2.6rem;
+      line-height: 1.1;
+      letter-spacing: 0.12em;
       font-weight: 700;
-      letter-spacing: 0.04em;
+      margin-bottom: 2rem;
     }
 
-    .hero-role {
-      margin-top: 4px;
-      font-size: 16px;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      color: #555;
-    }
-
-    .hero-contact {
-      margin-top: 12px;
-      font-size: 13px;
-      color: #333;
-      line-height: 1.5;
-    }
-
-    .hero-contact a {
-      color: #111;
-      text-decoration: none;
-      border-bottom: 1px solid #aaa;
-    }
-
-    .hero-summary {
-      font-size: 14px;
-      line-height: 1.7;
-      color: #333;
-    }
-
-    /* Section titles */
-    h2 {
-      font-size: 18px;
-      margin: 28px 0 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: #444;
-    }
-
-    /* Experience */
-    .experience-item {
-      margin-bottom: 20px;
-      padding-bottom: 14px;
-      border-bottom: 1px solid #e2e2e2;
-    }
-
-    .experience-header {
+    .contact-item {
       display: flex;
-      justify-content: space-between;
-      gap: 8px;
-      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 0.75rem;
+      font-size: 0.95rem;
+      color: var(--text-muted);
     }
 
-    .experience-title {
+    .contact-item i {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: #000;
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 0.6rem;
+      font-size: 0.8rem;
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--border-light);
+      margin: 2rem 0 1.5rem;
+    }
+
+    .section-title {
+      font-size: 0.9rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
       font-weight: 600;
-      font-size: 14px;
+      margin-bottom: 1.2rem;
     }
 
-    .experience-meta {
-      font-size: 12px;
-      color: #666;
-      text-align: right;
+    .project-link {
+      display: block;
+      margin-bottom: 0.7rem;
+      font-size: 0.98rem;
+      color: var(--text-main);
+      text-decoration: none;
+    }
+
+    .project-link span {
+      border-bottom: 1px solid var(--accent-soft);
+    }
+
+    .project-link:hover span {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    /* Main content */
+    .content {
+      padding: 2.5rem 3rem;
+    }
+
+    .intro a {
+      color: var(--accent);
+      font-weight: 600;
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+    }
+
+    .intro a:hover {
+      color: #123353;
+    }
+
+    .intro p {
+      margin-top: 0.5rem;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--text-muted);
+      text-align: justify;
+    }
+
+    .spacer {
+      height: 2.5rem;
+    }
+
+    .experience-block {
+      margin-bottom: 2rem;
     }
 
     .experience-company {
-      font-size: 13px;
-      color: #444;
-      margin-top: 2px;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
     }
 
-    .experience-list {
-      margin: 8px 0 0 18px;
-      font-size: 13px;
-      color: #333;
+    .experience-role {
+      font-style: italic;
+      margin-bottom: 0.2rem;
     }
 
-    /* Skills / education */
-    .pill-list {
-      display: flex;
-      flex-wrap: warmpe;
-      gap: 8px;
-      font-size: 12px;
-      margin-top: 4px;
+    .experience-meta {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 0.4rem;
     }
 
-    .pill {
-      padding: 4px 10px;
-      border-radius: 999px;
-      border: 1px solid #ddd;
-      background: #f7f7f7;
+    .experience-block ul {
+      margin-left: 1.2rem;
+      margin-top: 0.4rem;
+      color: var(--text-muted);
+      font-size: 0.96rem;
     }
 
-    .edu-item {
-      font-size: 13px;
-      color: #333;
+    .experience-block ul li {
+      margin-bottom: 0.25rem;
     }
 
-    .edu-meta {
-      font-size: 12px;
-      color: #666;
-      margin-top: 2px;
-    }
-
-    footer {
-      margin-top: 40px;
-      font-size: 11px;
-      color: #777;
-      border-top: 1px solid #e2e2e2;
-      padding-top: 10px;
-    }
-
-    @media (max-width: 768px) {
-      .hero {
+    @media (max-width: 900px) {
+      .page {
         grid-template-columns: 1fr;
       }
-      .experience-header {
-        flex-direction: column;
-        align-items: flex-start;
+
+      .sidebar {
+        border-right: none;
+        border-bottom: 1px solid var(--border-light);
       }
-      .experience-meta {
-        text-align: left;
+
+      .content {
+        padding: 2rem 1.75rem 2.5rem;
       }
     }
   </style>
 </head>
 <body>
-  <div class="overlay">
-    <main class="container">
+  <div class="page">
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar">
+      <div class="name">
+        ELVA<br>
+        RAMOS
+      </div>
 
-      <!-- TOP NAV -->
-      <nav>
-        <a href="index.html"><strong>Home</strong></a>
-        <a href="jira-cloud.html">Jira Cloud</a>
-      </nav>
-
-      <!-- HERO -->
-      <section class="hero">
-        <div>
-          <div class="hero-name">Elva Ramos</div>
-          <div class="hero-role">Jira · Dev Tools · Automation</div>
-          <div class="hero-contact">
-            <div><a href="mailto:elvaramosglz@gmail.com">elvaramosglz@gmail.com</a></div>
-            <div>+52 866 173 1946 · Nuevo León, Mexico</div>
-          </div>
+      <div class="contact">
+        <div class="contact-item">
+          <i class="fa-solid fa-envelope"></i>
+          <span>elvaramosglz@gmail.com</span>
         </div>
-        <div class="hero-summary">
-          I am focused on implementing and automating development tools for global
-          organizations, especially within the <strong>Atlassian ecosystem (Jira, Confluence)</strong>.  
-          I have led large-scale cloud migrations, designed workflows, permissions,
-          and automations, and created scripts to reduce manual work and improve
-          data integrity in regulated environments.
+        <div class="contact-item">
+          <i class="fa-solid fa-phone"></i>
+          <span>+52 811-123-12-12</span>
         </div>
-      </section>
+        <div class="contact-item">
+          <i class="fa-solid fa-location-dot"></i>
+          <span>Monterrey, Nuevo León, México</span>
+        </div>
+      </div>
 
-      <!-- EXPERIENCE -->
-      <section>
-        <h2>Experience</h2>
+      <div class="divider"></div>
 
-        <!-- Accenture umbrella line -->
-        <p style="font-size:13px; margin-bottom:10px;">
-          <strong>Accenture · Monterrey</strong> — July 2021 – Present
+      <div>
+        <div class="section-title">Projects</div>
+        <a class="project-link" href="jira-cloud.html">
+          <span>Jira Cloud Automation</span>
+        </a>
+        <a class="project-link" href="whatsapp-api.html">
+          <span>WhatsApp API Automation</span>
+        </a>
+        <!-- Aquí puedes ir agregando más proyectos -->
+      </div>
+    </aside>
+
+    <!-- RIGHT CONTENT -->
+    <main class="content">
+      <section class="intro">
+        <a href="#">Hi there!</a>
+        <p>
+          I’m Elva Ramos, a Jira and automation engineer focused on building reliable tools for global teams.
+          Over the past years I’ve implemented Jira Cloud for large enterprises, designed workflows and permission
+          models, and created Groovy and Python scripts that reduce manual work, support large-scale migrations,
+          and keep data consistent. My background combines software development, DevOps practices, and analytics,
+          and I enjoy documenting my work so others can understand, re-use, and extend it.
         </p>
-
-        <!-- Jira Software Engineer II -->
-        <article class="experience-item">
-          <div class="experience-header">
-            <div>
-              <div class="experience-title">Jira Software Engineer II</div>
-              <div class="experience-company">
-                Leading S&amp;P 500 Global Insurance Company
-              </div>
-            </div>
-            <div class="experience-meta">May 2025 – Present</div>
-          </div>
-          <ul class="experience-list">
-            <li>
-              Created and administered Jira Cloud, configuring users, roles,
-              permission schemes, workflows, issue types, automation rules, and
-              custom fields, ensuring continuity and data integrity across
-              large-scale environments.
-            </li>
-            <li>
-              Developed Groovy scripts and leveraged the REST API to automate
-              processes, extract information, and generate reports, while
-              producing technical documentation that supported monitoring,
-              troubleshooting, and knowledge transfer.
-            </li>
-            <li>
-              Led phased migration projects, including pilots, incremental data
-              migrations, validations, and global rollouts by Business Units,
-              with post–go-live support ensuring data accuracy and compliance.
-            </li>
-            <li>
-              Currently participating in a global migration of 7M+ records from
-              Jira/Confluence Data Center to Cloud, successfully delivering
-              pilot and incremental phases under strict deadlines and regulatory
-              standards.
-            </li>
-          </ul>
-        </article>
-
-        <!-- Solution Architect -->
-        <article class="experience-item">
-          <div class="experience-header">
-            <div>
-              <div class="experience-title">Solution Architect</div>
-              <div class="experience-company">
-                Leading S&amp;P 500 Financial Services Company
-              </div>
-            </div>
-            <div class="experience-meta">July 2023 – April 2025</div>
-          </div>
-          <ul class="experience-list">
-            <li>
-              Engineered Groovy scripts and automation rules, reducing execution
-              time by 91.6% and minimizing manual processes through ScriptRunner
-              and workflow optimization.
-            </li>
-            <li>
-              Collaborated with the client to gather requirements and migrated
-              data from Azure DevOps to Jira Cloud, ensuring data integrity,
-              timely delivery, and alignment with agile methodologies.
-            </li>
-            <li>
-              Created and maintained workflows, permissions, and technical
-              documentation in Confluence, enabling process adoption,
-              troubleshooting, and long-term knowledge retention within the team.
-            </li>
-          </ul>
-        </article>
-
-        <!-- Application Developer -->
-        <article class="experience-item">
-          <div class="experience-header">
-            <div>
-              <div class="experience-title">Application Developer</div>
-              <div class="experience-company">
-                Leading S&amp;P 500 Telecommunications Company
-              </div>
-            </div>
-            <div class="experience-meta">October 2021 – May 2023</div>
-          </div>
-          <ul class="experience-list">
-            <li>
-              Managed CI/CD pipelines and analyzed Jenkins logs to automate key
-              tasks and ensure reliable, smooth deployments.
-            </li>
-            <li>
-              Used Kubernetes to orchestrate deployments, scaling, and
-              management of pods, maintaining optimal application performance.
-            </li>
-            <li>
-              Mentored and onboarded new team members, supporting knowledge
-              transfer and team efficiency.
-            </li>
-          </ul>
-        </article>
       </section>
 
-      <!-- SKILLS / CERTIFICATIONS / LANGUAGES -->
-      <section>
-        <h2>Skills &amp; Certifications</h2>
+      <div class="spacer"></div>
 
-        <p style="font-size:13px; margin-bottom:6px;"><strong>Technical skills</strong></p>
-        <div class="pill-list">
-          <span class="pill">Jira</span>
-          <span class="pill">Agile methodology</span>
-          <span class="pill">Groovy</span>
-          <span class="pill">Python</span>
-          <span class="pill">Git</span>
-          <span class="pill">Jenkins</span>
-          <span class="pill">Kubernetes</span>
-          <span class="pill">Docker</span>
-          <span class="pill">Linux</span>
-          <span class="pill">Bash</span>
-          <span class="pill">Azure</span>
+      <section class="experience">
+        <h2 class="section-title" style="letter-spacing:0.18em;">Experience</h2>
+
+        <div class="experience-block">
+          <div class="experience-company">Accenture · Monterrey — July 2021 – Present</div>
+          <div class="experience-role">Jira Software Engineer II · Leading S&amp;P 500 Global Insurance Company</div>
+          <div class="experience-meta">Jira Cloud · ScriptRunner · GitHub Actions · Automation</div>
+          <ul>
+            <li>Created and administered Jira Cloud, configuring users, roles, permission schemes, workflows, issue types, and automation rules for large-scale environments.</li>
+            <li>Developed Groovy scripts and leveraged the Jira REST API to automate processes, extract information, and generate reports, while producing technical documentation for monitoring and knowledge transfer.</li>
+            <li>Led phased migration projects, including pilots, incremental data migrations, validations, and global rollouts by business units, ensuring continuity and data integrity.</li>
+            <li>Collaborated with cross-functional teams to design governance, troubleshoot complex issues, and standardize best practices for Jira usage.</li>
+          </ul>
         </div>
 
-        <p style="font-size:13px; margin:14px 0 6px;"><strong>Certifications</strong></p>
-        <div class="pill-list">
-          <span class="pill">Atlassian Jira Software Essentials</span>
-          <span class="pill">Certified Entry-Level Python Programmer</span>
+        <div class="experience-block">
+          <div class="experience-company">Accenture — July 2023 – April 2025</div>
+          <div class="experience-role">Solution Architect · Leading S&amp;P 500 Financial Services Company</div>
+          <div class="experience-meta">ScriptRunner · Workflow Design · Agile Delivery</div>
+          <ul>
+            <li>Engineered Groovy scripts and automation rules, reducing execution time by more than 90% for recurring operational tasks.</li>
+            <li>Collaborated with stakeholders to gather requirements and migrated data from Azure DevOps to Jira Cloud, ensuring data quality and alignment with agile methodologies.</li>
+            <li>Created and maintained workflows, permissions, and technical documentation in Confluence, enabling adoption, troubleshooting, and long-term knowledge retention.</li>
+          </ul>
         </div>
 
-        <p style="font-size:13px; margin:14px 0 6px;"><strong>Languages</strong></p>
-        <div class="pill-list">
-          <span class="pill">Spanish (native)</span>
-          <span class="pill">English (fluent)</span>
-        </div>
-      </section>
-
-      <!-- EDUCATION -->
-      <section>
-        <h2>Education</h2>
-        <div class="edu-item">
-          <strong>Architecture</strong>
-        </div>
-        <div class="edu-meta">
-          Tecnológico de Monterrey · Monterrey, Nuevo León · August 2015 – December 2021
+        <div class="experience-block">
+          <div class="experience-company">Accenture — October 2021 – May 2023</div>
+          <div class="experience-role">Application Developer · Leading S&amp;P 500 Telecommunications Company</div>
+          <div class="experience-meta">CI/CD · Jenkins · Kubernetes</div>
+          <ul>
+            <li>Managed CI/CD pipelines and analyzed Jenkins logs to automate key tasks and ensure reliable deployments.</li>
+            <li>Used Kubernetes to orchestrate deployments and maintain high availability for critical applications.</li>
+            <li>Mentored and onboarded new team members, supporting knowledge transfer and documentation of development standards.</li>
+          </ul>
         </div>
       </section>
-
-      <footer>
-        © <span id="year"></span> Elva Ramos · Personal portfolio.
-      </footer>
-
     </main>
   </div>
-
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
 </body>
 </html>
