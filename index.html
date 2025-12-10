@@ -71,16 +71,9 @@
     }
 
     .contact-item i {
-      width: 26px;
-      height: 26px;
-      border-radius: 50%;
-      background: #000;
-      color: #fff;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
+      color: var(--accent);
       margin-right: 0.6rem;
-      font-size: 0.8rem;
+      font-size: 1.1rem;
     }
 
     .divider {
@@ -113,6 +106,18 @@
     .project-link:hover span {
       color: var(--accent);
       border-bottom-color: var(--accent);
+    }
+
+    .sidebar-list {
+      list-style: none;
+      padding-left: 0;
+      margin-bottom: 1.5rem;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .sidebar-list li {
+      margin-bottom: 0.4rem;
     }
 
     /* Main content */
@@ -216,6 +221,7 @@
 
       <div class="divider"></div>
 
+      <!-- Projects -->
       <div>
         <div class="section-title">Projects</div>
         <a class="project-link" href="jira-cloud.html">
@@ -224,7 +230,39 @@
         <a class="project-link" href="whatsapp-api.html">
           <span>WhatsApp API Automation</span>
         </a>
-        <!-- Aquí puedes ir agregando más proyectos -->
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Certifications -->
+      <div>
+        <div class="section-title">Certifications</div>
+        <ul class="sidebar-list">
+          <li>Advanced Jira Cloud administration (project-based experience)</li>
+          <li>Hands-on training in ScriptRunner &amp; automation tooling</li>
+          <li>Continuous learning in Python, REST APIs, and DevOps practices</li>
+        </ul>
+      </div>
+
+      <!-- Languages -->
+      <div>
+        <div class="section-title">Languages</div>
+        <ul class="sidebar-list">
+          <li>Spanish – Native</li>
+          <li>English – Fluent (professional)</li>
+        </ul>
+      </div>
+
+      <!-- Skills -->
+      <div>
+        <div class="section-title">Skills</div>
+        <ul class="sidebar-list">
+          <li>Jira Cloud administration &amp; governance</li>
+          <li>ScriptRunner (Groovy) automation</li>
+          <li>Python scripting &amp; GitHub Actions</li>
+          <li>REST APIs &amp; data extraction</li>
+          <li>Documentation &amp; knowledge transfer</li>
+        </ul>
       </div>
     </aside>
 
@@ -254,7 +292,7 @@
             <li>Created and administered Jira Cloud, configuring users, roles, permission schemes, workflows, issue types, and automation rules for large-scale environments.</li>
             <li>Developed Groovy scripts and leveraged the Jira REST API to automate processes, extract information, and generate reports, while producing technical documentation for monitoring and knowledge transfer.</li>
             <li>Led phased migration projects, including pilots, incremental data migrations, validations, and global rollouts by business units, ensuring continuity and data integrity.</li>
-            <li>Collaborated with cross-functional teams to design governance, troubleshoot complex issues, and standardize best practices for Jira usage.</li>
+            <li>Collaborated with cross-functional teams to design governance, troubleshoot complex issues, and standardize Jira best practices.</li>
           </ul>
         </div>
 
