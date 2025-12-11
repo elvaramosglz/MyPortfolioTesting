@@ -2,161 +2,37 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Jira Cloud Automation · Portfolio – Elva Ramos</title>
+  <title>Jira Cloud Automation · Elva Ramos</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    :root {
-      --bg: #0f172a;
-      --bg-alt: #020617;
-      --card-bg: #0b1220;
-      --card-bg-soft: #111827;
-      --accent: #38bdf8;
-      --accent-soft: rgba(56, 189, 248, 0.15);
-      --accent-strong: #0ea5e9;
-      --text-main: #e5e7eb;
-      --text-soft: #9ca3af;
-      --border-subtle: rgba(148, 163, 184, 0.35);
-      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.75);
-      --radius-lg: 18px;
-      --radius-full: 999px;
-      --gap: 18px;
-    }
-
     * {
       box-sizing: border-box;
     }
 
     body {
       margin: 0;
-      padding: 32px 16px 40px;
-      background: radial-gradient(circle at top, #1e293b 0, #020617 55%);
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-        "Segoe UI", sans-serif;
-      color: var(--text-main);
+      padding: 40px 16px;
+      background: #e5e7eb;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      color: #111827;
       -webkit-font-smoothing: antialiased;
     }
 
     .page {
-      max-width: 1120px;
+      max-width: 1100px;
       margin: 0 auto;
-    }
-
-    /* Header */
-
-    .page-header {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      margin-bottom: 24px;
-    }
-
-    .breadcrumbs {
-      font-size: 0.8rem;
-      color: var(--text-soft);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .breadcrumbs a {
-      color: var(--text-soft);
-      text-decoration: none;
-      border-bottom: 1px dotted transparent;
-    }
-
-    .breadcrumbs a:hover {
-      border-bottom-color: var(--text-soft);
-    }
-
-    .breadcrumbs span.separator {
-      opacity: 0.55;
-    }
-
-    .header-main {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 12px;
-    }
-
-    .title-block h1 {
-      font-size: clamp(1.9rem, 3vw, 2.2rem);
-      letter-spacing: -0.03em;
-      margin: 0 0 6px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .title-block p.subtitle {
-      margin: 0;
-      color: var(--text-soft);
-      font-size: 0.95rem;
-      max-width: 540px;
-    }
-
-    .badge-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 4px;
-    }
-
-    .badge {
-      border-radius: var(--radius-full);
-      padding: 4px 10px;
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      background: rgba(15, 23, 42, 0.7);
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--text-soft);
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .badge-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--accent-strong);
-      box-shadow: 0 0 12px rgba(56, 189, 248, 0.9);
-    }
-
-    .status-chip {
-      border-radius: var(--radius-full);
-      padding: 4px 12px;
-      font-size: 0.78rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--accent-soft);
-      color: var(--accent-strong);
-      border: 1px solid rgba(56, 189, 248, 0.4);
-    }
-
-    .status-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--accent-strong);
-    }
-
-    /* Layout */
-
-    .layout {
       display: grid;
-      grid-template-columns: minmax(0, 280px) minmax(0, 1fr);
-      gap: 22px;
+      grid-template-columns: 260px minmax(0, 1fr);
+      background: #ffffff;
+      box-shadow: 0 10px 35px rgba(15, 23, 42, 0.18);
     }
 
-    @media (max-width: 820px) {
+    @media (max-width: 800px) {
       body {
-        padding: 20px 12px 32px;
+        padding: 20px 10px;
       }
-      .layout {
+      .page {
         grid-template-columns: minmax(0, 1fr);
       }
     }
@@ -164,669 +40,358 @@
     /* Sidebar */
 
     .sidebar {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
+      background: #e8f0f7;
+      padding: 32px 28px;
     }
 
-    .side-card {
-      background: linear-gradient(145deg, rgba(15, 23, 42, 0.96), #020617);
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border-subtle);
-      padding: 16px 16px 14px;
-      box-shadow: var(--shadow-soft);
+    .name {
+      font-size: 1.9rem;
+      letter-spacing: 0.18em;
+      font-weight: 700;
+      margin: 0 0 4px;
     }
 
-    .side-card h2 {
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--text-soft);
-      margin: 0 0 10px;
-    }
-
-    .side-meta {
-      font-size: 0.86rem;
-      display: grid;
-      row-gap: 8px;
-      column-gap: 12px;
-    }
-
-    .side-meta-row-label {
-      color: var(--text-soft);
+    .role {
+      margin: 0 0 24px;
       font-size: 0.78rem;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.22em;
+      color: #4b5563;
     }
 
-    .side-meta-row-value {
-      font-size: 0.9rem;
-    }
-
-    .tag-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 4px;
-    }
-
-    .tag-pill {
-      font-size: 0.78rem;
-      padding: 4px 9px;
-      border-radius: var(--radius-full);
-      border: 1px solid rgba(148, 163, 184, 0.45);
-      background: rgba(15, 23, 42, 0.9);
-      color: #cbd5f5;
-      white-space: nowrap;
-    }
-
-    .links-list {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      margin-top: 4px;
-    }
-
-    .side-link {
-      font-size: 0.86rem;
-      color: var(--accent);
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 6px 8px;
-      border-radius: 10px;
-      background: rgba(15, 23, 42, 0.8);
-      border: 1px solid transparent;
-    }
-
-    .side-link span.label {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .side-link:hover {
-      border-color: rgba(56, 189, 248, 0.6);
-      background: rgba(15, 23, 42, 0.95);
-    }
-
-    .side-link small {
-      font-size: 0.7rem;
-      color: var(--text-soft);
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-    }
-
-    .side-link-chevron {
-      font-size: 0.85rem;
-      opacity: 0.7;
-    }
-
-    /* Content */
-
-    .content {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .section-card {
-      background: linear-gradient(145deg, rgba(15, 23, 42, 0.97), #020617);
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border-subtle);
-      padding: 16px 18px;
-      box-shadow: var(--shadow-soft);
-    }
-
-    .section-header {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 8px;
-      margin-bottom: 8px;
-    }
-
-    .section-header h2 {
+    .sidebar p {
       margin: 0;
-      font-size: 1rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--text-soft);
-    }
-
-    .section-header span.kicker {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: rgba(148, 163, 184, 0.9);
-    }
-
-    .section-body p {
-      margin: 0 0 6px;
-      font-size: 0.92rem;
-      color: var(--text-main);
+      font-size: 0.9rem;
+      color: #4b5563;
       line-height: 1.5;
     }
 
-    .section-body p:last-child {
-      margin-bottom: 0;
+    .sidebar p + p {
+      margin-top: 4px;
     }
 
-    .muted {
-      color: var(--text-soft);
+    .sidebar-section {
+      margin-top: 28px;
     }
 
-    .pill-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin: 6px 0 2px;
+    .sidebar-section h2 {
+      margin: 0 0 10px;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: #6b7280;
     }
 
-    .pill {
-      border-radius: var(--radius-full);
-      padding: 3px 9px;
-      font-size: 0.78rem;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      color: #e5e7eb;
-    }
-
-    .list-inline {
-      padding-left: 16px;
-      margin: 6px 0 0;
-      font-size: 0.9rem;
-      color: var(--text-main);
-    }
-
-    .list-inline li {
-      margin-bottom: 4px;
-    }
-
-    .list-inline li:last-child {
-      margin-bottom: 0;
-    }
-
-    .two-column {
-      display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.1fr);
-      gap: 14px;
-      margin-top: 6px;
-    }
-
-    @media (max-width: 820px) {
-      .two-column {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    .sub-card {
-      background: rgba(15, 23, 42, 0.9);
-      border-radius: 14px;
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      padding: 10px 12px;
-      font-size: 0.88rem;
-    }
-
-    .sub-card h3 {
-      margin: 0 0 4px;
-      font-size: 0.93rem;
-    }
-
-    .sub-card p {
+    .sidebar ul {
+      list-style: none;
+      padding-left: 0;
       margin: 0;
-      font-size: 0.88rem;
-      color: var(--text-soft);
+      font-size: 0.9rem;
+      color: #374151;
     }
 
-    .sub-card a {
-      color: var(--accent);
+    .sidebar li + li {
+      margin-top: 4px;
+    }
+
+    .sidebar a {
+      color: #111827;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+    }
+
+    .sidebar a:hover {
+      border-bottom-color: #111827;
+    }
+
+    .sidebar .current {
+      font-weight: 600;
+      color: #1d4ed8;
+    }
+
+    .skills-list li::before {
+      content: "• ";
+      color: #6b7280;
+    }
+
+    /* Main content */
+
+    .main {
+      padding: 36px 44px 40px;
+    }
+
+    .main p {
+      margin: 0 0 10px;
+      font-size: 0.94rem;
+      line-height: 1.6;
+      color: #374151;
+    }
+
+    .main p:last-child {
+      margin-bottom: 0;
+    }
+
+    .section-title {
+      margin: 28px 0 8px;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #6b7280;
+    }
+
+    .section-title:first-of-type {
+      margin-top: 0;
+    }
+
+    .page-title {
+      margin: 0 0 4px;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #111827;
+    }
+
+    .page-subtitle {
+      margin: 0 0 18px;
+      font-size: 0.95rem;
+      color: #4b5563;
+    }
+
+    .link-blue {
+      color: #2563eb;
       text-decoration: none;
     }
 
-    .sub-card a:hover {
+    .link-blue:hover {
       text-decoration: underline;
     }
 
-    /* Timeline list */
-
-    .timeline {
-      list-style: none;
-      padding: 0;
-      margin: 4px 0 0;
-      font-size: 0.9rem;
+    .subheading {
+      font-weight: 600;
+      font-size: 0.96rem;
+      margin-top: 4px;
+      color: #111827;
     }
 
-    .timeline li {
-      display: grid;
-      grid-template-columns: 16px minmax(0, 1fr);
-      gap: 8px;
-      margin-bottom: 6px;
+    ul.bullets {
+      margin: 4px 0 12px 18px;
+      padding-left: 0;
+      font-size: 0.94rem;
+      color: #374151;
     }
 
-    .timeline li:last-child {
-      margin-bottom: 0;
+    ul.bullets li + li {
+      margin-top: 4px;
     }
 
-    .timeline-bullet {
-      margin-top: 6px;
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--accent-strong);
-      box-shadow: 0 0 8px rgba(56, 189, 248, 0.8);
+    .meta-line {
+      font-size: 0.88rem;
+      color: #6b7280;
+      margin-bottom: 4px;
     }
 
-    .timeline-text {
-      color: var(--text-main);
+    .inline-tags {
+      margin: 6px 0 14px;
+      font-size: 0.86rem;
+      color: #6b7280;
     }
 
-    .timeline-text span.label {
-      font-weight: 500;
-      color: #e5e7eb;
+    .inline-tags span {
+      display: inline-block;
+      margin-right: 10px;
     }
 
-    .timeline-text span.meta {
-      font-size: 0.8rem;
-      color: var(--text-soft);
-      margin-left: 4px;
-    }
-
-    /* Callout */
-
-    .callout {
-      border-radius: 14px;
-      padding: 8px 10px;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px dashed rgba(148, 163, 184, 0.6);
-      font-size: 0.85rem;
-      color: var(--text-soft);
-      margin-top: 8px;
-    }
-
-    .callout strong {
-      color: #e5e7eb;
-      font-weight: 500;
+    hr {
+      border: none;
+      border-top: 1px solid #e5e7eb;
+      margin: 18px 0;
     }
   </style>
 </head>
 <body>
   <div class="page">
-    <!-- Header -->
-    <header class="page-header">
-      <nav class="breadcrumbs">
-        <a href="index.html">Home</a>
-        <span class="separator">/</span>
-        <a href="jira-cloud.html">Jira Cloud</a>
-        <span class="separator">/</span>
-        <span>Automation</span>
-      </nav>
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar">
+      <h1 class="name">ELVA<br />RAMOS</h1>
+      <p class="role">TECH ARCHITECTURE SENIOR ANALYST</p>
 
-      <div class="header-main">
-        <div class="title-block">
-          <h1>
-            Jira Cloud Automation
-            <span class="status-chip">
-              <span class="status-dot"></span>
-              Active portfolio track
-            </span>
-          </h1>
-          <p class="subtitle">
-            I design and implement end-to-end automation for Jira Cloud using ScriptRunner (Groovy),
-            Python REST services, and Atlassian APIs. My focus: remove manual work, protect data
-            quality, and make complex migrations safer and repeatable.
-          </p>
-          <div class="badge-row">
-            <div class="badge">
-              <span class="badge-dot"></span>
-              Jira Cloud · Automation & Tooling
-            </div>
-            <div class="badge">
-              ScriptRunner · Groovy · Python · REST APIs
-            </div>
-          </div>
-        </div>
+      <p>elvaramosglz@gmail.com</p>
+      <p>+52 811-123-12-12</p>
+      <p>Monterrey, Nuevo León, México</p>
+
+      <div class="sidebar-section">
+        <h2>Projects</h2>
+        <ul>
+          <li><span class="current">Jira Cloud Automation</span></li>
+          <li><a href="whatsapp-api-automation.html">WhatsApp API Automation</a></li>
+        </ul>
       </div>
-    </header>
 
-    <main class="layout">
-      <!-- Sidebar -->
-      <aside class="sidebar">
-        <section class="side-card">
-          <h2>Project Snapshot</h2>
-          <div class="side-meta">
-            <div class="side-meta-row">
-              <div class="side-meta-row-label">Role</div>
-              <div class="side-meta-row-value">
-                Tech Architecture / Automation Engineer
-              </div>
-            </div>
-            <div class="side-meta-row">
-              <div class="side-meta-row-label">Scope</div>
-              <div class="side-meta-row-value">
-                Jira Cloud instances, enterprise-scale migrations, governance
-              </div>
-            </div>
-            <div class="side-meta-row">
-              <div class="side-meta-row-label">Location</div>
-              <div class="side-meta-row-value">
-                Monterrey · Remote Collaboration
-              </div>
-            </div>
-            <div class="side-meta-row">
-              <div class="side-meta-row-label">Focus Areas</div>
-              <div class="side-meta-row-value">
-                <div class="tag-list">
-                  <span class="tag-pill">Automation patterns</span>
-                  <span class="tag-pill">Data quality</span>
-                  <span class="tag-pill">Migration tooling</span>
-                  <span class="tag-pill">Jira governance</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+      <div class="sidebar-section">
+        <h2>Certifications</h2>
+        <ul>
+          <li>Atlassian Jira Software Essentials</li>
+          <li>Certified Entry-Level Python Programmer (PCEP)</li>
+        </ul>
+      </div>
 
-        <section class="side-card">
-          <h2>Tech Stack</h2>
-          <div class="tag-list">
-            <span class="tag-pill">Jira Cloud</span>
-            <span class="tag-pill">ScriptRunner (Cloud)</span>
-            <span class="tag-pill">Groovy</span>
-            <span class="tag-pill">Python</span>
-            <span class="tag-pill">REST APIs</span>
-            <span class="tag-pill">JSON</span>
-            <span class="tag-pill">GitHub</span>
-            <span class="tag-pill">Automation rules</span>
-          </div>
-        </section>
+      <div class="sidebar-section">
+        <h2>Skills</h2>
+        <ul class="skills-list">
+          <li>ScriptRunner automation (Groovy)</li>
+          <li>Jira Cloud administration &amp; governance</li>
+          <li>Workflow &amp; permission design</li>
+          <li>REST API integrations</li>
+          <li>Python tooling for Jira/Confluence</li>
+        </ul>
+      </div>
+    </aside>
 
-        <section class="side-card">
-          <h2>Related Pages</h2>
-          <div class="links-list">
-            <a class="side-link" href="jira-cloud-custom-fields-inventory.html">
-              <span class="label">
-                Custom Fields Inventory
-              </span>
-              <span class="side-link-chevron">↗</span>
-            </a>
-            <a class="side-link" href="weekly-issue-generation.html">
-              <span class="label">
-                Weekly Issue Generator
-              </span>
-              <span class="side-link-chevron">↗</span>
-            </a>
-            <a class="side-link" href="jira-cloud.html">
-              <span class="label">
-                Jira Cloud Overview
-              </span>
-              <span class="side-link-chevron">↗</span>
-            </a>
-          </div>
-        </section>
-      </aside>
+    <!-- MAIN CONTENT -->
+    <main class="main">
+      <h2 class="section-title">Project</h2>
+      <h1 class="page-title">Jira Cloud Automation</h1>
+      <p class="page-subtitle">
+        Automation toolkit for Jira Cloud focused on configuration discovery,
+        migration support, and governance for large-scale instances.
+      </p>
 
-      <!-- Main content -->
-      <section class="content">
-        <!-- Overview -->
-        <article class="section-card">
-          <div class="section-header">
-            <h2>Overview</h2>
-            <span class="kicker">What I automate in Jira Cloud</span>
-          </div>
-          <div class="section-body">
-            <p>
-              I build automation around Jira Cloud to support teams during large-scale
-              migrations, cleanups, and day-to-day operations. The goal is to transform
-              fragile, manual admin work into <strong>repeatable, traceable, and safe</strong> jobs
-              that can run on schedule or on demand.
-            </p>
-            <p class="muted">
-              The examples in this portfolio are simplified and anonymized, but they reflect real
-              scenarios: custom field inventories, cleanup orchestration, and sample issue
-              generation for demos and testing.
-            </p>
-            <div class="pill-row">
-              <span class="pill">Instance discovery & inventory</span>
-              <span class="pill">Custom field lifecycle</span>
-              <span class="pill">Scheduled checks & alerts</span>
-              <span class="pill">Guardrails for migrations</span>
-            </div>
-          </div>
-        </article>
+      <h2 class="section-title">Overview</h2>
+      <p>
+        This project groups the automation work I do around Jira Cloud using
+        <strong>ScriptRunner (Groovy)</strong>, <strong>Python</strong>, and the
+        <strong>Jira REST API</strong>. The goal is to replace manual,
+        one-off admin tasks with <em>repeatable, documented, and safe</em>
+        jobs that help during migrations, cleanups, and day-to-day
+        operations.
+      </p>
+      <p>
+        The examples are anonymized but based on real scenarios: custom fields
+        inventory, cleanup orchestration, demo issue generation, and
+        guardrails for configuration changes.
+      </p>
 
-        <!-- What I automate -->
-        <article class="section-card">
-          <div class="section-header">
-            <h2>Automation Scope</h2>
-            <span class="kicker">Types of jobs I design</span>
-          </div>
-          <div class="section-body">
-            <div class="two-column">
-              <div class="sub-card">
-                <h3>1. Discovery & Inventory</h3>
-                <p>
-                  ScriptRunner jobs and Python scripts that scan Jira Cloud configuration and
-                  export structured inventories (custom fields, screens, workflows, projects).
-                </p>
-                <ul class="list-inline">
-                  <li>Export metadata to CSV / JSON for analysis</li>
-                  <li>Tag risky or unused configuration elements</li>
-                  <li>Support migration planning and cleanups</li>
-                </ul>
-              </div>
-              <div class="sub-card">
-                <h3>2. Governance & Guardrails</h3>
-                <p>
-                  Automation that keeps configuration in a good state: enforcing naming
-                  conventions, validating new fields, and detecting violations over time.
-                </p>
-                <ul class="list-inline">
-                  <li>Rules for “read-only” projects during migrations</li>
-                  <li>Checks to prevent duplicate or conflicting fields</li>
-                  <li>Lightweight alerts instead of manual audits</li>
-                </ul>
-              </div>
-            </div>
+      <div class="inline-tags">
+        <span>Jira Cloud · ScriptRunner · Automation</span>
+        <span>REST APIs · Python · JSON</span>
+      </div>
 
-            <div class="two-column" style="margin-top: 10px;">
-              <div class="sub-card">
-                <h3>3. Scheduled Jobs & Demo Data</h3>
-                <p>
-                  Jobs that generate issues on a schedule for <strong>demo</strong> or
-                  <strong>monitoring</strong> purposes.
-                </p>
-                <ul class="list-inline">
-                  <li>
-                    <a href="weekly-issue-generation.html">Weekly Issue Generator</a> for demo projects
-                  </li>
-                  <li>Structured summaries stored in custom fields or comments</li>
-                  <li>Logging and idempotency to avoid duplicates</li>
-                </ul>
-              </div>
-              <div class="sub-card">
-                <h3>4. Integration Helpers</h3>
-                <p>
-                  Small services around Jira APIs (Python) that support bulk operations
-                  when ScriptRunner alone is not enough.
-                </p>
-                <ul class="list-inline">
-                  <li>Batch updates to issues or fields via REST</li>
-                  <li>Export/import helpers for configuration snapshots</li>
-                  <li>Alignment with GitHub for version control</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </article>
+      <h2 class="section-title">Key responsibilities</h2>
 
-        <!-- Architecture -->
-        <article class="section-card">
-          <div class="section-header">
-            <h2>Automation Architecture</h2>
-            <span class="kicker">How the pieces work together</span>
-          </div>
-          <div class="section-body">
-            <p>
-              I combine Jira Cloud automation, ScriptRunner (Cloud), and external Python scripts
-              into a simple but powerful architecture. The exact design depends on the company’s
-              constraints, but the pattern follows the same logic:
-            </p>
-            <ul class="timeline">
-              <li>
-                <div class="timeline-bullet"></div>
-                <div class="timeline-text">
-                  <span class="label">1. Configuration discovery</span>
-                  <span class="meta">ScriptRunner · REST API · CSV / JSON exports</span>
-                  <div>
-                    Jobs that read Jira configuration (fields, screens, projects) and store
-                    a snapshot for analysis and traceability.
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div class="timeline-bullet"></div>
-                <div class="timeline-text">
-                  <span class="label">2. Data analysis & rules</span>
-                  <span class="meta">Python · Notebooks · Ad-hoc validation</span>
-                  <div>
-                    External scripts that analyze inventories, detect patterns (duplicates, unused,
-                    risky), and generate rule sets or candidate changes.
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div class="timeline-bullet"></div>
-                <div class="timeline-text">
-                  <span class="label">3. Safe changes & guardrails</span>
-                  <span class="meta">ScriptRunner jobs · Dry-run modes</span>
-                  <div>
-                    Carefully designed jobs that apply changes in a controlled way:
-                    dry-run first, verbose logging, rollback notes, and clear scope.
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div class="timeline-bullet"></div>
-                <div class="timeline-text">
-                  <span class="label">4. Monitoring & demos</span>
-                  <span class="meta">Scheduled issues · Alerts · Dashboards</span>
-                  <div>
-                    Scheduled “heartbeat” issues and checks that prove the automations are
-                    working and keep admins informed about the instance health.
-                  </div>
-                </div>
-              </li>
-            </ul>
+      <p class="subheading">Design automation patterns for Jira Cloud</p>
+      <p class="meta-line">ScriptRunner · Groovy · Governance</p>
+      <ul class="bullets">
+        <li>
+          Create jobs that scan configuration (custom fields, screens,
+          workflows, projects) and export structured inventories to CSV/JSON.
+        </li>
+        <li>
+          Define conventions, guardrails, and “safe defaults” so admins can run
+          automation against production instances with confidence.
+        </li>
+        <li>
+          Document each job with input parameters, scope, and expected output,
+          making it easy to reuse across clients or environments.
+        </li>
+      </ul>
 
-            <div class="callout">
-              <strong>Design principle:</strong> every job should be <em>observable</em>.
-              If an admin cannot tell what changed, when it ran, and what it touched,
-              it’s not ready to run against an enterprise Jira instance.
-            </div>
-          </div>
-        </article>
+      <p class="subheading">Build Python helpers around the Jira REST API</p>
+      <p class="meta-line">Python · REST · Tooling</p>
+      <ul class="bullets">
+        <li>
+          Develop small command-line tools to perform bulk reads and updates
+          when ScriptRunner alone is not enough.
+        </li>
+        <li>
+          Use API pagination, authentication, and error handling patterns that
+          are robust and easy to extend.
+        </li>
+        <li>
+          Keep scripts versioned in GitHub and aligned with ScriptRunner code
+          and documentation.
+        </li>
+      </ul>
 
-        <!-- Highlighted automations -->
-        <article class="section-card">
-          <div class="section-header">
-            <h2>Highlighted Automations</h2>
-            <span class="kicker">Selected examples from this track</span>
-          </div>
-          <div class="section-body">
-            <div class="two-column">
-              <div class="sub-card">
-                <h3>Custom Fields Inventory</h3>
-                <p>
-                  ScriptRunner job that exports a detailed inventory of custom fields, including
-                  usage, contexts, and comments for fields that couldn’t be fully resolved.
-                </p>
-                <ul class="list-inline">
-                  <li>Supports custom field cleanups and consolidation</li>
-                  <li>Feeds downstream scripts for rules & decisions</li>
-                  <li>
-                    Documented in:
-                    <a href="jira-cloud-custom-fields-inventory.html">
-                      jira-cloud-custom-fields-inventory.html
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div class="sub-card">
-                <h3>Weekly Issue Generator</h3>
-                <p>
-                  Scheduled job that creates demo issues in a dedicated project to showcase
-                  automation behavior and keep the environment “alive” for stakeholders.
-                </p>
-                <ul class="list-inline">
-                  <li>Demonstrates scheduling, logging, and safe defaults</li>
-                  <li>Useful for guided demos or training environments</li>
-                  <li>
-                    Documented in:
-                    <a href="weekly-issue-generation.html">
-                      weekly-issue-generation.html
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
+      <p class="subheading">Support migrations and cleanups</p>
+      <p class="meta-line">Data Center → Cloud · Configuration hygiene</p>
+      <ul class="bullets">
+        <li>
+          Provide inventories and reports that help decide which configuration
+          elements can be removed, merged, or migrated.
+        </li>
+        <li>
+          Design “read-only” patterns for projects during cut-over windows to
+          avoid accidental changes.
+        </li>
+        <li>
+          Coordinate dry-runs, logging, and rollback options so changes are
+          auditable and reversible.
+        </li>
+      </ul>
 
-            <div class="two-column" style="margin-top: 10px;">
-              <div class="sub-card">
-                <h3>Read-Only Projects (concept)</h3>
-                <p>
-                  Conceptual design for rules that temporarily enforce read-only behavior in
-                  specific projects during migrations or critical windows.
-                </p>
-                <ul class="list-inline">
-                  <li>Prevents accidental changes during cut-overs</li>
-                  <li>Can be implemented via ScriptRunner + issue transitions</li>
-                  <li>Aligns with governance & change-management policies</li>
-                </ul>
-              </div>
-              <div class="sub-card">
-                <h3>Field Cleanup Orchestrator (concept)</h3>
-                <p>
-                  Orchestrated approach where inventory, analysis, and change jobs communicate via
-                  structured outputs (CSV/JSON) instead of one big “god script”.
-                </p>
-                <ul class="list-inline">
-                  <li>Smaller, testable jobs instead of a single risky script</li>
-                  <li>Supports phased cleanups and controlled rollouts</li>
-                  <li>Ready to be extended per client or instance</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </article>
+      <hr />
 
-        <!-- Delivery & impact -->
-        <article class="section-card">
-          <div class="section-header">
-            <h2>Delivery & Impact</h2>
-            <span class="kicker">How this translates to value</span>
-          </div>
-          <div class="section-body">
-            <p>
-              The main impact of this automation track is <strong>risk reduction</strong> and
-              <strong>time saved</strong> for Jira admins and project teams. Instead of relying on
-              one-off scripts or manual clicks, admins get tools they can run repeatedly and trust.
-            </p>
-            <ul class="list-inline">
-              <li>Faster assessments of Jira configuration before migrations</li>
-              <li>Fewer surprises related to “hidden” or unused custom fields</li>
-              <li>Safer change windows thanks to read-only and validation patterns</li>
-              <li>Better communication with stakeholders through documented jobs</li>
-            </ul>
-            <div class="callout">
-              <strong>Next step:</strong> connect these automations with CI (GitHub Actions) so
-              ScriptRunner code, Python helpers, and documentation live together under version
-              control and can be promoted between environments.
-            </div>
-          </div>
-        </article>
-      </section>
+      <h2 class="section-title">Highlighted automations</h2>
+
+      <p class="subheading">
+        Jira Cloud Custom Fields Inventory
+        <a class="link-blue" href="jira-cloud-custom-fields-inventory.html">
+          (view page)
+        </a>
+      </p>
+      <p class="meta-line">ScriptRunner · Reporting · Cleanup support</p>
+      <ul class="bullets">
+        <li>
+          ScriptRunner job that exports a detailed inventory of custom fields,
+          including type, contexts, usage notes, and comments for fields that
+          could not be fully resolved.
+        </li>
+        <li>
+          Output feeds Excel/Python analysis to identify duplicates, unused
+          fields, and consolidation opportunities before a migration.
+        </li>
+      </ul>
+
+      <p class="subheading">
+        Weekly Issue Generator
+        <a class="link-blue" href="weekly-issue-generation.html">
+          (view page)
+        </a>
+      </p>
+      <p class="meta-line">Scheduling · Demo environments · Monitoring</p>
+      <ul class="bullets">
+        <li>
+          Scheduled job that automatically creates a sample issue in a demo
+          project, used to showcase workflows and automation rules.
+        </li>
+        <li>
+          Demonstrates logging, idempotency, and parameterization (project,
+          issue type, labels) while keeping the script simple to understand.
+        </li>
+      </ul>
+
+      <p class="subheading">Field cleanup orchestrator (concept)</p>
+      <p class="meta-line">Orchestration · Incremental rollout</p>
+      <ul class="bullets">
+        <li>
+          Proposed architecture that splits a large “cleanup script” into
+          smaller jobs: inventory, analysis, and change roll-out.
+        </li>
+        <li>
+          Each phase produces outputs that the next phase reads, making the
+          process easier to test, pause, or roll back.
+        </li>
+      </ul>
+
+      <hr />
+
+      <h2 class="section-title">What this shows about my work</h2>
+      <p>
+        This project reflects how I think about automation: not just as a way
+        to save time, but as a way to make Jira Cloud
+        <strong>safer, more predictable, and better documented</strong>.
+        I enjoy combining Groovy, Python, and Atlassian APIs to build tools
+        that admins and teams can actually rely on.
+      </p>
     </main>
   </div>
 </body>
