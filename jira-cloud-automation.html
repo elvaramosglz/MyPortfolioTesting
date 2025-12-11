@@ -45,8 +45,8 @@
     }
 
     .name {
-      font-size: 1.9rem;
-      letter-spacing: 0.18em;
+      font-size: 1.4rem;
+      letter-spacing: 0.2em;
       font-weight: 700;
       margin: 0 0 4px;
     }
@@ -59,19 +59,8 @@
       color: #4b5563;
     }
 
-    .sidebar p {
-      margin: 0;
-      font-size: 0.9rem;
-      color: #4b5563;
-      line-height: 1.5;
-    }
-
-    .sidebar p + p {
-      margin-top: 4px;
-    }
-
     .sidebar-section {
-      margin-top: 28px;
+      margin-top: 26px;
     }
 
     .sidebar-section h2 {
@@ -211,37 +200,45 @@
   <div class="page">
     <!-- LEFT SIDEBAR -->
     <aside class="sidebar">
-      <h1 class="name">ELVA<br />RAMOS</h1>
-      <p class="role">TECH ARCHITECTURE SENIOR ANALYST</p>
-
-      <p>elvaramosglz@gmail.com</p>
-      <p>+52 811-123-12-12</p>
-      <p>Monterrey, Nuevo León, México</p>
+      <h1 class="name">PROJECTS</h1>
+      <p class="role">JIRA &amp; AUTOMATION PORTFOLIO</p>
 
       <div class="sidebar-section">
         <h2>Projects</h2>
         <ul>
           <li><span class="current">Jira Cloud Automation</span></li>
           <li><a href="whatsapp-api-automation.html">WhatsApp API Automation</a></li>
+          <li><a href="jira-cloud-custom-fields-inventory.html">Custom Fields Inventory</a></li>
+          <li><a href="weekly-issue-generation.html">Weekly Issue Generator</a></li>
         </ul>
       </div>
 
       <div class="sidebar-section">
-        <h2>Certifications</h2>
+        <h2>About this project</h2>
         <ul>
-          <li>Atlassian Jira Software Essentials</li>
-          <li>Certified Entry-Level Python Programmer (PCEP)</li>
+          <li>Automation toolkit for Jira Cloud.</li>
+          <li>Supports migrations, cleanups, governance.</li>
+          <li>Combines ScriptRunner, Python and REST APIs.</li>
         </ul>
       </div>
 
       <div class="sidebar-section">
-        <h2>Skills</h2>
+        <h2>Tech stack</h2>
         <ul class="skills-list">
-          <li>ScriptRunner automation (Groovy)</li>
-          <li>Jira Cloud administration &amp; governance</li>
-          <li>Workflow &amp; permission design</li>
-          <li>REST API integrations</li>
-          <li>Python tooling for Jira/Confluence</li>
+          <li>Jira Cloud</li>
+          <li>ScriptRunner (Groovy)</li>
+          <li>Python</li>
+          <li>Jira REST API</li>
+          <li>JSON · CSV exports</li>
+        </ul>
+      </div>
+
+      <div class="sidebar-section">
+        <h2>Related pages</h2>
+        <ul>
+          <li><a href="jira-cloud-custom-fields-inventory.html">Custom Fields Inventory</a></li>
+          <li><a href="weekly-issue-generation.html">Weekly Issue Generator</a></li>
+          <li><a href="jira-cloud.html">Jira Cloud Overview</a></li>
         </ul>
       </div>
     </aside>
@@ -317,82 +314,3 @@
         <li>
           Provide inventories and reports that help decide which configuration
           elements can be removed, merged, or migrated.
-        </li>
-        <li>
-          Design “read-only” patterns for projects during cut-over windows to
-          avoid accidental changes.
-        </li>
-        <li>
-          Coordinate dry-runs, logging, and rollback options so changes are
-          auditable and reversible.
-        </li>
-      </ul>
-
-      <hr />
-
-      <h2 class="section-title">Highlighted automations</h2>
-
-      <p class="subheading">
-        Jira Cloud Custom Fields Inventory
-        <a class="link-blue" href="jira-cloud-custom-fields-inventory.html">
-          (view page)
-        </a>
-      </p>
-      <p class="meta-line">ScriptRunner · Reporting · Cleanup support</p>
-      <ul class="bullets">
-        <li>
-          ScriptRunner job that exports a detailed inventory of custom fields,
-          including type, contexts, usage notes, and comments for fields that
-          could not be fully resolved.
-        </li>
-        <li>
-          Output feeds Excel/Python analysis to identify duplicates, unused
-          fields, and consolidation opportunities before a migration.
-        </li>
-      </ul>
-
-      <p class="subheading">
-        Weekly Issue Generator
-        <a class="link-blue" href="weekly-issue-generation.html">
-          (view page)
-        </a>
-      </p>
-      <p class="meta-line">Scheduling · Demo environments · Monitoring</p>
-      <ul class="bullets">
-        <li>
-          Scheduled job that automatically creates a sample issue in a demo
-          project, used to showcase workflows and automation rules.
-        </li>
-        <li>
-          Demonstrates logging, idempotency, and parameterization (project,
-          issue type, labels) while keeping the script simple to understand.
-        </li>
-      </ul>
-
-      <p class="subheading">Field cleanup orchestrator (concept)</p>
-      <p class="meta-line">Orchestration · Incremental rollout</p>
-      <ul class="bullets">
-        <li>
-          Proposed architecture that splits a large “cleanup script” into
-          smaller jobs: inventory, analysis, and change roll-out.
-        </li>
-        <li>
-          Each phase produces outputs that the next phase reads, making the
-          process easier to test, pause, or roll back.
-        </li>
-      </ul>
-
-      <hr />
-
-      <h2 class="section-title">What this shows about my work</h2>
-      <p>
-        This project reflects how I think about automation: not just as a way
-        to save time, but as a way to make Jira Cloud
-        <strong>safer, more predictable, and better documented</strong>.
-        I enjoy combining Groovy, Python, and Atlassian APIs to build tools
-        that admins and teams can actually rely on.
-      </p>
-    </main>
-  </div>
-</body>
-</html>
