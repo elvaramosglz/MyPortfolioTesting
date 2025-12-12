@@ -1,25 +1,33 @@
-/* Minimal styles to match existing clean-card look (adjust class names if needed) */
-.link-grid{
-  display:grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap:14px;
-}
+<!-- RIGHT CONTENT: Links section (place near the top of the main content) -->
+<section class="section">
+  <div class="section-title">LINKS</div>
 
-.link-card{
-  display:block;
-  padding:14px 16px;
-  border:1px solid rgba(0,0,0,0.08);
-  border-radius:12px;
-  text-decoration:none;
-}
+  <div class="link-grid">
+    <a class="link-card" href="./jira-cloud-automation.html">
+      <div class="link-card-title">JIRA CLOUD AUTOMATION</div>
+      <div class="link-card-subtitle">Toolkit • Configuration discovery • Migration support</div>
+    </a>
 
-.link-card-title{
-  font-weight:700;
-  letter-spacing:0.02em;
-}
+    <a class="link-card" href="./python-scripts.html">
+      <div class="link-card-title">PYTHON SCRIPTS</div>
+      <div class="link-card-subtitle">Jira REST API • Exports • Tooling</div>
+    </a>
 
-.link-card-subtitle{
-  margin-top:6px;
-  opacity:0.75;
-  font-size:0.95em;
-}
+    <a class="link-card" href="./groovy-scripts.html">
+      <div class="link-card-title">GROOVY SCRIPTS</div>
+      <div class="link-card-subtitle">ScriptRunner • Jobs • Guardrails</div>
+    </a>
+
+    <!-- alternativa si prefieres "PYTHON PROJECT" en vez de "PYTHON SCRIPTS":
+    <a class="link-card" href="./python-project.html">
+      <div class="link-card-title">PYTHON PROJECT</div>
+      <div class="link-card-subtitle">Repo + CLI helpers + reporting</div>
+    </a>
+    -->
+
+    <a class="link-card" href="./whatsapp-api-bot.html">
+      <div class="link-card-title">WHATS APP BOT API</div>
+      <div class="link-card-subtitle">Meta WhatsApp • Webhooks • Automation</div>
+    </a>
+  </div>
+</section>
