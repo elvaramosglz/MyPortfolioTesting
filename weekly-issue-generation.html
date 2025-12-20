@@ -2,237 +2,424 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Weekly Issue Generator (ScriptRunner · Jira Cloud)</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WhatsApp Ordering Assistant – Chavela</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+
   <style>
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      line-height: 1.6;
-      margin: 0;
-      padding: 0;
-      background: #fafafa;
-      color: #222;
+    :root{
+      --bg: #0b1020;
+      --panel: rgba(255,255,255,0.06);
+      --panel-2: rgba(255,255,255,0.08);
+      --border: rgba(255,255,255,0.12);
+      --text: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.72);
+      --muted2: rgba(255,255,255,0.58);
+      --accent: #7dd3fc;
+      --accent2:#a78bfa;
+      --ok:#34d399;
+
+      --radius: 18px;
+      --shadow: 0 18px 50px rgba(0,0,0,0.35);
+      --max: 1020px;
     }
-    header, main {
-      max-width: 900px;
+
+    *{ box-sizing: border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: "Source Sans Pro", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(1200px 500px at 20% 0%, rgba(125,211,252,0.18), transparent 60%),
+        radial-gradient(1100px 520px at 85% 10%, rgba(167,139,250,0.16), transparent 55%),
+        radial-gradient(900px 520px at 50% 100%, rgba(52,211,153,0.10), transparent 60%),
+        linear-gradient(180deg, #070a14 0%, #0b1020 55%, #070a14 100%);
+      line-height: 1.55;
+    }
+
+    a{ color: inherit; text-decoration: none; }
+    a:hover{ text-decoration: underline; }
+
+    .wrap{
+      max-width: var(--max);
       margin: 0 auto;
-      padding: 1.5rem 1rem 2rem;
+      padding: 28px 18px 64px;
     }
-    nav a {
-      text-decoration: none;
-      color: #2563eb;
-      font-weight: 500;
+
+    /* Header */
+    .hero{
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+      border-radius: calc(var(--radius) + 6px);
+      padding: 26px 22px;
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position: relative;
     }
-    h1, h2, h3 {
-      color: #111827;
+    .hero:before{
+      content:"";
+      position:absolute;
+      inset: -2px;
+      background:
+        radial-gradient(700px 240px at 15% 0%, rgba(125,211,252,0.22), transparent 60%),
+        radial-gradient(680px 240px at 85% 0%, rgba(167,139,250,0.20), transparent 60%);
+      opacity: .7;
+      pointer-events:none;
+      filter: blur(18px);
     }
-    section {
-      background: #ffffff;
-      border-radius: 8px;
-      padding: 1.5rem;
-      margin-top: 1.25rem;
-      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
+    .hero > *{ position: relative; z-index: 1; }
+
+    .breadcrumbs{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items:center;
+      font-size: 14px;
+      color: var(--muted2);
+      margin-bottom: 10px;
     }
-    code {
-      background: #f3f4f6;
-      padding: 0.1rem 0.25rem;
-      border-radius: 4px;
-      font-size: 0.95em;
+    .crumb-dot{
+      width: 5px; height: 5px; border-radius: 999px;
+      background: rgba(255,255,255,0.35);
     }
-    pre {
-      background: #0b1120;
-      color: #e5e7eb;
-      padding: 1rem;
-      border-radius: 8px;
-      overflow-x: auto;
-      font-size: 0.9em;
+
+    h1{
+      margin: 0 0 8px;
+      font-size: 34px;
+      letter-spacing: -0.02em;
     }
-    ul {
-      padding-left: 1.2rem;
+    .subtitle{
+      margin: 0 0 16px;
+      color: var(--muted);
+      font-size: 16px;
+      max-width: 72ch;
     }
-    .meta p {
-      margin: 0.15rem 0;
+
+    .pillrow{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
     }
-    .tag {
-      display: inline-block;
-      font-size: 0.8rem;
-      padding: 0.15rem 0.5rem;
+    .pill{
+      font-size: 13px;
+      padding: 7px 10px;
       border-radius: 999px;
-      background: #eff6ff;
-      color: #1d4ed8;
-      margin-right: 0.35rem;
-      margin-top: 0.25rem;
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,0.14);
+      color: var(--muted);
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      white-space: nowrap;
     }
-    .small-note {
-      font-size: 0.85rem;
-      color: #6b7280;
+    .pill b{ color: var(--text); font-weight: 600; }
+    .dot{
+      width: 8px; height: 8px; border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(125,211,252,0.14);
+    }
+    .dot.purple{
+      background: var(--accent2);
+      box-shadow: 0 0 0 4px rgba(167,139,250,0.14);
+    }
+    .dot.green{
+      background: var(--ok);
+      box-shadow: 0 0 0 4px rgba(52,211,153,0.14);
+    }
+
+    /* Layout */
+    .grid{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 16px;
+      align-items: start;
+    }
+    @media (max-width: 920px){
+      .grid{ grid-template-columns: 1fr; }
+    }
+
+    .card{
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.05);
+      border-radius: var(--radius);
+      padding: 18px 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+    }
+    .card h2{
+      margin: 0 0 10px;
+      font-size: 18px;
+      letter-spacing: -0.01em;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    .kicker{
+      font-size: 12px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--muted2);
+      margin-bottom: 8px;
+    }
+    p{ margin: 0 0 12px; color: var(--muted); }
+    p:last-child{ margin-bottom: 0; }
+
+    ul{
+      margin: 10px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+    li{ margin: 8px 0; }
+    li strong{ color: var(--text); font-weight: 600; }
+
+    /* Aside */
+    .aside .row{
+      display:flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px dashed rgba(255,255,255,0.14);
+    }
+    .aside .row:last-child{ border-bottom: 0; padding-bottom: 0; }
+    .aside .label{ color: var(--muted2); font-size: 13px; }
+    .aside .value{ color: var(--text); font-weight: 600; font-size: 13px; text-align:right; }
+
+    /* Tech tags */
+    .tags{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .tag{
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,0.12);
+      color: var(--muted);
+    }
+
+    /* Sections */
+    .section{
+      margin-top: 16px;
+    }
+
+    /* Footer */
+    .footer{
+      margin-top: 22px;
+      color: var(--muted2);
+      font-size: 13px;
+      text-align:center;
+    }
+
+    /* Small accents */
+    .icon{
+      width: 10px; height: 10px;
+      border-radius: 3px;
+      background: linear-gradient(135deg, rgba(125,211,252,1), rgba(167,139,250,1));
+      box-shadow: 0 0 0 4px rgba(125,211,252,0.12);
+      flex: 0 0 auto;
+    }
+    .divider{
+      margin: 14px 0 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.22), transparent);
     }
   </style>
 </head>
+
 <body>
-  <header>
-    <nav>
-      <a href="index.html">← Home</a>
-    </nav>
-  </header>
-
-  <main>
-    <section id="weekly-issue-generator">
-      <h1>Weekly Issue Generator</h1>
-
-      <div class="meta">
-        <p><strong>Language:</strong> Groovy (ScriptRunner for Jira Cloud)</p>
-        <p><strong>Difficulty:</strong> Easy</p>
-        <p>
-          <span class="tag">Jira Cloud REST API</span>
-          <span class="tag">ScriptRunner</span>
-          <span class="tag">Automation</span>
-          <span class="tag">Scheduled Jobs</span>
-          <span class="tag">Portfolio Demo</span>
-        </p>
+  <main class="wrap">
+    <section class="hero">
+      <div class="breadcrumbs">
+        <span>Projects</span>
+        <span class="crumb-dot"></span>
+        <span>Automation</span>
+        <span class="crumb-dot"></span>
+        <span>WhatsApp Bot</span>
       </div>
 
-      <hr>
-
-      <h2>Description</h2>
-      <p>
-        This ScriptRunner scheduled job automatically creates a Jira issue in a target project on a recurring schedule.
-        It is a small, self-contained example of how to use Groovy + ScriptRunner to call Jira Cloud REST APIs,
-        generate dynamic content, and leave a clear, timestamped trace of every automation run.
-      </p>
-      <p>
-        The script runs entirely inside Jira Cloud (ScriptRunner for Jira), using the
-        <code>/rest/api/3/issue</code> endpoint, and updates the issue description with a rich-text
-        Atlassian Document Format (ADF) payload that also points back to this public portfolio page.
+      <h1>WhatsApp Ordering Assistant – <span style="color:var(--accent)">Chavela</span></h1>
+      <p class="subtitle">
+        A deterministic WhatsApp-based ordering assistant that converts unstructured chat messages into structured,
+        confirmed orders—reducing manual follow-up and operational friction.
       </p>
 
-      <h2>Structure</h2>
-      <ol>
-        <li>
-          <strong>Configuration section</strong><br>
-          Defines the target Jira project (<code>projectKey</code>) and issue type
-          (<code>issueTypeName</code>). This makes it easy to repoint the job to a different project
-          without changing the logic.
-        </li>
-        <li>
-          <strong>Dynamic content generation</strong><br>
-          Uses the current date and time to build a unique, timestamped issue summary
-          (for example, <code>"Issue created with ScriptRunner - 2025-12-09 16:00"</code>).
-          Generates a multi-line description explaining that the issue was created automatically and
-          includes a link back to this portfolio page.
-        </li>
-        <li>
-          <strong>Payload construction</strong><br>
-          Builds a Groovy <code>Map</code> called <code>payload</code>, which represents the JSON body sent to the
-          Jira Cloud REST API. The <code>description</code> field is built using Atlassian Document Format (ADF)
-          so it renders correctly in Jira Cloud.
-        </li>
-        <li>
-          <strong>REST API call</strong><br>
-          Uses ScriptRunner’s <code>post("/rest/api/3/issue")</code> helper to create the issue.
-          The payload includes the project key, issue type, summary, and ADF description.
-        </li>
-        <li>
-          <strong>Logging &amp; error handling</strong><br>
-          After the REST call:
-          <ul>
-            <li>If the status is <code>201</code>, the script logs a success message with the created issue key.</li>
-            <li>Otherwise, it logs a warning with the HTTP status code and the response body to help diagnose errors.</li>
-          </ul>
-        </li>
-      </ol>
+      <div class="pillrow">
+        <span class="pill"><span class="dot"></span><b>Twilio WhatsApp API</b></span>
+        <span class="pill"><span class="dot purple"></span><b>State Machine</b></span>
+        <span class="pill"><span class="dot green"></span><b>Order Parsing & Pricing</b></span>
+      </div>
 
-      <h2>Key Variables</h2>
-      <ul>
-        <li>
-          <code>projectKey</code> –
-          Jira project key where the issue is created
-          (for example, an Automation Showcase project like <code>"AS"</code>).
-        </li>
-        <li>
-          <code>issueTypeName</code> –
-          Name of the issue type to create (e.g., <code>"Task"</code>, <code>"Story"</code>).
-        </li>
-        <li>
-          <code>now</code> / <code>nowStr</code> –
-          Current date and time. <code>nowStr</code> is formatted as
-          <code>"yyyy-MM-dd HH:mm"</code> and included in the summary so each run is clearly timestamped.
-        </li>
-        <li>
-          <code>summary</code> –
-          Human-readable issue summary including the timestamp
-          (for example, <code>"Issue created with ScriptRunner - 2025-12-09 16:00"</code>).
-        </li>
-        <li>
-          <code>descriptionText</code> –
-          Multi-line plain-text description that:
-          <ul>
-            <li>Explains that the issue was generated automatically by ScriptRunner.</li>
-            <li>Mentions the purpose of the automation.</li>
-            <li>Includes a link back to this portfolio page.</li>
-          </ul>
-        </li>
-        <li>
-          <code>payload</code> –
-          Groovy map that represents the JSON body sent to Jira Cloud’s
-          <code>/rest/api/3/issue</code> endpoint, including:
-          <ul>
-            <li><code>project</code> (key)</li>
-            <li><code>summary</code></li>
-            <li><code>issuetype</code></li>
-            <li><code>description</code> (ADF structure)</li>
-          </ul>
-        </li>
-      </ul>
+      <div class="divider"></div>
 
-      <h2>How It Runs (ScriptRunner Scheduled Job)</h2>
-      <p>
-        This script is configured as a <strong>ScriptRunner scheduled job</strong> in Jira Cloud. The schedule can be:
-      </p>
-      <ul>
-        <li>Daily</li>
-        <li>Weekly</li>
-        <li>Any custom cron expression supported by ScriptRunner</li>
-      </ul>
-      <p>
-        Each time the job runs:
-      </p>
-      <ul>
-        <li>ScriptRunner triggers the Groovy script according to the schedule.</li>
-        <li>The script builds a new payload with the current timestamp.</li>
-        <li>Jira Cloud receives a new issue via <code>/rest/api/3/issue</code>.</li>
-        <li>ScriptRunner logs whether the run succeeded or failed.</li>
-      </ul>
+      <div class="grid">
+        <!-- Main narrative -->
+        <div>
+          <article class="card section" id="problem">
+            <div class="kicker">Problem</div>
+            <h2><span class="icon"></span>Operational bottlenecks in multi-channel ordering</h2>
+            <p>
+              Order intake was handled through multiple informal channels, creating operational friction and unnecessary manual work.
+            </p>
+            <ul>
+              <li><strong>Orders coming from multiple channels:</strong> customer requests arrived via WhatsApp, social DMs, and ad-hoc messages, with no centralized system.</li>
+              <li><strong>Constant manual availability:</strong> someone had to monitor and reply continuously to interpret messages and confirm orders.</li>
+              <li><strong>Time lost in follow-ups:</strong> confirmations, clarifications, and status tracking required repeated back-and-forth communication.</li>
+              <li><strong>Menus out of sync:</strong> product lists and prices were updated manually across platforms, causing inconsistencies and outdated information.</li>
+            </ul>
+          </article>
 
-      <h2>Results</h2>
-      <ul>
-        <li>Automatically generates a new Jira issue on the configured schedule without manual intervention.</li>
-        <li>Leaves a clear, timestamped history of when the automation ran.</li>
-        <li>Provides a simple, auditable example of ScriptRunner + Jira Cloud REST integration.</li>
-        <li>
-          Demonstrates:
-          <ul>
-            <li>How to call Jira Cloud REST APIs from ScriptRunner Groovy.</li>
-            <li>How to build Atlassian Document Format (ADF) payloads in code.</li>
-            <li>Basic logging and error handling inside ScriptRunner jobs.</li>
-          </ul>
-        </li>
-      </ul>
+          <article class="card section" id="idea">
+            <div class="kicker">Idea</div>
+            <h2><span class="icon"></span>Standardize ordering via a guided conversational flow</h2>
+            <p>
+              I built a WhatsApp-based ordering assistant that standardizes the full order intake flow while keeping the interaction
+              natural for customers. The assistant guides users through a clear conversation, parses free-text orders, generates a
+              structured summary with total cost, and requires explicit confirmation before final submission.
+            </p>
+            <ul>
+              <li>Guided steps to reduce ambiguity and customer friction</li>
+              <li>Free-text parsing with support for informal language and spelling variations</li>
+              <li>Confirmation-based submission to reduce errors</li>
+              <li>Admin notification only when action is needed</li>
+            </ul>
+          </article>
 
-      <h2>Example Issue</h2>
-      <p>
-        This job is currently configured to create demo issues in my Jira Cloud Automation Showcase project.
-        Here is an example of a generated issue:
-      </p>
-      <p>
-        <a href="https://elvaramosglz.atlassian.net/browse/AS-2" target="_blank" rel="noopener">
-          View example Jira issue (AS-2) →
-        </a>
-      </p>
-      <p class="small-note">
-        (Access depends on Jira permissions; this link is mainly included as documentation for the portfolio.)
-      </p>
+          <article class="card section" id="architecture">
+            <div class="kicker">Architecture</div>
+            <h2><span class="icon"></span>Lightweight, modular, event-driven backend</h2>
+            <p>
+              The system is built as a webhook-driven service with a deterministic state machine to ensure predictable behavior,
+              easier debugging, and low operational cost.
+            </p>
+            <ul>
+              <li><strong>Messaging:</strong> Twilio WhatsApp Business API (inbound/outbound)</li>
+              <li><strong>Webhook API:</strong> receives messages and returns replies</li>
+              <li><strong>State Machine:</strong> controls flow and user context (menu → capture → summary → confirmation)</li>
+              <li><strong>Parsing Layer:</strong> rule-based NLP (regex, dictionaries, fuzzy matching)</li>
+              <li><strong>Persistence:</strong> stores conversation state and confirmed orders</li>
+              <li><strong>Admin Notifications:</strong> sends structured orders upon confirmation</li>
+            </ul>
+          </article>
+
+          <article class="card section" id="features">
+            <div class="kicker">Core Features</div>
+            <h2><span class="icon"></span>Reliable ordering, built for real-world messages</h2>
+            <ul>
+              <li>Keyword-triggered menu access (e.g., “menu”, numeric options)</li>
+              <li>Order parsing for quantities, products, and variants from unstructured text</li>
+              <li>Automatic pricing and order summarization</li>
+              <li>Explicit confirmation step before final submission</li>
+              <li>Admin alert with clean, structured order details</li>
+            </ul>
+          </article>
+
+          <article class="card section" id="edge-cases">
+            <div class="kicker">Edge Cases</div>
+            <h2><span class="icon"></span>Designed for messy inputs and operational safety</h2>
+            <ul>
+              <li>Misspellings and informal language (“chilaqul”, “snakies”)</li>
+              <li>Multiple items expressed in one message</li>
+              <li>Ambiguous quantities with clarification prompts</li>
+              <li>Duplicate confirmations (idempotency)</li>
+              <li>Session timeout and context reset after inactivity</li>
+            </ul>
+          </article>
+
+          <article class="card section" id="results">
+            <div class="kicker">Results</div>
+            <h2><span class="icon"></span>Lower manual work, fewer errors, more scalability</h2>
+            <ul>
+              <li>Reduced manual effort by standardizing order intake</li>
+              <li>Improved accuracy through confirmation-based submission</li>
+              <li>Lowered follow-up loops via structured summaries</li>
+              <li>Created a scalable foundation for future channels and an admin dashboard</li>
+            </ul>
+          </article>
+
+          <article class="card section" id="future">
+            <div class="kicker">Future Improvements</div>
+            <h2><span class="icon"></span>Extendability and operational tooling</h2>
+            <ul>
+              <li>Centralized product & pricing catalog</li>
+              <li>Admin dashboard for order monitoring and analytics</li>
+              <li>Parsing confidence scoring with human fallback</li>
+              <li>Scheduled/broadcast messaging using approved templates</li>
+              <li>Support additional intake channels beyond WhatsApp</li>
+            </ul>
+          </article>
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="card aside" aria-label="Project quick facts">
+          <div class="kicker">Quick Facts</div>
+
+          <div class="row">
+            <div class="label">Category</div>
+            <div class="value">Automation · Conversational Systems</div>
+          </div>
+
+          <div class="row">
+            <div class="label">Interface</div>
+            <div class="value">WhatsApp (Twilio)</div>
+          </div>
+
+          <div class="row">
+            <div class="label">Core Pattern</div>
+            <div class="value">Deterministic State Machine</div>
+          </div>
+
+          <div class="row">
+            <div class="label">Parsing</div>
+            <div class="value">Rules + Fuzzy Matching</div>
+          </div>
+
+          <div class="row">
+            <div class="label">Persistence</div>
+            <div class="value">SQLite / PostgreSQL-ready</div>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="kicker" style="margin-top: 14px;">Tech Stack</div>
+          <div class="tags">
+            <span class="tag">Twilio</span>
+            <span class="tag">WhatsApp API</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">Express</span>
+            <span class="tag">Python (optional)</span>
+            <span class="tag">FastAPI (optional)</span>
+            <span class="tag">SQLite</span>
+            <span class="tag">PostgreSQL</span>
+            <span class="tag">Webhook</span>
+            <span class="tag">Logging</span>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="kicker" style="margin-top: 14px;">Project Summary</div>
+          <p style="margin-top: 6px;">
+            Built a production-ready conversational automation that transforms unstructured WhatsApp messages into structured,
+            confirmed orders, reducing follow-ups and operational overhead.
+          </p>
+        </aside>
+      </div>
     </section>
+
+    <p class="footer">
+      © <span id="year"></span> · Project page
+    </p>
   </main>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
