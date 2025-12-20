@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>WhatsApp API Automation – Elva Ramos</title>
+  <title>WhatsApp API Automation – Portfolio Project</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;400;600;700&display=swap" rel="stylesheet">
 
   <!-- Font Awesome (icons) -->
   <link rel="stylesheet"
@@ -23,13 +23,10 @@
       --text-main: #1a1a1a;
       --text-muted: #555;
       --border-light: #d0d7e2;
+      --white: #fff;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: "Source Sans Pro", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -40,55 +37,110 @@
     .page {
       max-width: 1200px;
       margin: 2rem auto;
-      background: #ffffff;
+      background: var(--white);
       box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
       display: grid;
       grid-template-columns: 320px 1fr;
       min-height: 80vh;
+      position: relative;
+    }
+
+    /* Top bar (page-like feel + prominent back button) */
+    .topbar {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid var(--border-light);
+      background: linear-gradient(180deg, #ffffff, #f8fafc);
+    }
+
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      min-width: 0;
+    }
+
+    .topbar-title {
+      font-size: 0.95rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .topbar-subtitle {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 56ch;
+    }
+
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.6rem 0.9rem;
+      border: 1px solid var(--accent-soft);
+      border-radius: 999px;
+      text-decoration: none;
+      color: var(--accent);
+      font-weight: 700;
+      background: #ffffff;
+      transition: transform 0.12s ease, box-shadow 0.12s ease, border-color 0.12s ease;
+    }
+
+    .btn-back i { font-size: 0.95rem; }
+
+    .btn-back:hover {
+      transform: translateY(-1px);
+      border-color: var(--accent);
+      box-shadow: 0 10px 20px rgba(31, 79, 123, 0.12);
+      text-decoration: none;
     }
 
     /* Sidebar */
     .sidebar {
       background: linear-gradient(180deg, var(--bg-sidebar), #dde7f2);
-      padding: 2.5rem 2rem;
+      padding: 2.2rem 2rem 2.5rem;
       border-right: 1px solid var(--border-light);
     }
 
-    .name {
-      font-size: 2.6rem;
-      line-height: 1.1;
-      letter-spacing: 0.12em;
+    .sidebar-title {
+      font-size: 1.05rem;
+      line-height: 1.2;
+      letter-spacing: 0.18em;
       font-weight: 700;
+      text-transform: uppercase;
       margin-bottom: 0.4rem;
+      color: var(--text-main);
     }
 
-    .role {
+    .sidebar-subtitle {
       font-size: 0.95rem;
       font-weight: 600;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 1.8rem;
+      margin-bottom: 1.6rem;
     }
 
-    .contact-item {
-      display: flex;
-      align-items: center;
-      margin-bottom: 0.75rem;
+    .sidebar-note {
       font-size: 0.95rem;
       color: var(--text-muted);
-    }
-
-    .contact-item i {
-      color: var(--accent);
-      margin-right: 0.6rem;
-      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 1.2rem;
     }
 
     .divider {
       height: 1px;
       background: var(--border-light);
-      margin: 2rem 0 1.5rem;
+      margin: 1.6rem 0 1.2rem;
     }
 
     .section-title {
@@ -97,7 +149,7 @@
       text-transform: uppercase;
       color: var(--accent);
       font-weight: 600;
-      margin-bottom: 1.2rem;
+      margin-bottom: 1.0rem;
     }
 
     .project-link {
@@ -120,37 +172,40 @@
     .sidebar-list {
       list-style: none;
       padding-left: 0;
-      margin-bottom: 1.5rem;
+      margin-bottom: 0.2rem;
       color: var(--text-muted);
       font-size: 0.95rem;
     }
 
-    .sidebar-list li {
-      margin-bottom: 0.4rem;
-    }
+    .sidebar-list li { margin-bottom: 0.4rem; }
 
     /* Main content */
-    .content {
-      padding: 2.5rem 3rem;
+    .content { padding: 2.2rem 3rem 2.5rem; }
+
+    .page-intro {
+      padding: 1.25rem 1.25rem;
+      border: 1px solid var(--border-light);
+      border-radius: 12px;
+      background: linear-gradient(180deg, #ffffff, #fbfdff);
+      margin-bottom: 1.5rem;
     }
 
-    .spacer {
-      height: 2.5rem;
+    .page-intro h1 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 0.25rem;
     }
 
-    .experience-block {
-      margin-bottom: 2rem;
+    .page-intro p {
+      color: var(--text-muted);
+      line-height: 1.7;
+      text-align: justify;
     }
 
-    .experience-company {
-      font-weight: 600;
-      margin-bottom: 0.2rem;
-    }
+    .spacer { height: 2.2rem; }
 
-    .experience-role {
-      font-style: italic;
-      margin-bottom: 0.2rem;
-    }
+    .experience-block { margin-bottom: 2rem; }
 
     .experience-meta {
       font-size: 0.9rem;
@@ -158,29 +213,7 @@
       margin-bottom: 0.4rem;
     }
 
-    .experience-block ul {
-      margin-left: 1.2rem;
-      margin-top: 0.4rem;
-      color: var(--text-muted);
-      font-size: 0.96rem;
-    }
-
-    .experience-block ul li {
-      margin-bottom: 0.25rem;
-    }
-
-    /* Small helpers */
-    .note {
-      font-size: 0.96rem;
-      color: var(--text-muted);
-      line-height: 1.7;
-      text-align: justify;
-      margin-top: 0.35rem;
-    }
-
-    .subsection {
-      margin-top: 1.2rem;
-    }
+    .subsection { margin-top: 1.2rem; }
 
     .subsection h3 {
       font-weight: 600;
@@ -189,56 +222,54 @@
       margin-bottom: 0.35rem;
     }
 
+    .experience-block ul {
+      margin-left: 1.2rem;
+      margin-top: 0.35rem;
+      color: var(--text-muted);
+      font-size: 0.96rem;
+    }
+
+    .experience-block ul li { margin-bottom: 0.25rem; }
+
     @media (max-width: 900px) {
-      .page {
-        grid-template-columns: 1fr;
-      }
-
-      .sidebar {
-        border-right: none;
-        border-bottom: 1px solid var(--border-light);
-      }
-
-      .content {
-        padding: 2rem 1.75rem 2.5rem;
-      }
+      .page { grid-template-columns: 1fr; }
+      .sidebar { border-right: none; border-bottom: 1px solid var(--border-light); }
+      .content { padding: 1.75rem 1.25rem 2.25rem; }
+      .topbar { padding: 0.9rem 1rem; }
+      .topbar-subtitle { display: none; }
     }
   </style>
 </head>
 
 <body>
   <div class="page">
+
+    <!-- TOP BAR (prominent Back to Home) -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <div class="topbar-title">Project</div>
+        <div class="topbar-subtitle">WhatsApp Conversational Ordering Bot (“Chavela”)</div>
+      </div>
+      <a class="btn-back" href="index.html" aria-label="Back to Home">
+        <i class="fa-solid fa-arrow-left"></i>
+        <span>Back to Home</span>
+      </a>
+    </header>
+
     <!-- LEFT SIDEBAR -->
     <aside class="sidebar">
-      <div class="name">
-        ELVA<br>
-        RAMOS
-      </div>
-      <div class="role">Tech Architecture Senior Analyst</div>
+      <div class="sidebar-title">Portfolio Project</div>
+      <div class="sidebar-subtitle">WhatsApp API Automation</div>
 
-      <div class="contact">
-        <div class="contact-item">
-          <i class="fa-solid fa-envelope"></i>
-          <span>elvaramosglz@gmail.com</span>
-        </div>
-        <div class="contact-item">
-          <i class="fa-solid fa-phone"></i>
-          <span>+52 866-173-19-46</span>
-        </div>
-        <div class="contact-item">
-          <i class="fa-solid fa-location-dot"></i>
-          <span>Monterrey, Nuevo León, México</span>
-        </div>
-      </div>
+      <p class="sidebar-note">
+        End-to-end conversational automation that converts unstructured WhatsApp messages into structured, confirmed orders
+        with administrator notifications.
+      </p>
 
       <div class="divider"></div>
 
-      <!-- Projects -->
       <div>
         <div class="section-title">Projects</div>
-        <a class="project-link" href="index.html">
-          <span>Back to Home</span>
-        </a>
         <a class="project-link" href="jira-cloud-automation.html">
           <span>Jira Cloud Automation</span>
         </a>
@@ -249,7 +280,6 @@
 
       <div class="divider"></div>
 
-      <!-- Skills -->
       <div>
         <div class="section-title">Focus Areas</div>
         <ul class="sidebar-list">
@@ -265,18 +295,19 @@
     <!-- RIGHT CONTENT -->
     <main class="content">
 
+      <div class="page-intro">
+        <h1>WhatsApp API Automation</h1>
+        <p>
+          This project delivers a production-ready WhatsApp ordering flow that turns free-text customer messages into structured,
+          confirmed orders. The assistant standardizes order intake, reduces repetitive follow-ups, and notifies an administrator only when an order is confirmed.
+        </p>
+      </div>
+
       <section class="experience" id="whatsapp-bot">
-        <h2 class="section-title" style="letter-spacing:0.18em;">WhatsApp API Automation</h2>
+        <h2 class="section-title" style="letter-spacing:0.18em;">Project Details</h2>
 
         <div class="experience-block">
-          <div class="experience-role">WhatsApp Conversational Ordering Bot (“Chavela”)</div>
-          <div class="experience-meta">November 2025</div>
-
-          <p class="note">
-            I built a WhatsApp-based ordering assistant to standardize customer order intake, reduce repetitive follow-ups,
-            and minimize manual coordination. The system converts unstructured chat messages into structured, confirmed orders,
-            then alerts the administrator only when action is required.
-          </p>
+          <div class="experience-meta">Timeline: November 2025</div>
 
           <div class="subsection">
             <h3>Problem</h3>
@@ -304,7 +335,7 @@
               <li><strong>Messaging:</strong> Twilio WhatsApp Business API for inbound/outbound messages.</li>
               <li><strong>Webhook API:</strong> receives messages and responds with the next conversational step.</li>
               <li><strong>State Machine:</strong> deterministic flow control (menu → capture → summary → confirmation).</li>
-              <li><strong>Parsing & Pricing:</strong> regex + dictionaries + fuzzy matching for robust extraction.</li>
+              <li><strong>Parsing &amp; Pricing:</strong> regex + dictionaries + fuzzy matching for robust extraction.</li>
               <li><strong>Persistence:</strong> stores conversation state and confirmed orders (SQLite / PostgreSQL-ready).</li>
               <li><strong>Notifications:</strong> sends a structured order summary to the administrator upon confirmation.</li>
             </ul>
@@ -324,7 +355,7 @@
           <div class="subsection">
             <h3>Edge Case Handling</h3>
             <ul>
-              <li>Misspellings and informal language (e.g., product typos).</li>
+              <li>Misspellings and informal language.</li>
               <li>Multiple items in a single message.</li>
               <li>Ambiguous quantities resolved via clarification prompts.</li>
               <li>Duplicate confirmations handled with idempotency checks.</li>
