@@ -2,424 +2,362 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <title>WhatsApp API Automation – Elva Ramos</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>WhatsApp Ordering Assistant – Chavela</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
 
+  <!-- Font Awesome (icons) -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkfPWZC1Vjz6pJQdYx04FbFhFhFj5V9A6V8WqkC7H5YkPqU5V7o7RF7xA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
   <style>
-    :root{
-      --bg: #0b1020;
-      --panel: rgba(255,255,255,0.06);
-      --panel-2: rgba(255,255,255,0.08);
-      --border: rgba(255,255,255,0.12);
-      --text: rgba(255,255,255,0.92);
-      --muted: rgba(255,255,255,0.72);
-      --muted2: rgba(255,255,255,0.58);
-      --accent: #7dd3fc;
-      --accent2:#a78bfa;
-      --ok:#34d399;
-
-      --radius: 18px;
-      --shadow: 0 18px 50px rgba(0,0,0,0.35);
-      --max: 1020px;
+    :root {
+      --bg-main: #f5f5f7;
+      --bg-sidebar: #e5edf4;
+      --accent: #1f4f7b;
+      --accent-soft: #88a8c6;
+      --text-main: #1a1a1a;
+      --text-muted: #555;
+      --border-light: #d0d7e2;
     }
 
-    *{ box-sizing: border-box; }
-    html,body{ height:100%; }
-    body{
-      margin:0;
-      font-family: "Source Sans Pro", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(1200px 500px at 20% 0%, rgba(125,211,252,0.18), transparent 60%),
-        radial-gradient(1100px 520px at 85% 10%, rgba(167,139,250,0.16), transparent 55%),
-        radial-gradient(900px 520px at 50% 100%, rgba(52,211,153,0.10), transparent 60%),
-        linear-gradient(180deg, #070a14 0%, #0b1020 55%, #070a14 100%);
-      line-height: 1.55;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    a{ color: inherit; text-decoration: none; }
-    a:hover{ text-decoration: underline; }
-
-    .wrap{
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 28px 18px 64px;
+    body {
+      font-family: "Source Sans Pro", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background-color: var(--bg-main);
+      color: var(--text-main);
     }
 
-    /* Header */
-    .hero{
-      border: 1px solid var(--border);
-      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
-      border-radius: calc(var(--radius) + 6px);
-      padding: 26px 22px;
-      box-shadow: var(--shadow);
-      overflow:hidden;
-      position: relative;
-    }
-    .hero:before{
-      content:"";
-      position:absolute;
-      inset: -2px;
-      background:
-        radial-gradient(700px 240px at 15% 0%, rgba(125,211,252,0.22), transparent 60%),
-        radial-gradient(680px 240px at 85% 0%, rgba(167,139,250,0.20), transparent 60%);
-      opacity: .7;
-      pointer-events:none;
-      filter: blur(18px);
-    }
-    .hero > *{ position: relative; z-index: 1; }
-
-    .breadcrumbs{
-      display:flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      align-items:center;
-      font-size: 14px;
-      color: var(--muted2);
-      margin-bottom: 10px;
-    }
-    .crumb-dot{
-      width: 5px; height: 5px; border-radius: 999px;
-      background: rgba(255,255,255,0.35);
+    .page {
+      max-width: 1200px;
+      margin: 2rem auto;
+      background: #ffffff;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      min-height: 80vh;
     }
 
-    h1{
-      margin: 0 0 8px;
-      font-size: 34px;
-      letter-spacing: -0.02em;
-    }
-    .subtitle{
-      margin: 0 0 16px;
-      color: var(--muted);
-      font-size: 16px;
-      max-width: 72ch;
+    /* Sidebar */
+    .sidebar {
+      background: linear-gradient(180deg, var(--bg-sidebar), #dde7f2);
+      padding: 2.5rem 2rem;
+      border-right: 1px solid var(--border-light);
     }
 
-    .pillrow{
-      display:flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 14px;
-    }
-    .pill{
-      font-size: 13px;
-      padding: 7px 10px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background: rgba(0,0,0,0.14);
-      color: var(--muted);
-      display:inline-flex;
-      gap:8px;
-      align-items:center;
-      white-space: nowrap;
-    }
-    .pill b{ color: var(--text); font-weight: 600; }
-    .dot{
-      width: 8px; height: 8px; border-radius: 999px;
-      background: var(--accent);
-      box-shadow: 0 0 0 4px rgba(125,211,252,0.14);
-    }
-    .dot.purple{
-      background: var(--accent2);
-      box-shadow: 0 0 0 4px rgba(167,139,250,0.14);
-    }
-    .dot.green{
-      background: var(--ok);
-      box-shadow: 0 0 0 4px rgba(52,211,153,0.14);
+    .name {
+      font-size: 2.6rem;
+      line-height: 1.1;
+      letter-spacing: 0.12em;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
     }
 
-    /* Layout */
-    .grid{
-      margin-top: 18px;
-      display:grid;
-      grid-template-columns: 1.25fr 0.75fr;
-      gap: 16px;
-      align-items: start;
-    }
-    @media (max-width: 920px){
-      .grid{ grid-template-columns: 1fr; }
-    }
-
-    .card{
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.05);
-      border-radius: var(--radius);
-      padding: 18px 18px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.18);
-    }
-    .card h2{
-      margin: 0 0 10px;
-      font-size: 18px;
-      letter-spacing: -0.01em;
-      display:flex;
-      align-items:center;
-      gap:10px;
-    }
-    .kicker{
-      font-size: 12px;
-      letter-spacing: .16em;
+    .role {
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: var(--muted2);
-      margin-bottom: 8px;
-    }
-    p{ margin: 0 0 12px; color: var(--muted); }
-    p:last-child{ margin-bottom: 0; }
-
-    ul{
-      margin: 10px 0 0;
-      padding-left: 18px;
-      color: var(--muted);
-    }
-    li{ margin: 8px 0; }
-    li strong{ color: var(--text); font-weight: 600; }
-
-    /* Aside */
-    .aside .row{
-      display:flex;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 10px 0;
-      border-bottom: 1px dashed rgba(255,255,255,0.14);
-    }
-    .aside .row:last-child{ border-bottom: 0; padding-bottom: 0; }
-    .aside .label{ color: var(--muted2); font-size: 13px; }
-    .aside .value{ color: var(--text); font-weight: 600; font-size: 13px; text-align:right; }
-
-    /* Tech tags */
-    .tags{
-      display:flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 10px;
-    }
-    .tag{
-      font-size: 12px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background: rgba(0,0,0,0.12);
-      color: var(--muted);
+      color: var(--accent);
+      margin-bottom: 1.8rem;
     }
 
-    /* Sections */
-    .section{
-      margin-top: 16px;
+    .contact-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.75rem;
+      font-size: 0.95rem;
+      color: var(--text-muted);
     }
 
-    /* Footer */
-    .footer{
-      margin-top: 22px;
-      color: var(--muted2);
-      font-size: 13px;
-      text-align:center;
+    .contact-item i {
+      color: var(--accent);
+      margin-right: 0.6rem;
+      font-size: 1.1rem;
     }
 
-    /* Small accents */
-    .icon{
-      width: 10px; height: 10px;
-      border-radius: 3px;
-      background: linear-gradient(135deg, rgba(125,211,252,1), rgba(167,139,250,1));
-      box-shadow: 0 0 0 4px rgba(125,211,252,0.12);
-      flex: 0 0 auto;
-    }
-    .divider{
-      margin: 14px 0 0;
+    .divider {
       height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.22), transparent);
+      background: var(--border-light);
+      margin: 2rem 0 1.5rem;
+    }
+
+    .section-title {
+      font-size: 0.9rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 1.2rem;
+    }
+
+    .project-link {
+      display: block;
+      margin-bottom: 0.7rem;
+      font-size: 0.98rem;
+      color: var(--text-main);
+      text-decoration: none;
+    }
+
+    .project-link span {
+      border-bottom: 1px solid var(--accent-soft);
+    }
+
+    .project-link:hover span {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    .sidebar-list {
+      list-style: none;
+      padding-left: 0;
+      margin-bottom: 1.5rem;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .sidebar-list li {
+      margin-bottom: 0.4rem;
+    }
+
+    /* Main content */
+    .content {
+      padding: 2.5rem 3rem;
+    }
+
+    .spacer {
+      height: 2.5rem;
+    }
+
+    .experience-block {
+      margin-bottom: 2rem;
+    }
+
+    .experience-company {
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+
+    .experience-role {
+      font-style: italic;
+      margin-bottom: 0.2rem;
+    }
+
+    .experience-meta {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .experience-block ul {
+      margin-left: 1.2rem;
+      margin-top: 0.4rem;
+      color: var(--text-muted);
+      font-size: 0.96rem;
+    }
+
+    .experience-block ul li {
+      margin-bottom: 0.25rem;
+    }
+
+    /* Small helpers */
+    .note {
+      font-size: 0.96rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      text-align: justify;
+      margin-top: 0.35rem;
+    }
+
+    .subsection {
+      margin-top: 1.2rem;
+    }
+
+    .subsection h3 {
+      font-weight: 600;
+      font-size: 1.02rem;
+      color: var(--accent);
+      margin-bottom: 0.35rem;
+    }
+
+    @media (max-width: 900px) {
+      .page {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        border-right: none;
+        border-bottom: 1px solid var(--border-light);
+      }
+
+      .content {
+        padding: 2rem 1.75rem 2.5rem;
+      }
     }
   </style>
 </head>
 
 <body>
-  <main class="wrap">
-    <section class="hero">
-      <div class="breadcrumbs">
-        <span>Projects</span>
-        <span class="crumb-dot"></span>
-        <span>Automation</span>
-        <span class="crumb-dot"></span>
-        <span>WhatsApp Bot</span>
+  <div class="page">
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar">
+      <div class="name">
+        ELVA<br>
+        RAMOS
       </div>
+      <div class="role">Tech Architecture Senior Analyst</div>
 
-      <h1>WhatsApp Ordering Assistant – <span style="color:var(--accent)">Chavela</span></h1>
-      <p class="subtitle">
-        A deterministic WhatsApp-based ordering assistant that converts unstructured chat messages into structured,
-        confirmed orders—reducing manual follow-up and operational friction.
-      </p>
-
-      <div class="pillrow">
-        <span class="pill"><span class="dot"></span><b>Twilio WhatsApp API</b></span>
-        <span class="pill"><span class="dot purple"></span><b>State Machine</b></span>
-        <span class="pill"><span class="dot green"></span><b>Order Parsing & Pricing</b></span>
+      <div class="contact">
+        <div class="contact-item">
+          <i class="fa-solid fa-envelope"></i>
+          <span>elvaramosglz@gmail.com</span>
+        </div>
+        <div class="contact-item">
+          <i class="fa-solid fa-phone"></i>
+          <span>+52 866-173-19-46</span>
+        </div>
+        <div class="contact-item">
+          <i class="fa-solid fa-location-dot"></i>
+          <span>Monterrey, Nuevo León, México</span>
+        </div>
       </div>
 
       <div class="divider"></div>
 
-      <div class="grid">
-        <!-- Main narrative -->
-        <div>
-          <article class="card section" id="problem">
-            <div class="kicker">Problem</div>
-            <h2><span class="icon"></span>Operational bottlenecks in multi-channel ordering</h2>
-            <p>
-              Order intake was handled through multiple informal channels, creating operational friction and unnecessary manual work.
-            </p>
-            <ul>
-              <li><strong>Orders coming from multiple channels:</strong> customer requests arrived via WhatsApp, social DMs, and ad-hoc messages, with no centralized system.</li>
-              <li><strong>Constant manual availability:</strong> someone had to monitor and reply continuously to interpret messages and confirm orders.</li>
-              <li><strong>Time lost in follow-ups:</strong> confirmations, clarifications, and status tracking required repeated back-and-forth communication.</li>
-              <li><strong>Menus out of sync:</strong> product lists and prices were updated manually across platforms, causing inconsistencies and outdated information.</li>
-            </ul>
-          </article>
-
-          <article class="card section" id="idea">
-            <div class="kicker">Idea</div>
-            <h2><span class="icon"></span>Standardize ordering via a guided conversational flow</h2>
-            <p>
-              I built a WhatsApp-based ordering assistant that standardizes the full order intake flow while keeping the interaction
-              natural for customers. The assistant guides users through a clear conversation, parses free-text orders, generates a
-              structured summary with total cost, and requires explicit confirmation before final submission.
-            </p>
-            <ul>
-              <li>Guided steps to reduce ambiguity and customer friction</li>
-              <li>Free-text parsing with support for informal language and spelling variations</li>
-              <li>Confirmation-based submission to reduce errors</li>
-              <li>Admin notification only when action is needed</li>
-            </ul>
-          </article>
-
-          <article class="card section" id="architecture">
-            <div class="kicker">Architecture</div>
-            <h2><span class="icon"></span>Lightweight, modular, event-driven backend</h2>
-            <p>
-              The system is built as a webhook-driven service with a deterministic state machine to ensure predictable behavior,
-              easier debugging, and low operational cost.
-            </p>
-            <ul>
-              <li><strong>Messaging:</strong> Twilio WhatsApp Business API (inbound/outbound)</li>
-              <li><strong>Webhook API:</strong> receives messages and returns replies</li>
-              <li><strong>State Machine:</strong> controls flow and user context (menu → capture → summary → confirmation)</li>
-              <li><strong>Parsing Layer:</strong> rule-based NLP (regex, dictionaries, fuzzy matching)</li>
-              <li><strong>Persistence:</strong> stores conversation state and confirmed orders</li>
-              <li><strong>Admin Notifications:</strong> sends structured orders upon confirmation</li>
-            </ul>
-          </article>
-
-          <article class="card section" id="features">
-            <div class="kicker">Core Features</div>
-            <h2><span class="icon"></span>Reliable ordering, built for real-world messages</h2>
-            <ul>
-              <li>Keyword-triggered menu access (e.g., “menu”, numeric options)</li>
-              <li>Order parsing for quantities, products, and variants from unstructured text</li>
-              <li>Automatic pricing and order summarization</li>
-              <li>Explicit confirmation step before final submission</li>
-              <li>Admin alert with clean, structured order details</li>
-            </ul>
-          </article>
-
-          <article class="card section" id="edge-cases">
-            <div class="kicker">Edge Cases</div>
-            <h2><span class="icon"></span>Designed for messy inputs and operational safety</h2>
-            <ul>
-              <li>Misspellings and informal language (“chilaqul”, “snakies”)</li>
-              <li>Multiple items expressed in one message</li>
-              <li>Ambiguous quantities with clarification prompts</li>
-              <li>Duplicate confirmations (idempotency)</li>
-              <li>Session timeout and context reset after inactivity</li>
-            </ul>
-          </article>
-
-          <article class="card section" id="results">
-            <div class="kicker">Results</div>
-            <h2><span class="icon"></span>Lower manual work, fewer errors, more scalability</h2>
-            <ul>
-              <li>Reduced manual effort by standardizing order intake</li>
-              <li>Improved accuracy through confirmation-based submission</li>
-              <li>Lowered follow-up loops via structured summaries</li>
-              <li>Created a scalable foundation for future channels and an admin dashboard</li>
-            </ul>
-          </article>
-
-          <article class="card section" id="future">
-            <div class="kicker">Future Improvements</div>
-            <h2><span class="icon"></span>Extendability and operational tooling</h2>
-            <ul>
-              <li>Centralized product & pricing catalog</li>
-              <li>Admin dashboard for order monitoring and analytics</li>
-              <li>Parsing confidence scoring with human fallback</li>
-              <li>Scheduled/broadcast messaging using approved templates</li>
-              <li>Support additional intake channels beyond WhatsApp</li>
-            </ul>
-          </article>
-        </div>
-
-        <!-- Sidebar -->
-        <aside class="card aside" aria-label="Project quick facts">
-          <div class="kicker">Quick Facts</div>
-
-          <div class="row">
-            <div class="label">Category</div>
-            <div class="value">Automation · Conversational Systems</div>
-          </div>
-
-          <div class="row">
-            <div class="label">Interface</div>
-            <div class="value">WhatsApp (Twilio)</div>
-          </div>
-
-          <div class="row">
-            <div class="label">Core Pattern</div>
-            <div class="value">Deterministic State Machine</div>
-          </div>
-
-          <div class="row">
-            <div class="label">Parsing</div>
-            <div class="value">Rules + Fuzzy Matching</div>
-          </div>
-
-          <div class="row">
-            <div class="label">Persistence</div>
-            <div class="value">SQLite / PostgreSQL-ready</div>
-          </div>
-
-          <div class="divider"></div>
-
-          <div class="kicker" style="margin-top: 14px;">Tech Stack</div>
-          <div class="tags">
-            <span class="tag">Twilio</span>
-            <span class="tag">WhatsApp API</span>
-            <span class="tag">Node.js</span>
-            <span class="tag">Express</span>
-            <span class="tag">Python (optional)</span>
-            <span class="tag">FastAPI (optional)</span>
-            <span class="tag">SQLite</span>
-            <span class="tag">PostgreSQL</span>
-            <span class="tag">Webhook</span>
-            <span class="tag">Logging</span>
-          </div>
-
-          <div class="divider"></div>
-
-          <div class="kicker" style="margin-top: 14px;">Project Summary</div>
-          <p style="margin-top: 6px;">
-            Built a production-ready conversational automation that transforms unstructured WhatsApp messages into structured,
-            confirmed orders, reducing follow-ups and operational overhead.
-          </p>
-        </aside>
+      <!-- Projects -->
+      <div>
+        <div class="section-title">Projects</div>
+        <a class="project-link" href="index.html">
+          <span>Back to Home</span>
+        </a>
+        <a class="project-link" href="jira-cloud-automation.html">
+          <span>Jira Cloud Automation</span>
+        </a>
+        <a class="project-link" href="whatsapp-api.html">
+          <span>WhatsApp API Automation</span>
+        </a>
       </div>
-    </section>
 
-    <p class="footer">
-      © <span id="year"></span> · Project page
-    </p>
-  </main>
+      <div class="divider"></div>
 
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+      <!-- Skills -->
+      <div>
+        <div class="section-title">Focus Areas</div>
+        <ul class="sidebar-list">
+          <li>Twilio WhatsApp API</li>
+          <li>Webhook-based integrations</li>
+          <li>State machine conversation flow</li>
+          <li>Free-text order parsing</li>
+          <li>Operational automation</li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- RIGHT CONTENT -->
+    <main class="content">
+
+      <section class="experience" id="whatsapp-bot">
+        <h2 class="section-title" style="letter-spacing:0.18em;">WhatsApp API Automation</h2>
+
+        <div class="experience-block">
+          <div class="experience-role">WhatsApp Conversational Ordering Bot (“Chavela”)</div>
+          <div class="experience-meta">November 2025</div>
+
+          <p class="note">
+            I built a WhatsApp-based ordering assistant to standardize customer order intake, reduce repetitive follow-ups,
+            and minimize manual coordination. The system converts unstructured chat messages into structured, confirmed orders,
+            then alerts the administrator only when action is required.
+          </p>
+
+          <div class="subsection">
+            <h3>Problem</h3>
+            <ul>
+              <li>Orders arrived across multiple channels (WhatsApp, social DMs, ad-hoc messages) with no single source of truth.</li>
+              <li>A person had to monitor and respond continuously, limiting scalability.</li>
+              <li>Follow-ups and clarifications consumed significant time and increased the risk of errors.</li>
+              <li>Menus and prices became inconsistent across platforms due to manual updates.</li>
+            </ul>
+          </div>
+
+          <div class="subsection">
+            <h3>Solution</h3>
+            <ul>
+              <li>Implemented a guided conversational flow for ordering, including menu access, order capture, summary, and confirmation.</li>
+              <li>Built a rule-based parsing layer to interpret free-text orders with spelling variations and informal language.</li>
+              <li>Added confirmation-based submission to reduce errors and prevent incomplete orders.</li>
+              <li>Triggered real-time admin notifications only after user confirmation.</li>
+            </ul>
+          </div>
+
+          <div class="subsection">
+            <h3>Architecture</h3>
+            <ul>
+              <li><strong>Messaging:</strong> Twilio WhatsApp Business API for inbound/outbound messages.</li>
+              <li><strong>Webhook API:</strong> receives messages and responds with the next conversational step.</li>
+              <li><strong>State Machine:</strong> deterministic flow control (menu → capture → summary → confirmation).</li>
+              <li><strong>Parsing & Pricing:</strong> regex + dictionaries + fuzzy matching for robust extraction.</li>
+              <li><strong>Persistence:</strong> stores conversation state and confirmed orders (SQLite / PostgreSQL-ready).</li>
+              <li><strong>Notifications:</strong> sends a structured order summary to the administrator upon confirmation.</li>
+            </ul>
+          </div>
+
+          <div class="subsection">
+            <h3>Key Features</h3>
+            <ul>
+              <li>Keyword-triggered menu access (e.g., “menu”, numeric options).</li>
+              <li>Free-text order parsing for quantities, products, and variants.</li>
+              <li>Automatic order summarization and total calculation.</li>
+              <li>Explicit confirmation step before order submission.</li>
+              <li>Admin alert with clean, structured order details.</li>
+            </ul>
+          </div>
+
+          <div class="subsection">
+            <h3>Edge Case Handling</h3>
+            <ul>
+              <li>Misspellings and informal language (e.g., product typos).</li>
+              <li>Multiple items in a single message.</li>
+              <li>Ambiguous quantities resolved via clarification prompts.</li>
+              <li>Duplicate confirmations handled with idempotency checks.</li>
+              <li>Session timeout and context reset after inactivity.</li>
+            </ul>
+          </div>
+
+          <div class="subsection">
+            <h3>Outcome</h3>
+            <ul>
+              <li>Reduced manual effort by standardizing order intake and confirmations.</li>
+              <li>Improved accuracy through confirmation-based submission and structured summaries.</li>
+              <li>Reduced back-and-forth follow-ups by consolidating information into a single confirmation step.</li>
+              <li>Created a scalable foundation for future improvements (catalog management, admin dashboard, analytics).</li>
+            </ul>
+          </div>
+
+          <div class="subsection">
+            <h3>Future Improvements</h3>
+            <ul>
+              <li>Centralized product &amp; pricing catalog to keep menus consistent across platforms.</li>
+              <li>Admin dashboard for order monitoring and operational analytics.</li>
+              <li>Parsing confidence scoring with human fallback for ambiguous cases.</li>
+              <li>Scheduled/broadcast messaging using approved WhatsApp templates.</li>
+              <li>Support additional intake channels beyond WhatsApp.</li>
+            </ul>
+          </div>
+
+        </div>
+      </section>
+
+      <div class="spacer"></div>
+    </main>
+  </div>
 </body>
 </html>
