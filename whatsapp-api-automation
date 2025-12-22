@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Elva Ramos – WhatsApp API Automation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome (icons) -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkfPWZC1Vjz6pJQdYx04FbFhFhFj5V9A6V8WqkC7H5YkPqU5V7o7RF7xA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    :root {
+      --bg-main: #f5f5f7;
+      --bg-sidebar: #e5edf4;
+      --accent: #1f4f7b;
+      --accent-soft: #88a8c6;
+      --text-main: #1a1a1a;
+      --text-muted: #555;
+      --border-light: #d0d7e2;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Source Sans Pro", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background-color: var(--bg-main);
+      color: var(--text-main);
+    }
+
+    .page {
+      max-width: 1200px;
+      margin: 2rem auto;
+      background: #ffffff;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      min-height: 80vh;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      background: linear-gradient(180deg, var(--bg-sidebar), #dde7f2);
+      padding: 2.5rem 2rem;
+      border-right: 1px solid var(--border-light);
+    }
+
+    .name {
+      font-size: 2.6rem;
+      line-height: 1.1;
+      letter-spacing: 0.12em;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+
+    .role {
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.8rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.75rem;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    .contact-item i {
+      color: var(--accent);
+      margin-right: 0.6rem;
+      font-size: 1.1rem;
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--border-light);
+      margin: 2rem 0 1.5rem;
+    }
+
+    .section-title {
+      font-size: 0.9rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 1.2rem;
+    }
+
+    .project-link {
+      display: block;
+      margin-bottom: 0.7rem;
+      font-size: 0.98rem;
+      color: var(--text-main);
+      text-decoration: none;
+    }
+
+    .project-link span { border-bottom: 1px solid var(--accent-soft); }
+
+    .project-link:hover span {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    /* Optional: highlight current page link */
+    .project-link.active span {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+      font-weight: 700;
+    }
+
+    .sidebar-list {
+      list-style: none;
+      padding-left: 0;
+      margin-bottom: 1.5rem;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .sidebar-list li { margin-bottom: 0.4rem; }
+
+    /* Main content */
+    .content { padding: 2.5rem 3rem; }
+
+    .spacer { height: 1.75rem; }
+
+    .experience-block { margin-bottom: 1.75rem; }
+
+    .experience-company { font-weight: 600; margin-bottom: 0.2rem; }
+
+    .experience-role { font-style: italic; margin-bottom: 0.2rem; }
+
+    .experience-meta { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.6rem; }
+
+    .experience-block ul {
+      margin-left: 1.2rem;
+      margin-top: 0.4rem;
+      color: var(--text-muted);
+      font-size: 0.96rem;
+    }
+
+    .experience-block ul li { margin-bottom: 0.25rem; }
+
+    .muted { color: var(--text-muted); line-height: 1.7; text-align: justify; }
+
+    .tag-row { margin-top: 0.6rem; }
+    .tag {
+      display: inline-block;
+      font-size: 0.85rem;
+      color: var(--accent);
+      border: 1px solid var(--border-light);
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      margin-right: 0.4rem;
+      margin-bottom: 0.4rem;
+      background: #fff;
+    }
+
+    .link {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid var(--accent-soft);
+    }
+    .link:hover { border-bottom-color: var(--accent); }
+
+    @media (max-width: 900px) {
+      .page { grid-template-columns: 1fr; }
+      .sidebar { border-right: none; border-bottom: 1px solid var(--border-light); }
+      .content { padding: 2rem 1.75rem 2.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar">
+      <div class="name">ELVA<br>RAMOS</div>
+      <div class="role">Tech Architecture Senior Analyst</div>
+
+      <div class="contact">
+        <div class="contact-item">
+          <i class="fa-solid fa-envelope"></i>
+          <span>elvaramosglz@gmail.com</span>
+        </div>
+        <div class="contact-item">
+          <i class="fa-solid fa-phone"></i>
+          <span>+52 866-173-19-46</span>
+        </div>
+        <div class="contact-item">
+          <i class="fa-solid fa-location-dot"></i>
+          <span>Monterrey, Nuevo León, México</span>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Projects -->
+      <div>
+        <div class="section-title">Projects</div>
+
+        <a class="project-link" href="index.html">
+          <span>Home / Resume</span>
+        </a>
+
+        <a class="project-link" href="https://www.salesforce.com/trailblazer/oc8d87jq3cm38dufqz" target="_blank" rel="noopener">
+          <span>Salesforce Trailhead</span>
+        </a>
+
+        <a class="project-link" href="jira-cloud-automation.html">
+          <span>Jira Cloud Automation</span>
+        </a>
+
+        <a class="project-link active" href="whatsapp-api.html">
+          <span>WhatsApp API Automation</span>
+        </a>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Certifications -->
+      <div>
+        <div class="section-title">Certifications</div>
+        <ul class="sidebar-list">
+          <li>Atlassian Jira Software Essentials</li>
+          <li>Certified Entry-Level Python Programmer (PCEP)</li>
+        </ul>
+      </div>
+
+      <!-- Skills -->
+      <div>
+        <div class="section-title">Skills</div>
+        <ul class="sidebar-list">
+          <li>ScriptRunner automation (Groovy)</li>
+          <li>Jira Cloud administration &amp; governance</li>
+          <li>Workflow &amp; permission design</li>
+          <li>REST API integrations</li>
+          <li>GitHub Actions &amp; CI-style automation</li>
+          <li>Technical documentation &amp; knowledge transfer</li>
+        </ul>
+      </div>
+
+      <!-- Programming Languages -->
+      <div>
+        <div class="section-title">Programming Languages</div>
+        <ul class="sidebar-list">
+          <li>Groovy</li>
+          <li>Python</li>
+        </ul>
+      </div>
+
+      <!-- Spoken Languages -->
+      <div>
+        <div class="section-title">Languages</div>
+        <ul class="sidebar-list">
+          <li>Spanish – Native</li>
+          <li>English – Fluent</li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- RIGHT CONTENT -->
+    <main class="content">
+      <section class="experience">
+        <h2 class="section-title" style="letter-spacing:0.18em;">WhatsApp API Automation</h2>
+
+        <div class="experience-block">
+          <div class="experience-role">WhatsApp Conversational Ordering Bot</div>
+          <div class="experience-meta">Twilio WhatsApp API · Railway Deployment · Lightweight State Machine</div>
+          <p class="muted">
+            End-to-end conversational bot that automates customer order intake over WhatsApp: guided menu, free-text capture,
+            validations, confirmation, and admin notifications. Built for a real small business use-case with a focus on
+            reliability, clear UX, and operational continuity.
+          </p>
+
+          <div class="tag-row">
+            <span class="tag">WhatsApp</span>
+            <span class="tag">Twilio</span>
+            <span class="tag">Webhook</span>
+            <span class="tag">State Machine</span>
+            <span class="tag">Railway</span>
+            <span class="tag">Python</span>
+          </div>
+        </div>
+
+        <div class="spacer"></div>
+
+        <div class="experience-block">
+          <div class="experience-company">What it does</div>
+          <ul>
+            <li>Guides users through an ordering flow (menu, quantities, delivery/pickup details).</li>
+            <li>Accepts free-text messages and validates key fields (name, address, date/time, product, quantity).</li>
+            <li>Confirms the final order and sends an admin notification to a personal WhatsApp number.</li>
+            <li>Stores customer and order information in a database for follow-ups and operational tracking.</li>
+          </ul>
+        </div>
+
+        <div class="experience-block">
+          <div class="experience-company">Architecture</div>
+          <ul>
+            <li><b>Twilio WhatsApp</b> → inbound messages</li>
+            <li><b>Webhook (Python)</b> → receives messages, routes by conversation state</li>
+            <li><b>State machine</b> → controls steps, retries, fallbacks</li>
+            <li><b>Database</b> → stores users, orders, and conversation state</li>
+            <li><b>Admin notifier</b> → pushes confirmed orders to your admin WhatsApp</li>
+            <li><b>Railway</b> → hosting/deployment</li>
+          </ul>
+          <p class="muted" style="margin-top:0.6rem;">
+            TODO: Add your diagram/screenshot here, or describe your endpoints and env vars.
+          </p>
+        </div>
+
+        <div class="experience-block">
+          <div class="experience-company">Key features implemented</div>
+          <ul>
+            <li><b>Conversation state:</b> step-by-step flow with “back / retry” handling.</li>
+            <li><b>Validations:</b> prevents incomplete orders (missing quantities, missing delivery info, etc.).</li>
+            <li><b>Order confirmation:</b> user confirms before saving and notifying admin.</li>
+            <li><b>Admin alerts:</b> sends the final order to your personal WhatsApp with a clear summary.</li>
+            <li><b>Persistence:</b> stores customer info (“se guarda información del cliente”) + order history.</li>
+          </ul>
+        </div>
+
+        <div class="experience-block">
+          <div class="experience-company">Tech stack</div>
+          <ul>
+            <li>Python (Flask/FastAPI-style webhook)</li>
+            <li>Twilio WhatsApp API</li>
+            <li>Railway for deployment</li>
+            <li>Database (TODO: Postgres/SQLite/etc.)</li>
+          </ul>
+        </div>
+
+        <div class="experience-block">
+          <div class="experience-company">Links</div>
+          <ul>
+            <li>
+              <a class="link" href="index.html">Back to Resume</a>
+            </li>
+            <!-- Optional: add repo link -->
+            <!--
+            <li>
+              <a class="link" href="https://github.com/..." target="_blank" rel="noopener">GitHub Repository</a>
+            </li>
+            -->
+          </ul>
+        </div>
+
+      </section>
+    </main>
+  </div>
+</body>
+</html>
