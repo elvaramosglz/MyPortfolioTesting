@@ -57,10 +57,7 @@
       text-decoration: none;
       border-bottom: 1px solid var(--accent-soft);
     }
-
-    .back-link:hover {
-      border-bottom-color: var(--accent);
-    }
+    .back-link:hover { border-bottom-color: var(--accent); }
 
     .project-title {
       font-size: 2.3rem;
@@ -68,6 +65,7 @@
       letter-spacing: 0.1em;
       line-height: 1.1;
       margin-bottom: 0.6rem;
+      text-transform: uppercase;
     }
 
     .project-subtitle {
@@ -79,18 +77,22 @@
       margin-bottom: 2.2rem;
     }
 
-    .contact-item {
+    .sidebar-item {
       display: flex;
-      align-items: center;
-      margin-bottom: 0.85rem;
+      align-items: flex-start;
+      gap: 0.65rem;
+      margin-bottom: 0.95rem;
       font-size: 0.95rem;
       color: var(--text-muted);
+      line-height: 1.35;
     }
 
-    .contact-item i {
+    .sidebar-item i {
       color: var(--accent);
-      margin-right: 0.6rem;
-      font-size: 1.1rem;
+      margin-top: 0.15rem;
+      font-size: 1.05rem;
+      width: 18px;
+      text-align: center;
     }
 
     .divider {
@@ -98,6 +100,31 @@
       background: var(--border-light);
       margin: 2rem 0 1.5rem;
     }
+
+    .nav-title {
+      font-size: 0.9rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .nav-link {
+      display: block;
+      margin-bottom: 0.65rem;
+      font-size: 0.98rem;
+      color: var(--text-main);
+      text-decoration: none;
+    }
+    .nav-link span { border-bottom: 1px solid var(--accent-soft); }
+    .nav-link:hover span {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    /* Main content */
+    .content { padding: 2.5rem 3rem; }
 
     .section-title {
       font-size: 0.9rem;
@@ -108,18 +135,14 @@
       margin-bottom: 1.2rem;
     }
 
-    /* Main content */
-    .content {
-      padding: 2.5rem 3rem;
-    }
-
-    .experience-block {
-      margin-bottom: 3rem;
-    }
+    .experience-block { margin-bottom: 3rem; }
 
     .experience-company {
       font-weight: 700;
       font-size: 1.15rem;
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
     }
 
     .muted {
@@ -128,25 +151,28 @@
       text-align: justify;
     }
 
+    .spacer { height: 1.25rem; }
+
     ul {
       margin-left: 2.2rem;
       margin-top: 0.9rem;
       color: var(--text-muted);
+      line-height: 1.65;
     }
 
-    ul li {
-      margin-bottom: 0.45rem;
+    ul li { margin-bottom: 0.55rem; }
+
+    .diagram-img {
+      width: 100%;
+      margin-top: 1rem;
+      border-radius: 6px;
+      border: 1px solid var(--border-light);
     }
 
     @media (max-width: 900px) {
       .page { grid-template-columns: 1fr; }
-      .sidebar {
-        border-right: none;
-        border-bottom: 1px solid var(--border-light);
-      }
-      .content {
-        padding: 2rem 1.75rem 2.5rem;
-      }
+      .sidebar { border-right: none; border-bottom: 1px solid var(--border-light); }
+      .content { padding: 2rem 1.75rem 2.5rem; }
     }
   </style>
 </head>
@@ -154,39 +180,42 @@
 <body>
   <div class="page">
 
-    <!-- SIDEBAR -->
+    <!-- LEFT SIDEBAR -->
     <aside class="sidebar">
       <a href="index.html" class="back-link">← Back to Home</a>
 
-      <div class="project-title">
-        WhatsApp<br>Bot API
+      <div class="project-title">WhatsApp<br>Bot API</div>
+      <div class="project-subtitle">Conversational Ordering Automation</div>
+
+      <div class="sidebar-item">
+        <i class="fa-solid fa-rocket"></i>
+        <div><b>Status:</b> Production</div>
       </div>
 
-      <div class="project-subtitle">
-        Conversational Ordering Automation
+      <div class="sidebar-item">
+        <i class="fa-solid fa-bullseye"></i>
+        <div><b>Goal:</b> Automate end-to-end order intake via WhatsApp</div>
       </div>
 
-      <div class="contact">
-        <div class="contact-item">
-          <i class="fa-solid fa-rocket"></i>
-          <span><b>Status:</b> Production</span>
-        </div>
-        <div class="contact-item">
-          <i class="fa-solid fa-bullseye"></i>
-          <span><b>Designed for:</b> Small businesses</span>
-        </div>
-        <div class="contact-item">
-          <i class="fa-solid fa-diagram-project"></i>
-          <span><b>Flow:</b> Menu → Validation → Confirmation → Admin alert</span>
-        </div>
-        <div class="contact-item">
-          <i class="fa-solid fa-layer-group"></i>
-          <span><b>Stack:</b> Twilio · Python · State Machine · Railway · DB</span>
-        </div>
+      <div class="sidebar-item">
+        <i class="fa-solid fa-diagram-project"></i>
+        <div><b>Flow:</b> Menu → Validation → Confirmation → Admin alert</div>
       </div>
+
+      <div class="sidebar-item">
+        <i class="fa-solid fa-layer-group"></i>
+        <div><b>Stack:</b> Twilio · FastAPI · PostgreSQL · Railway</div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="nav-title">Project Pages</div>
+      <a class="nav-link" href="whatsapp-api-automation.html"><span>Overview</span></a>
+      <a class="nav-link" href="jira-cloud-automation.html"><span>Jira Cloud Automation</span></a>
+      <a class="nav-link" href="index.html"><span>Home / Resume</span></a>
     </aside>
 
-    <!-- MAIN CONTENT -->
+    <!-- RIGHT CONTENT -->
     <main class="content">
       <section class="experience">
         <h2 class="section-title" style="letter-spacing:0.18em; margin-bottom:2.8rem;">
@@ -196,8 +225,7 @@
         <!-- Problem -->
         <div class="experience-block">
           <div class="experience-company">
-            <i class="fa-solid fa-triangle-exclamation"
-               style="color:var(--accent); margin-right:0.55rem;"></i>
+            <i class="fa-solid fa-triangle-exclamation" style="color:var(--accent);"></i>
             Problem
           </div>
 
@@ -213,8 +241,7 @@
         <!-- Common pain points -->
         <div class="experience-block">
           <div class="experience-company">
-            <i class="fa-solid fa-xmark"
-               style="color:var(--accent); margin-right:0.55rem;"></i>
+            <i class="fa-solid fa-xmark" style="color:var(--accent);"></i>
             Common pain points
           </div>
 
@@ -229,8 +256,7 @@
         <!-- Main idea -->
         <div class="experience-block">
           <div class="experience-company">
-            <i class="fa-solid fa-lightbulb"
-               style="color:var(--accent); margin-right:0.55rem;"></i>
+            <i class="fa-solid fa-lightbulb" style="color:var(--accent);"></i>
             Main idea
           </div>
 
@@ -245,38 +271,89 @@
         <!-- What the bot handles -->
         <div class="experience-block">
           <div class="experience-company">
-            <i class="fa-solid fa-list-check"
-               style="color:var(--accent); margin-right:0.55rem;"></i>
+            <i class="fa-solid fa-list-check" style="color:var(--accent);"></i>
             What the bot handles
           </div>
 
           <ul>
-            <li><b>Guided flow:</b> menu → quantities → delivery/pickup → scheduling.</li>
+            <li><b>Guided flow:</b> menu → quantities → delivery or pickup → payment → confirmation.</li>
             <li><b>Validations:</b> detects missing or invalid values and requests corrections.</li>
-            <li><b>Confirmation:</b> final user approval before saving and notifying admin.</li>
-            <li><b>Admin notification:</b> sends a structured order summary to the admin WhatsApp.</li>
-            <li><b>Persistence:</b> stores customer data and order history.</li>
+            <li><b>Clarifications:</b> asks follow-up questions for missing sizes (e.g., 250g/500g, 10/20).</li>
+            <li><b>Order confirmation:</b> user confirms before saving and notifying admin.</li>
+            <li><b>Persistence:</b> stores customers, orders, and delivery address for continuity.</li>
+            <li><b>Admin tools:</b> supports admin commands (confirm, reject, in transit, delivered).</li>
+          </ul>
+        </div>
+
+        <!-- Architecture Diagram -->
+        <div class="experience-block">
+          <div class="experience-company">
+            <i class="fa-solid fa-diagram-project" style="color:var(--accent);"></i>
+            Architecture overview
+          </div>
+
+          <!-- IMPORTANT:
+               Put your exported SVG file in the same folder as this HTML,
+               or update the src path accordingly (e.g., assets/architecture-whatsapp-bot.svg)
+          -->
+          <img
+            src="architecture-whatsapp-bot.svg"
+            alt="WhatsApp Bot API Architecture Diagram"
+            class="diagram-img"
+          />
+        </div>
+
+        <!-- Architecture Breakdown -->
+        <div class="experience-block">
+          <div class="experience-company">
+            <i class="fa-solid fa-circle-info" style="color:var(--accent);"></i>
+            Architecture breakdown
+          </div>
+
+          <ul>
+            <li>
+              <b>Customer (WhatsApp User):</b>
+              End user interacting with the system through natural, unstructured WhatsApp messages.
+            </li>
+            <li>
+              <b>Twilio WhatsApp Messaging:</b>
+              Messaging gateway that forwards inbound messages to the webhook and delivers bot replies back to the user.
+            </li>
+            <li>
+              <b>Webhook API (FastAPI on Railway):</b>
+              The backend service that receives messages, routes conversation state, validates inputs, and orchestrates the flow.
+            </li>
+            <li>
+              <b>Conversation Router (State Machine):</b>
+              Controls step-by-step conversation logic, including retries, clarifications, and fallbacks.
+            </li>
+            <li>
+              <b>Database (PostgreSQL):</b>
+              Stores customers, orders, and session-related data for traceability and operational continuity.
+            </li>
+            <li>
+              <b>Admin Notifications:</b>
+              Sends structured WhatsApp alerts when orders are confirmed or when key events require admin visibility.
+            </li>
           </ul>
         </div>
 
         <!-- Outcomes -->
         <div class="experience-block">
           <div class="experience-company">
-            <i class="fa-solid fa-chart-line"
-               style="color:var(--accent); margin-right:0.55rem;"></i>
+            <i class="fa-solid fa-chart-line" style="color:var(--accent);"></i>
             Outcomes
           </div>
 
           <ul>
-            <li>Fewer order errors and less back-and-forth.</li>
-            <li>Faster turnaround from first message to confirmed order.</li>
-            <li>Consistent customer experience and cleaner admin operations.</li>
+            <li>Reduced manual back-and-forth by enforcing a structured order flow.</li>
+            <li>Improved order quality by validating required fields and prompting clarifications.</li>
+            <li>Enabled faster operations through instant admin notifications and standardized summaries.</li>
           </ul>
         </div>
 
       </section>
     </main>
-
   </div>
 </body>
 </html>
