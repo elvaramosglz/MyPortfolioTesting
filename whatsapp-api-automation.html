@@ -303,40 +303,53 @@
           />
         </div>
 
-        <!-- Architecture Breakdown -->
         <div class="experience-block">
-          <div class="experience-company">
-            <i class="fa-solid fa-circle-info" style="color:var(--accent);"></i>
-            Architecture breakdown
-          </div>
+  <div class="experience-company">
+    <i class="fa-solid fa-circle-info" style="color:var(--accent);"></i>
+    Architecture breakdown
+  </div>
+<p class="muted" style="margin-top:0.8rem;">
+  The following steps describe the execution flow shown in the architecture diagram above:
+</p>
 
-          <ul>
-            <li>
-              <b>Customer (WhatsApp User):</b>
-              End user interacting with the system through natural, unstructured WhatsApp messages.
-            </li>
-            <li>
-              <b>Twilio WhatsApp Messaging:</b>
-              Messaging gateway that forwards inbound messages to the webhook and delivers bot replies back to the user.
-            </li>
-            <li>
-              <b>Webhook API (FastAPI on Railway):</b>
-              The backend service that receives messages, routes conversation state, validates inputs, and orchestrates the flow.
-            </li>
-            <li>
-              <b>Conversation Router (State Machine):</b>
-              Controls step-by-step conversation logic, including retries, clarifications, and fallbacks.
-            </li>
-            <li>
-              <b>Database (PostgreSQL):</b>
-              Stores customers, orders, and session-related data for traceability and operational continuity.
-            </li>
-            <li>
-              <b>Admin Notifications:</b>
-              Sends structured WhatsApp alerts when orders are confirmed or when key events require admin visibility.
-            </li>
-          </ul>
-        </div>
+  <ol style="margin-left: 2.4rem; margin-top: 1.1rem; color: var(--text-muted); line-height: 1.75;">
+    <li>
+      <b>Customer (WhatsApp User)</b><br>
+      The customer initiates the interaction by sending a WhatsApp message using natural,
+      unstructured language.
+    </li>
+
+    <li>
+      <b>Twilio WhatsApp Messaging</b><br>
+      Twilio receives the inbound message and forwards it to the backend webhook
+      configured for the WhatsApp number.
+    </li>
+
+    <li>
+      <b>Webhook API (FastAPI on Railway)</b><br>
+      The webhook endpoint receives the message, normalizes the input,
+      and hands control to the conversation router.
+    </li>
+
+    <li>
+      <b>Conversation Router (State Machine)</b><br>
+      The state machine determines the current step of the conversation,
+      validates required information, and decides the next action.
+    </li>
+
+    <li>
+      <b>Database (PostgreSQL)</b><br>
+      Customer data, order details, and session-related information
+      are persisted for traceability and operational continuity.
+    </li>
+
+    <li>
+      <b>Admin Notifications</b><br>
+      When an order is confirmed or requires attention, a structured WhatsApp
+      notification is sent to the admin in real time.
+    </li>
+  </ol>
+</div>
 
         <!-- Outcomes -->
         <div class="experience-block">
