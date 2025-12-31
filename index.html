@@ -2,16 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>WhatsApp Bot API</title>
+  <title>Elva Ramos – Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-  <!-- Font Awesome -->
+  <!-- Font Awesome (icons) -->
   <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-        crossorigin="anonymous" />
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkfPWZC1Vjz6pJQdYx04FbFhFhFj5V9A6V8WqkC7H5YkPqU5V7o7RF7xA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <style>
     :root {
@@ -24,10 +25,14 @@
       --border-light: #d0d7e2;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     body {
-      font-family: "Source Sans Pro", system-ui, sans-serif;
+      font-family: "Source Sans Pro", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background-color: var(--bg-main);
       color: var(--text-main);
     }
@@ -49,50 +54,35 @@
       border-right: 1px solid var(--border-light);
     }
 
-    .back-link {
-      display: inline-block;
-      font-size: 0.85rem;
-      margin-bottom: 2rem;
-      color: var(--accent);
-      text-decoration: none;
-      border-bottom: 1px solid var(--accent-soft);
-    }
-    .back-link:hover { border-bottom-color: var(--accent); }
-
-    .project-title {
-      font-size: 2.3rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
+    .name {
+      font-size: 2.6rem;
       line-height: 1.1;
-      margin-bottom: 0.6rem;
-      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
     }
 
-    .project-subtitle {
+    .role {
       font-size: 0.95rem;
       font-weight: 600;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 2.2rem;
+      margin-bottom: 1.8rem;
     }
 
-    .sidebar-item {
+    .contact-item {
       display: flex;
-      align-items: flex-start;
-      gap: 0.65rem;
-      margin-bottom: 0.95rem;
+      align-items: center;
+      margin-bottom: 0.75rem;
       font-size: 0.95rem;
       color: var(--text-muted);
-      line-height: 1.35;
     }
 
-    .sidebar-item i {
+    .contact-item i {
       color: var(--accent);
-      margin-top: 0.15rem;
-      font-size: 1.05rem;
-      width: 18px;
-      text-align: center;
+      margin-right: 0.6rem;
+      font-size: 1.1rem;
     }
 
     .divider {
@@ -100,31 +90,6 @@
       background: var(--border-light);
       margin: 2rem 0 1.5rem;
     }
-
-    .nav-title {
-      font-size: 0.9rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--accent);
-      font-weight: 600;
-      margin-bottom: 1rem;
-    }
-
-    .nav-link {
-      display: block;
-      margin-bottom: 0.65rem;
-      font-size: 0.98rem;
-      color: var(--text-main);
-      text-decoration: none;
-    }
-    .nav-link span { border-bottom: 1px solid var(--accent-soft); }
-    .nav-link:hover span {
-      color: var(--accent);
-      border-bottom-color: var(--accent);
-    }
-
-    /* Main content */
-    .content { padding: 2.5rem 3rem; }
 
     .section-title {
       font-size: 0.9rem;
@@ -135,238 +100,276 @@
       margin-bottom: 1.2rem;
     }
 
-    .experience-block { margin-bottom: 3rem; }
-
-    .experience-company {
-      font-weight: 700;
-      font-size: 1.15rem;
-      display: flex;
-      align-items: center;
-      gap: 0.55rem;
+    .project-link {
+      display: block;
+      margin-bottom: 0.7rem;
+      font-size: 0.98rem;
+      color: var(--text-main);
+      text-decoration: none;
     }
 
-    .muted {
+    .project-link span {
+      border-bottom: 1px solid var(--accent-soft);
+    }
+
+    .project-link:hover span {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    .sidebar-list {
+      list-style: none;
+      padding-left: 0;
+      margin-bottom: 1.5rem;
       color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .sidebar-list li {
+      margin-bottom: 0.4rem;
+    }
+
+    /* Main content */
+    .content {
+      padding: 2.5rem 3rem;
+    }
+
+    .intro-title {
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: var(--accent);
+      margin-bottom: 0.25rem;
+    }
+
+    .intro p {
+      font-size: 1rem;
       line-height: 1.7;
+      color: var(--text-muted);
       text-align: justify;
     }
 
-    .spacer { height: 1.25rem; }
-
-    ul {
-      margin-left: 2.2rem;
-      margin-top: 0.9rem;
-      color: var(--text-muted);
-      line-height: 1.65;
+    .spacer {
+      height: 2.5rem;
     }
 
-    ul li { margin-bottom: 0.55rem; }
+    .experience-block {
+      margin-bottom: 2rem;
+    }
 
-    .diagram-img {
-      width: 100%;
-      margin-top: 1rem;
-      border-radius: 6px;
-      border: 1px solid var(--border-light);
+    .experience-company {
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+
+    .experience-role {
+      font-style: italic;
+      margin-bottom: 0.2rem;
+    }
+
+    .experience-meta {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .experience-block ul {
+      margin-left: 1.2rem;
+      margin-top: 0.4rem;
+      color: var(--text-muted);
+      font-size: 0.96rem;
+    }
+
+    .experience-block ul li {
+      margin-bottom: 0.25rem;
     }
 
     @media (max-width: 900px) {
-      .page { grid-template-columns: 1fr; }
-      .sidebar { border-right: none; border-bottom: 1px solid var(--border-light); }
-      .content { padding: 2rem 1.75rem 2.5rem; }
+      .page {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        border-right: none;
+        border-bottom: 1px solid var(--border-light);
+      }
+
+      .content {
+        padding: 2rem 1.75rem 2.5rem;
+      }
     }
   </style>
 </head>
-
 <body>
   <div class="page">
-
     <!-- LEFT SIDEBAR -->
     <aside class="sidebar">
-      <a href="index.html" class="back-link">← Back to Home</a>
-
-      <div class="project-title">WhatsApp<br>Bot API</div>
-      <div class="project-subtitle">Conversational Ordering Automation</div>
-
-      <div class="sidebar-item">
-        <i class="fa-solid fa-rocket"></i>
-        <div><b>Status:</b> Production</div>
+      <div class="name">
+        ELVA<br>
+        RAMOS
       </div>
+      <div class="role">Tech Architecture Senior Analyst</div>
 
-      <div class="sidebar-item">
-        <i class="fa-solid fa-bullseye"></i>
-        <div><b>Goal:</b> Automate end-to-end order intake via WhatsApp</div>
-      </div>
-
-      <div class="sidebar-item">
-        <i class="fa-solid fa-diagram-project"></i>
-        <div><b>Flow:</b> Menu → Validation → Confirmation → Admin alert</div>
-      </div>
-
-      <div class="sidebar-item">
-        <i class="fa-solid fa-layer-group"></i>
-        <div><b>Stack:</b> Twilio · FastAPI · PostgreSQL · Railway</div>
+      <div class="contact">
+        <div class="contact-item">
+          <i class="fa-solid fa-envelope"></i>
+          <span>elvaramosglz@gmail.com</span>
+        </div>
+        <div class="contact-item">
+          <i class="fa-solid fa-phone"></i>
+          <span>+52 866-173-19-46</span>
+        </div>
+        <div class="contact-item">
+          <i class="fa-solid fa-location-dot"></i>
+          <span>Monterrey, Nuevo León, México</span>
+        </div>
       </div>
 
       <div class="divider"></div>
 
-      <div class="nav-title">Project Pages</div>
-      <a class="nav-link" href="whatsapp-api-automation.html"><span>Overview</span></a>
-      <a class="nav-link" href="jira-cloud-automation.html"><span>Jira Cloud Automation</span></a>
-      <a class="nav-link" href="index.html"><span>Home / Resume</span></a>
+      <!-- Projects -->
+      <div>
+        <div class="section-title">Projects</div>
+        <a class="project-link" href="https://www.salesforce.com/trailblazer/oc8d87jq3cm38dufqz">
+        <span>Salesforce Trailhead</span>
+        </a>
+        <a class="project-link" href="jira-cloud-automation.html">
+          <span>Jira Cloud Automation</span>
+        </a>
+        <a class="project-link" href="whatsapp-api-automation.html">
+        <span>WhatsApp API Automation</span>
+        </a>
+
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Certifications -->
+      <div>
+        <div class="section-title">Certifications</div>
+        <ul class="sidebar-list">
+          <li>Atlassian Jira Software Essentials</li>
+          <li>Certified Entry-Level Python Programmer (PCEP)</li>
+        </ul>
+      </div>
+
+      <!-- Skills -->
+      <div>
+        <div class="section-title">Skills</div>
+        <ul class="sidebar-list">
+          <li>ScriptRunner automation (Groovy)</li>
+          <li>Jira Cloud administration &amp; governance</li>
+          <li>Workflow &amp; permission design</li>
+          <li>REST API integrations</li>
+          <li>GitHub Actions &amp; CI-style automation</li>
+          <li>Technical documentation &amp; knowledge transfer</li>
+        </ul>
+      </div>
+
+      <!-- Programming Languages -->
+      <div>
+        <div class="section-title">Programming Languages</div>
+        <ul class="sidebar-list">
+          <li>Groovy</li>
+          <li>Python</li>
+        </ul>
+      </div>
+
+      <!-- Spoken Languages -->
+      <div>
+        <div class="section-title">Languages</div>
+        <ul class="sidebar-list">
+          <li>Spanish – Native</li>
+          <li>English – Fluent</li>
+        </ul>
+      </div>
     </aside>
 
     <!-- RIGHT CONTENT -->
     <main class="content">
+
+      <div class="spacer"></div>
+
+      <!-- EXPERIENCE -->
       <section class="experience">
-        <h2 class="section-title" style="letter-spacing:0.18em; margin-bottom:2.8rem;">
-          WhatsApp Bot API
-        </h2>
+        <h2 class="section-title" style="letter-spacing:0.18em;">Experience</h2>
 
-        <!-- Problem -->
+        <!-- Company header -->
         <div class="experience-block">
-          <div class="experience-company">
-            <i class="fa-solid fa-triangle-exclamation" style="color:var(--accent);"></i>
-            Problem
-          </div>
-
-          <p class="muted" style="margin-top:0.9rem;">
-            Many small businesses still take orders through fully manual WhatsApp chats. During peak demand,
-            conversations become fragmented and hard to track: details arrive out of sequence, critical
-            information is missing (items, quantities, delivery time, address), and confirmations vary by
-            operator. This leads to avoidable mistakes, slow response times, and higher operational workload—
-            especially when one person manages both sales and fulfillment.
-          </p>
+          <div class="experience-company">Accenture · Monterrey</div>
+          <div class="experience-meta">October 2021 – Present</div>
         </div>
 
-        <!-- Common pain points -->
+        <!-- MOST RECENT ROLE -->
         <div class="experience-block">
-          <div class="experience-company">
-            <i class="fa-solid fa-xmark" style="color:var(--accent);"></i>
-            Common pain points
-          </div>
-
+          <div class="experience-role">Jira Software Engineer II · Leading S&amp;P 500 Global Insurance Company</div>
+          <div class="experience-meta">May 2025 – Present</div>
           <ul>
-            <li>Incomplete orders due to missing required fields.</li>
-            <li>Manual copy/paste into notes or spreadsheets.</li>
-            <li>Inconsistent confirmation messages and follow-ups.</li>
-            <li>Low visibility for the admin when multiple chats happen at once.</li>
+            <li>Created and administered Jira Cloud, configuring users, roles, permission schemes, workflows, issue types, automation rules, and custom fields, ensuring continuity and data integrity across large-scale environments.</li>
+            <li>Developed Groovy scripts and leveraged the REST API to automate processes, extract information, and generate reports, while producing technical documentation that supported monitoring, troubleshooting, and knowledge transfer.</li>
+            <li>Led phased migration projects, including pilots, incremental data migrations, validations, and global rollouts by Business Units, with post-Go-Live support ensuring data accuracy and compliance.</li>
+            <li>Currently participating in a global migration of 7M+ records from Jira/Confluence Data Center to Cloud, successfully delivering pilot and incremental phases under strict deadlines and regulatory standards.</li>
           </ul>
         </div>
 
-        <!-- Main idea -->
+        <!-- ROLE 2 -->
         <div class="experience-block">
-          <div class="experience-company">
-            <i class="fa-solid fa-lightbulb" style="color:var(--accent);"></i>
-            Main idea
-          </div>
-
-          <p class="muted" style="margin-top:0.9rem;">
-            Build a production-ready WhatsApp conversational bot that automates order intake end-to-end.
-            The bot guides customers through a structured flow, captures free-text inputs, validates
-            required fields, confirms the final order, and sends the admin a clean, standardized summary—
-            reducing errors while improving speed and consistency.
-          </p>
-        </div>
-
-        <!-- What the bot handles -->
-        <div class="experience-block">
-          <div class="experience-company">
-            <i class="fa-solid fa-list-check" style="color:var(--accent);"></i>
-            What the bot handles
-          </div>
-
+          <div class="experience-role">Solution Architect · Leading S&amp;P 500 Financial Services Company</div>
+          <div class="experience-meta">July 2023 – April 2025</div>
           <ul>
-            <li><b>Guided flow:</b> menu → quantities → delivery or pickup → payment → confirmation.</li>
-            <li><b>Validations:</b> detects missing or invalid values and requests corrections.</li>
-            <li><b>Clarifications:</b> asks follow-up questions for missing sizes (e.g., 250g/500g, 10/20).</li>
-            <li><b>Order confirmation:</b> user confirms before saving and notifying admin.</li>
-            <li><b>Persistence:</b> stores customers, orders, and delivery address for continuity.</li>
-            <li><b>Admin tools:</b> supports admin commands (confirm, reject, in transit, delivered).</li>
+            <li>Engineered Groovy scripts and automation rules, reducing execution time by 91.6% and minimizing manual processes through ScriptRunner and workflow optimization.</li>
+            <li>Collaborated with the client to gather requirements and migrated data from Azure DevOps to Jira Cloud, ensuring data integrity, timely delivery, and alignment with agile methodologies.</li>
+            <li>Created and maintained workflows, permissions, and technical documentation in Confluence, enabling process adoption, troubleshooting, and long-term knowledge retention within the team.</li>
           </ul>
         </div>
 
-        <!-- Architecture Diagram -->
+        <!-- OLDEST ROLE -->
         <div class="experience-block">
-          <div class="experience-company">
-            <i class="fa-solid fa-diagram-project" style="color:var(--accent);"></i>
-            Architecture overview
-          </div>
-
-          <!-- IMPORTANT:
-               Put your exported SVG file in the same folder as this HTML,
-               or update the src path accordingly (e.g., assets/architecture-whatsapp-bot.svg)
-          -->
-          <img
-            src="assets/WA-Bot-Architecture.svg"
-            alt="WhatsApp Bot API Architecture Diagram"
-            class="diagram-img"
-          />
-        </div>
-
-        <div class="experience-block">
-  <div class="experience-company">
-    <i class="fa-solid fa-circle-info" style="color:var(--accent);"></i>
-    Architecture breakdown
-  </div>
-<p class="muted" style="margin-top:0.8rem;">
-  The following steps describe the execution flow shown in the architecture diagram above:
-</p>
-
-  <ol style="margin-left: 2.4rem; margin-top: 1.1rem; color: var(--text-muted); line-height: 1.75;">
-    <li>
-      <b>Customer (WhatsApp User)</b><br>
-      The customer initiates the interaction by sending a WhatsApp message using natural,
-      unstructured language.
-    </li>
-
-    <li>
-      <b>Twilio WhatsApp Messaging</b><br>
-      Twilio receives the inbound message and forwards it to the backend webhook
-      configured for the WhatsApp number.
-    </li>
-
-    <li>
-      <b>Webhook API (FastAPI on Railway)</b><br>
-      The webhook endpoint receives the message, normalizes the input,
-      and hands control to the conversation router.
-    </li>
-
-    <li>
-      <b>Conversation Router (State Machine)</b><br>
-      The state machine determines the current step of the conversation,
-      validates required information, and decides the next action.
-    </li>
-
-    <li>
-      <b>Database (PostgreSQL)</b><br>
-      Customer data, order details, and session-related information
-      are persisted for traceability and operational continuity.
-    </li>
-
-    <li>
-      <b>Admin Notifications</b><br>
-      When an order is confirmed or requires attention, a structured WhatsApp
-      notification is sent to the admin in real time.
-    </li>
-  </ol>
-</div>
-
-        <!-- Outcomes -->
-        <div class="experience-block">
-          <div class="experience-company">
-            <i class="fa-solid fa-chart-line" style="color:var(--accent);"></i>
-            Outcomes
-          </div>
-
+          <div class="experience-role">Application Developer · Leading S&amp;P 500 Telecommunications Company</div>
+          <div class="experience-meta">October 2021 – May 2023</div>
           <ul>
-            <li>Reduced manual back-and-forth by enforcing a structured order flow.</li>
-            <li>Improved order quality by validating required fields and prompting clarifications.</li>
-            <li>Enabled faster operations through instant admin notifications and standardized summaries.</li>
+            <li>Managed CI/CD pipelines and analyzed Jenkins logs to automate key tasks and ensure reliable, smooth deployments.</li>
+            <li>Utilized Kubernetes to orchestrate deployments, scaling, and management of pods, maintaining optimal application performance.</li>
+            <li>Mentored and onboarded new team members, supporting knowledge transfer and team efficiency.</li>
           </ul>
         </div>
+      </section>
 
+      <div class="spacer"></div>
+
+      <!-- PROJECTS (Right panel) -->
+      <section class="experience" id="whatsapp-api-automation">
+        <h2 class="section-title" style="letter-spacing:0.18em;">Projects</h2>
+
+        <div class="experience-block">
+          <div class="experience-role">WhatsApp Conversational Ordering Bot</div>
+          <div class="experience-meta">November 2025</div>
+          <ul>
+            <li>Designed and deployed an end-to-end WhatsApp conversational bot using the Twilio API to automate customer order intake.</li>
+            <li>Implemented menu logic, free-text order parsing, confirmation flows, and real-time admin notifications.</li>
+            <li>Built a lightweight state-machine conversational flow to handle unstructured/noisy user input and ensure order accuracy.</li>
+            <li>Delivered a production-ready solution used by a real small business, reducing manual coordination and operational errors.</li>
+          </ul>
+        </div>
+      </section>
+
+      <div class="spacer"></div>
+
+      <!-- EDUCATION -->
+      <section class="experience">
+        <h2 class="section-title" style="letter-spacing:0.18em;">Education</h2>
+
+        <div class="experience-block">
+          <div class="experience-company">Tecnológico de Monterrey · Monterrey</div>
+          <div class="experience-role">Bachelor in Architecture</div>
+          <div class="experience-meta">August 2015 – December 2021</div>
+          <ul>
+            <li>Developed strong analytical, project planning, and design thinking skills.</li>
+            <li>Collaborated on multidisciplinary projects and technical presentations.</li>
+          </ul>
+        </div>
       </section>
     </main>
   </div>
 </body>
 </html>
+ 
