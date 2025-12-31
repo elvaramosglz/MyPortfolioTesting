@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>WhatsApp Bot API – Production System</title>
+  <title>WhatsApp API Automation</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- Google Font -->
@@ -37,35 +37,18 @@
     .page {
       max-width: 1200px;
       margin: 2rem auto;
-      background: #fff;
+      background: #ffffff;
       box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
       display: grid;
       grid-template-columns: 320px 1fr;
       min-height: 80vh;
     }
 
-    /* SIDEBAR */
+    /* Sidebar */
     .sidebar {
       background: linear-gradient(180deg, var(--bg-sidebar), #dde7f2);
       padding: 2.5rem 2rem;
       border-right: 1px solid var(--border-light);
-    }
-
-    .sidebar-title {
-      font-size: 2.2rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      line-height: 1.1;
-      margin-bottom: 1rem;
-    }
-
-    .sidebar-subtitle {
-      font-size: 0.95rem;
-      font-weight: 600;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 2rem;
     }
 
     .back-link {
@@ -81,43 +64,65 @@
       border-bottom-color: var(--accent);
     }
 
-    /* CONTENT */
+    .name {
+      font-size: 2.4rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      line-height: 1.1;
+      margin-bottom: 0.8rem;
+    }
+
+    .role {
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 2rem;
+    }
+
+    /* Content */
     .content {
       padding: 3rem 3.5rem;
     }
 
-    .section {
-      margin-bottom: 3.5rem;
-    }
-
     .section-title {
-      font-size: 1.2rem;
+      font-size: 1.15rem;
       font-weight: 700;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 1.4rem;
+      margin-bottom: 1.6rem;
+    }
+
+    .experience-block {
+      margin-bottom: 3rem;
+    }
+
+    .experience-company {
+      font-weight: 600;
+      margin-bottom: 0.4rem;
     }
 
     .muted {
       color: var(--text-muted);
       line-height: 1.75;
       text-align: justify;
-      margin-bottom: 1.6rem;
     }
 
     ol {
       margin-left: 1.8rem;
+      margin-top: 1rem;
       color: var(--text-muted);
-      line-height: 1.75;
+      line-height: 1.7;
     }
 
     ol li {
-      margin-bottom: 0.9rem;
+      margin-bottom: 0.8rem;
     }
 
     .diagram {
-      margin: 2.5rem 0;
+      margin: 2.2rem 0;
       text-align: center;
     }
 
@@ -125,19 +130,8 @@
       max-width: 100%;
       border: 1px solid var(--border-light);
       border-radius: 6px;
-      background: #fff;
       padding: 1rem;
-    }
-
-    .video-placeholder {
-      margin-top: 2rem;
-      padding: 2.8rem;
-      border: 2px dashed var(--border-light);
-      border-radius: 8px;
-      text-align: center;
-      background: #fafafa;
-      color: var(--text-muted);
-      font-style: italic;
+      background: #fff;
     }
 
     @media (max-width: 900px) {
@@ -160,11 +154,11 @@
         <i class="fa-solid fa-arrow-left"></i> Back to Home
       </a>
 
-      <div class="sidebar-title">
+      <div class="name">
         WhatsApp<br>Bot API
       </div>
 
-      <div class="sidebar-subtitle">
+      <div class="role">
         Production Automation System
       </div>
     </aside>
@@ -173,32 +167,31 @@
     <main class="content">
 
       <!-- PROBLEM -->
-      <section class="section">
+      <div class="experience-block">
         <div class="section-title">
           <i class="fa-solid fa-triangle-exclamation"></i> Problem
         </div>
         <p class="muted">
           Small businesses often rely on manual WhatsApp conversations to take orders, which leads to
-          inconsistent information, missing details, repetitive questions, and a high operational load.
-          Free-text messages arrive out of order, forcing the business owner to constantly interpret,
-          validate, and confirm orders manually.
+          inconsistent information, missing details, repetitive questions, and operational overload.
+          Free-text messages arrive out of order and require constant manual validation.
         </p>
-      </section>
+      </div>
 
-      <!-- IDEA -->
-      <section class="section">
+      <!-- CORE IDEA -->
+      <div class="experience-block">
         <div class="section-title">
           <i class="fa-solid fa-lightbulb"></i> Core Idea
         </div>
         <p class="muted">
-          Build a WhatsApp bot that automates order intake end-to-end, guiding the user through a
-          structured flow while still allowing natural free-text input, and ensuring that every order
-          reaches the business in a complete, validated, and actionable format.
+          Build a WhatsApp bot that automates the entire order intake process, guiding users through a
+          structured flow while still allowing natural free-text input, ensuring that every order is
+          complete, validated, and ready for execution.
         </p>
-      </section>
+      </div>
 
       <!-- ARCHITECTURE -->
-      <section class="section">
+      <div class="experience-block">
         <div class="section-title">
           <i class="fa-solid fa-diagram-project"></i> System Architecture
         </div>
@@ -212,52 +205,57 @@
         </p>
 
         <ol>
-          <li>A customer sends a WhatsApp message, which is received by Twilio.</li>
-          <li>Twilio forwards the message to a FastAPI webhook deployed on Railway.</li>
-          <li>The application routes the message based on the user’s current conversation state.</li>
-          <li>Customer data, orders, and state are persisted in a PostgreSQL database.</li>
-          <li>Once an order is confirmed, an admin notification is sent via WhatsApp.</li>
+          <li>A customer sends a WhatsApp message, received by Twilio.</li>
+          <li>Twilio forwards the message to a FastAPI webhook.</li>
+          <li>The application routes the message based on the user’s current state.</li>
+          <li>Orders and customer data are stored in a PostgreSQL database.</li>
+          <li>Once confirmed, an admin notification is sent via WhatsApp.</li>
         </ol>
-      </section>
+      </div>
 
       <!-- STATE MACHINE -->
-      <section class="section">
+      <div class="experience-block">
         <div class="section-title">
           <i class="fa-solid fa-arrows-spin"></i> State Machine
         </div>
-
         <p class="muted">
-          The conversational logic is implemented as a finite state machine. Each user is always in
-          exactly one state, and every incoming message is interpreted according to that state.
-          This prevents ambiguous inputs and guarantees a predictable, step-by-step ordering flow.
+          The conversational logic is implemented as a finite state machine. Each incoming message is
+          interpreted according to the user’s current state, ensuring context-aware validation,
+          predictable flow, and resilience against out-of-order inputs.
         </p>
+      </div>
 
-        <p class="muted">
-          Compared to traditional if/else-based logic, the state machine enforces context, simplifies
-          validation, and makes the system easier to extend and maintain as new features are added.
-        </p>
-      </section>
-
-      <!-- PRODUCTION VIDEO -->
-      <section class="section">
+      <!-- ✅ PRODUCTION VIDEO SECTION (ADDED ONLY) -->
+      <div class="experience-block" style="margin-top:3rem;">
         <div class="section-title">
           <i class="fa-solid fa-video"></i> Production Flow
         </div>
 
         <p class="muted">
-          The recording below shows the WhatsApp bot running in production, interacting with real user
-          messages and executing the same logic and architecture described above.
+          The video below shows the WhatsApp bot running in production, handling real user messages
+          and executing the same architecture and state machine described above.
         </p>
 
-        <p class="muted">
-          This recording reflects the bot operating in a live environment, including real message
-          handling, validations, order confirmation, and admin notifications.
+        <p class="muted" style="margin-top:0.6rem;">
+          This recording reflects the bot operating in a live environment, including message intake,
+          validations, order confirmation, database persistence, and admin notifications.
         </p>
 
-        <div class="video-placeholder">
+        <div
+          style="
+            margin-top: 1.6rem;
+            padding: 2.5rem;
+            border: 2px dashed var(--border-light);
+            border-radius: 8px;
+            text-align: center;
+            color: var(--text-muted);
+            background: #fafafa;
+            font-style: italic;
+          "
+        >
           [Attach video here]
         </div>
-      </section>
+      </div>
 
     </main>
   </div>
