@@ -63,9 +63,9 @@
     }
 
     .project-title {
-      font-size: 2.2rem;
+      font-size: 2.3rem;
       font-weight: 700;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.1em;
       line-height: 1.1;
       margin-bottom: 0.6rem;
     }
@@ -76,13 +76,13 @@
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 2rem;
+      margin-bottom: 2.2rem;
     }
 
     .contact-item {
       display: flex;
       align-items: center;
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.85rem;
       font-size: 0.95rem;
       color: var(--text-muted);
     }
@@ -108,27 +108,18 @@
       margin-bottom: 1.2rem;
     }
 
-    .project-link {
-      display: block;
-      margin-bottom: 0.7rem;
-      font-size: 0.98rem;
-      color: var(--text-main);
-      text-decoration: none;
-    }
-
-    .project-link span {
-      border-bottom: 1px solid var(--accent-soft);
-    }
-
-    .project-link.active span {
-      color: var(--accent);
-      border-bottom-color: var(--accent);
-      font-weight: 700;
-    }
-
     /* Main content */
     .content {
       padding: 2.5rem 3rem;
+    }
+
+    .experience-block {
+      margin-bottom: 3rem;
+    }
+
+    .experience-company {
+      font-weight: 700;
+      font-size: 1.15rem;
     }
 
     .muted {
@@ -137,9 +128,25 @@
       text-align: justify;
     }
 
+    ul {
+      margin-left: 2.2rem;
+      margin-top: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    ul li {
+      margin-bottom: 0.45rem;
+    }
+
     @media (max-width: 900px) {
       .page { grid-template-columns: 1fr; }
-      .sidebar { border-right: none; border-bottom: 1px solid var(--border-light); }
+      .sidebar {
+        border-right: none;
+        border-bottom: 1px solid var(--border-light);
+      }
+      .content {
+        padding: 2rem 1.75rem 2.5rem;
+      }
     }
   </style>
 </head>
@@ -147,104 +154,128 @@
 <body>
   <div class="page">
 
-    <!-- LEFT SIDEBAR -->
+    <!-- SIDEBAR -->
     <aside class="sidebar">
+      <a href="index.html" class="back-link">← Back to Home</a>
 
-      <!-- Back to Home -->
-      <a href="index.html" class="back-link">
-        ← Back to Home
-      </a>
-
-<main class="content">
-  <section class="experience">
-    <h2 class="section-title" style="letter-spacing:0.18em; margin-bottom:2.5rem;">
-      WhatsApp Bot API
-    </h2>
-
-    <!-- PROBLEM -->
-    <div class="experience-block" style="margin-bottom:2.8rem;">
-      <div class="experience-company" style="font-size:1.15rem; font-weight:700;">
-        <i class="fa-solid fa-triangle-exclamation"
-           style="color:var(--accent); margin-right:0.55rem;"></i>
-        Problem
+      <div class="project-title">
+        WhatsApp<br>Bot API
       </div>
 
-      <p class="muted" style="margin-top:0.9rem;">
-        Many small businesses still take orders through fully manual WhatsApp chats. During peak demand,
-        conversations become fragmented and hard to track: details arrive out of sequence, critical
-        information is missing (items, quantities, delivery time, address), and confirmations vary by
-        operator. This leads to avoidable mistakes, slow response times, and higher operational workload—
-        especially when one person manages both sales and fulfillment.
-      </p>
-    </div>
-
-    <!-- COMMON PAIN POINTS -->
-    <div class="experience-block" style="margin-bottom:3rem;">
-      <div class="experience-company" style="font-size:1.15rem; font-weight:700;">
-        <i class="fa-solid fa-xmark"
-           style="color:var(--accent); margin-right:0.55rem;"></i>
-        Common pain points
+      <div class="project-subtitle">
+        Conversational Ordering Automation
       </div>
 
-      <ul style="margin-top:0.9rem; margin-left:2.2rem;">
-        <li>Incomplete orders due to missing required fields.</li>
-        <li>Manual copy/paste into notes or spreadsheets.</li>
-        <li>Inconsistent confirmation messages and follow-ups.</li>
-        <li>Low visibility for the admin when multiple chats happen at once.</li>
-      </ul>
-    </div>
-
-    <!-- MAIN IDEA -->
-    <div class="experience-block" style="margin-bottom:3rem;">
-      <div class="experience-company" style="font-size:1.15rem; font-weight:700;">
-        <i class="fa-solid fa-lightbulb"
-           style="color:var(--accent); margin-right:0.55rem;"></i>
-        Main idea
+      <div class="contact">
+        <div class="contact-item">
+          <i class="fa-solid fa-rocket"></i>
+          <span><b>Status:</b> Production</span>
+        </div>
+        <div class="contact-item">
+          <i class="fa-solid fa-bullseye"></i>
+          <span><b>Designed for:</b> Small businesses</span>
+        </div>
+        <div class="contact-item">
+          <i class="fa-solid fa-diagram-project"></i>
+          <span><b>Flow:</b> Menu → Validation → Confirmation → Admin alert</span>
+        </div>
+        <div class="contact-item">
+          <i class="fa-solid fa-layer-group"></i>
+          <span><b>Stack:</b> Twilio · Python · State Machine · Railway · DB</span>
+        </div>
       </div>
+    </aside>
 
-      <p class="muted" style="margin-top:0.9rem;">
-        Build a production-ready WhatsApp conversational bot that automates order intake end-to-end.
-        The bot guides customers through a structured flow, captures free-text inputs, validates required
-        fields, confirms the final order, and sends the admin a clean, standardized summary—reducing
-        errors while improving speed and consistency.
-      </p>
-    </div>
+    <!-- MAIN CONTENT -->
+    <main class="content">
+      <section class="experience">
+        <h2 class="section-title" style="letter-spacing:0.18em; margin-bottom:2.8rem;">
+          WhatsApp Bot API
+        </h2>
 
-    <!-- WHAT THE BOT HANDLES -->
-    <div class="experience-block" style="margin-bottom:3rem;">
-      <div class="experience-company" style="font-size:1.15rem; font-weight:700;">
-        <i class="fa-solid fa-list-check"
-           style="color:var(--accent); margin-right:0.55rem;"></i>
-        What the bot handles
-      </div>
+        <!-- Problem -->
+        <div class="experience-block">
+          <div class="experience-company">
+            <i class="fa-solid fa-triangle-exclamation"
+               style="color:var(--accent); margin-right:0.55rem;"></i>
+            Problem
+          </div>
 
-      <ul style="margin-top:0.9rem; margin-left:2.2rem;">
-        <li><b>Guided flow:</b> menu → quantities → delivery/pickup → scheduling.</li>
-        <li><b>Validations:</b> detects missing or invalid values and requests corrections.</li>
-        <li><b>Confirmation:</b> final user approval before saving and notifying admin.</li>
-        <li><b>Admin notification:</b> sends a structured order summary to the admin WhatsApp.</li>
-        <li><b>Persistence:</b> stores customer data and order history for continuity and follow-up.</li>
-      </ul>
-    </div>
+          <p class="muted" style="margin-top:0.9rem;">
+            Many small businesses still take orders through fully manual WhatsApp chats. During peak demand,
+            conversations become fragmented and hard to track: details arrive out of sequence, critical
+            information is missing (items, quantities, delivery time, address), and confirmations vary by
+            operator. This leads to avoidable mistakes, slow response times, and higher operational workload—
+            especially when one person manages both sales and fulfillment.
+          </p>
+        </div>
 
-    <!-- OUTCOMES -->
-    <div class="experience-block">
-      <div class="experience-company" style="font-size:1.15rem; font-weight:700;">
-        <i class="fa-solid fa-chart-line"
-           style="color:var(--accent); margin-right:0.55rem;"></i>
-        Outcomes
-      </div>
+        <!-- Common pain points -->
+        <div class="experience-block">
+          <div class="experience-company">
+            <i class="fa-solid fa-xmark"
+               style="color:var(--accent); margin-right:0.55rem;"></i>
+            Common pain points
+          </div>
 
-      <ul style="margin-top:0.9rem; margin-left:2.2rem;">
-        <li>Fewer order errors and less back-and-forth.</li>
-        <li>Faster turnaround from first message to confirmed order.</li>
-        <li>Consistent customer experience and cleaner admin operations.</li>
-      </ul>
-    </div>
+          <ul>
+            <li>Incomplete orders due to missing required fields.</li>
+            <li>Manual copy/paste into notes or spreadsheets.</li>
+            <li>Inconsistent confirmation messages and follow-ups.</li>
+            <li>Low visibility for the admin when multiple chats happen at once.</li>
+          </ul>
+        </div>
 
-  </section>
-</main>
+        <!-- Main idea -->
+        <div class="experience-block">
+          <div class="experience-company">
+            <i class="fa-solid fa-lightbulb"
+               style="color:var(--accent); margin-right:0.55rem;"></i>
+            Main idea
+          </div>
 
+          <p class="muted" style="margin-top:0.9rem;">
+            Build a production-ready WhatsApp conversational bot that automates order intake end-to-end.
+            The bot guides customers through a structured flow, captures free-text inputs, validates
+            required fields, confirms the final order, and sends the admin a clean, standardized summary—
+            reducing errors while improving speed and consistency.
+          </p>
+        </div>
+
+        <!-- What the bot handles -->
+        <div class="experience-block">
+          <div class="experience-company">
+            <i class="fa-solid fa-list-check"
+               style="color:var(--accent); margin-right:0.55rem;"></i>
+            What the bot handles
+          </div>
+
+          <ul>
+            <li><b>Guided flow:</b> menu → quantities → delivery/pickup → scheduling.</li>
+            <li><b>Validations:</b> detects missing or invalid values and requests corrections.</li>
+            <li><b>Confirmation:</b> final user approval before saving and notifying admin.</li>
+            <li><b>Admin notification:</b> sends a structured order summary to the admin WhatsApp.</li>
+            <li><b>Persistence:</b> stores customer data and order history.</li>
+          </ul>
+        </div>
+
+        <!-- Outcomes -->
+        <div class="experience-block">
+          <div class="experience-company">
+            <i class="fa-solid fa-chart-line"
+               style="color:var(--accent); margin-right:0.55rem;"></i>
+            Outcomes
+          </div>
+
+          <ul>
+            <li>Fewer order errors and less back-and-forth.</li>
+            <li>Faster turnaround from first message to confirmed order.</li>
+            <li>Consistent customer experience and cleaner admin operations.</li>
+          </ul>
+        </div>
+
+      </section>
+    </main>
 
   </div>
 </body>
