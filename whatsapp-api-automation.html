@@ -2,18 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>WhatsApp API Automation</title>
+  <title>WhatsApp Bot API</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
 
   <!-- Font Awesome -->
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    crossorigin="anonymous"
-  />
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        crossorigin="anonymous" />
 
   <style>
     :root {
@@ -53,94 +51,128 @@
 
     .back-link {
       display: inline-block;
+      font-size: 0.85rem;
       margin-bottom: 2rem;
       color: var(--accent);
       text-decoration: none;
-      font-weight: 600;
       border-bottom: 1px solid var(--accent-soft);
     }
+    .back-link:hover { border-bottom-color: var(--accent); }
 
-    .back-link:hover {
-      border-bottom-color: var(--accent);
-    }
-
-    .name {
-      font-size: 2.4rem;
+    .project-title {
+      font-size: 2.3rem;
       font-weight: 700;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.1em;
       line-height: 1.1;
-      margin-bottom: 0.8rem;
+      margin-bottom: 0.6rem;
+      text-transform: uppercase;
     }
 
-    .role {
+    .project-subtitle {
       font-size: 0.95rem;
       font-weight: 600;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 2rem;
-    }
-
-    /* Content */
-    .content {
-      padding: 3rem 3.5rem;
-    }
-
-    .section-title {
-      font-size: 1.15rem;
-      font-weight: 700;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 1.6rem;
+      margin-bottom: 2.2rem;
     }
 
-    .experience-block {
-      margin-bottom: 3rem;
+    .sidebar-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+      margin-bottom: 0.95rem;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.35;
     }
+
+    .sidebar-item i {
+      color: var(--accent);
+      margin-top: 0.15rem;
+      font-size: 1.05rem;
+      width: 18px;
+      text-align: center;
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--border-light);
+      margin: 2rem 0 1.5rem;
+    }
+
+    .nav-title {
+      font-size: 0.9rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .nav-link {
+      display: block;
+      margin-bottom: 0.65rem;
+      font-size: 0.98rem;
+      color: var(--text-main);
+      text-decoration: none;
+    }
+    .nav-link span { border-bottom: 1px solid var(--accent-soft); }
+    .nav-link:hover span {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    /* Main content */
+    .content { padding: 2.5rem 3rem; }
+
+    .section-title {
+      font-size: 0.9rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 1.2rem;
+    }
+
+    .experience-block { margin-bottom: 3rem; }
 
     .experience-company {
-      font-weight: 600;
-      margin-bottom: 0.4rem;
+      font-weight: 700;
+      font-size: 1.15rem;
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
     }
 
     .muted {
       color: var(--text-muted);
-      line-height: 1.75;
+      line-height: 1.7;
       text-align: justify;
     }
 
-    ol {
-      margin-left: 1.8rem;
-      margin-top: 1rem;
+    .spacer { height: 1.25rem; }
+
+    ul {
+      margin-left: 2.2rem;
+      margin-top: 0.9rem;
       color: var(--text-muted);
-      line-height: 1.7;
+      line-height: 1.65;
     }
 
-    ol li {
-      margin-bottom: 0.8rem;
-    }
+    ul li { margin-bottom: 0.55rem; }
 
-    .diagram {
-      margin: 2.2rem 0;
-      text-align: center;
-    }
-
-    .diagram img {
-      max-width: 100%;
-      border: 1px solid var(--border-light);
+    .diagram-img {
+      width: 100%;
+      margin-top: 1rem;
       border-radius: 6px;
-      padding: 1rem;
-      background: #fff;
+      border: 1px solid var(--border-light);
     }
 
     @media (max-width: 900px) {
       .page { grid-template-columns: 1fr; }
-      .sidebar {
-        border-right: none;
-        border-bottom: 1px solid var(--border-light);
-      }
-      .content { padding: 2rem; }
+      .sidebar { border-right: none; border-bottom: 1px solid var(--border-light); }
+      .content { padding: 2rem 1.75rem 2.5rem; }
     }
   </style>
 </head>
@@ -148,115 +180,192 @@
 <body>
   <div class="page">
 
-    <!-- SIDEBAR -->
+    <!-- LEFT SIDEBAR -->
     <aside class="sidebar">
-      <a href="index.html" class="back-link">
-        <i class="fa-solid fa-arrow-left"></i> Back to Home
-      </a>
+      <a href="index.html" class="back-link">← Back to Home</a>
 
-      <div class="name">
-        WhatsApp<br>Bot API
+      <div class="project-title">WhatsApp<br>Bot API</div>
+      <div class="project-subtitle">Conversational Ordering Automation</div>
+
+      <div class="sidebar-item">
+        <i class="fa-solid fa-rocket"></i>
+        <div><b>Status:</b> Production</div>
       </div>
 
-      <div class="role">
-        Production Automation System
+      <div class="sidebar-item">
+        <i class="fa-solid fa-bullseye"></i>
+        <div><b>Goal:</b> Automate end-to-end order intake via WhatsApp</div>
       </div>
+
+      <div class="sidebar-item">
+        <i class="fa-solid fa-diagram-project"></i>
+        <div><b>Flow:</b> Menu → Validation → Confirmation → Admin alert</div>
+      </div>
+
+      <div class="sidebar-item">
+        <i class="fa-solid fa-layer-group"></i>
+        <div><b>Stack:</b> Twilio · FastAPI · PostgreSQL · Railway</div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="nav-title">Project Pages</div>
+      <a class="nav-link" href="whatsapp-api-automation.html"><span>Overview</span></a>
+      <a class="nav-link" href="jira-cloud-automation.html"><span>Jira Cloud Automation</span></a>
+      <a class="nav-link" href="index.html"><span>Home / Resume</span></a>
     </aside>
 
-    <!-- MAIN CONTENT -->
+    <!-- RIGHT CONTENT -->
     <main class="content">
+      <section class="experience">
+        <h2 class="section-title" style="letter-spacing:0.18em; margin-bottom:2.8rem;">
+          WhatsApp Bot API
+        </h2>
 
-      <!-- PROBLEM -->
-      <div class="experience-block">
-        <div class="section-title">
-          <i class="fa-solid fa-triangle-exclamation"></i> Problem
-        </div>
-        <p class="muted">
-          Small businesses often rely on manual WhatsApp conversations to take orders, which leads to
-          inconsistent information, missing details, repetitive questions, and operational overload.
-          Free-text messages arrive out of order and require constant manual validation.
-        </p>
-      </div>
+        <!-- Problem -->
+        <div class="experience-block">
+          <div class="experience-company">
+            <i class="fa-solid fa-triangle-exclamation" style="color:var(--accent);"></i>
+            Problem
+          </div>
 
-      <!-- CORE IDEA -->
-      <div class="experience-block">
-        <div class="section-title">
-          <i class="fa-solid fa-lightbulb"></i> Core Idea
-        </div>
-        <p class="muted">
-          Build a WhatsApp bot that automates the entire order intake process, guiding users through a
-          structured flow while still allowing natural free-text input, ensuring that every order is
-          complete, validated, and ready for execution.
-        </p>
-      </div>
-
-      <!-- ARCHITECTURE -->
-      <div class="experience-block">
-        <div class="section-title">
-          <i class="fa-solid fa-diagram-project"></i> System Architecture
+          <p class="muted" style="margin-top:0.9rem;">
+            Many small businesses still take orders through fully manual WhatsApp chats. During peak demand,
+            conversations become fragmented and hard to track: details arrive out of sequence, critical
+            information is missing (items, quantities, delivery time, address), and confirmations vary by
+            operator. This leads to avoidable mistakes, slow response times, and higher operational workload—
+            especially when one person manages both sales and fulfillment.
+          </p>
         </div>
 
-        <div class="diagram">
-          <img src="assets/whatsapp-architecture.svg" alt="WhatsApp Bot Architecture Diagram">
+        <!-- Common pain points -->
+        <div class="experience-block">
+          <div class="experience-company">
+            <i class="fa-solid fa-xmark" style="color:var(--accent);"></i>
+            Common pain points
+          </div>
+
+          <ul>
+            <li>Incomplete orders due to missing required fields.</li>
+            <li>Manual copy/paste into notes or spreadsheets.</li>
+            <li>Inconsistent confirmation messages and follow-ups.</li>
+            <li>Low visibility for the admin when multiple chats happen at once.</li>
+          </ul>
         </div>
 
-        <p class="muted">
-          The following steps describe the production flow shown in the diagram above:
-        </p>
+        <!-- Main idea -->
+        <div class="experience-block">
+          <div class="experience-company">
+            <i class="fa-solid fa-lightbulb" style="color:var(--accent);"></i>
+            Main idea
+          </div>
 
-        <ol>
-          <li>A customer sends a WhatsApp message, received by Twilio.</li>
-          <li>Twilio forwards the message to a FastAPI webhook.</li>
-          <li>The application routes the message based on the user’s current state.</li>
-          <li>Orders and customer data are stored in a PostgreSQL database.</li>
-          <li>Once confirmed, an admin notification is sent via WhatsApp.</li>
-        </ol>
-      </div>
-
-      <!-- STATE MACHINE -->
-      <div class="experience-block">
-        <div class="section-title">
-          <i class="fa-solid fa-arrows-spin"></i> State Machine
-        </div>
-        <p class="muted">
-          The conversational logic is implemented as a finite state machine. Each incoming message is
-          interpreted according to the user’s current state, ensuring context-aware validation,
-          predictable flow, and resilience against out-of-order inputs.
-        </p>
-      </div>
-
-      <!-- ✅ PRODUCTION VIDEO SECTION (ADDED ONLY) -->
-      <div class="experience-block" style="margin-top:3rem;">
-        <div class="section-title">
-          <i class="fa-solid fa-video"></i> Production Flow
+          <p class="muted" style="margin-top:0.9rem;">
+            Build a production-ready WhatsApp conversational bot that automates order intake end-to-end.
+            The bot guides customers through a structured flow, captures free-text inputs, validates
+            required fields, confirms the final order, and sends the admin a clean, standardized summary—
+            reducing errors while improving speed and consistency.
+          </p>
         </div>
 
-        <p class="muted">
-          The video below shows the WhatsApp bot running in production, handling real user messages
-          and executing the same architecture and state machine described above.
-        </p>
+        <!-- What the bot handles -->
+        <div class="experience-block">
+          <div class="experience-company">
+            <i class="fa-solid fa-list-check" style="color:var(--accent);"></i>
+            What the bot handles
+          </div>
 
-        <p class="muted" style="margin-top:0.6rem;">
-          This recording reflects the bot operating in a live environment, including message intake,
-          validations, order confirmation, database persistence, and admin notifications.
-        </p>
-
-        <div
-          style="
-            margin-top: 1.6rem;
-            padding: 2.5rem;
-            border: 2px dashed var(--border-light);
-            border-radius: 8px;
-            text-align: center;
-            color: var(--text-muted);
-            background: #fafafa;
-            font-style: italic;
-          "
-        >
-          [Attach video here]
+          <ul>
+            <li><b>Guided flow:</b> menu → quantities → delivery or pickup → payment → confirmation.</li>
+            <li><b>Validations:</b> detects missing or invalid values and requests corrections.</li>
+            <li><b>Clarifications:</b> asks follow-up questions for missing sizes (e.g., 250g/500g, 10/20).</li>
+            <li><b>Order confirmation:</b> user confirms before saving and notifying admin.</li>
+            <li><b>Persistence:</b> stores customers, orders, and delivery address for continuity.</li>
+            <li><b>Admin tools:</b> supports admin commands (confirm, reject, in transit, delivered).</li>
+          </ul>
         </div>
-      </div>
 
+        <!-- Architecture Diagram -->
+        <div class="experience-block">
+          <div class="experience-company">
+            <i class="fa-solid fa-diagram-project" style="color:var(--accent);"></i>
+            Architecture overview
+          </div>
+
+          <!-- IMPORTANT:
+               Put your exported SVG file in the same folder as this HTML,
+               or update the src path accordingly (e.g., assets/architecture-whatsapp-bot.svg)
+          -->
+          <img
+            src="assets/WA-Bot-Architecture.svg"
+            alt="WhatsApp Bot API Architecture Diagram"
+            class="diagram-img"
+          />
+        </div>
+
+        <div class="experience-block">
+  <div class="experience-company">
+    <i class="fa-solid fa-circle-info" style="color:var(--accent);"></i>
+    Architecture breakdown
+  </div>
+<p class="muted" style="margin-top:0.8rem;">
+  The following steps describe the execution flow shown in the architecture diagram above:
+</p>
+
+  <ol style="margin-left: 2.4rem; margin-top: 1.1rem; color: var(--text-muted); line-height: 1.75;">
+    <li>
+      <b>Customer (WhatsApp User)</b><br>
+      The customer initiates the interaction by sending a WhatsApp message using natural,
+      unstructured language.
+    </li>
+
+    <li>
+      <b>Twilio WhatsApp Messaging</b><br>
+      Twilio receives the inbound message and forwards it to the backend webhook
+      configured for the WhatsApp number.
+    </li>
+
+    <li>
+      <b>Webhook API (FastAPI on Railway)</b><br>
+      The webhook endpoint receives the message, normalizes the input,
+      and hands control to the conversation router.
+    </li>
+
+    <li>
+      <b>Conversation Router (State Machine)</b><br>
+      The state machine determines the current step of the conversation,
+      validates required information, and decides the next action.
+    </li>
+
+    <li>
+      <b>Database (PostgreSQL)</b><br>
+      Customer data, order details, and session-related information
+      are persisted for traceability and operational continuity.
+    </li>
+
+    <li>
+      <b>Admin Notifications</b><br>
+      When an order is confirmed or requires attention, a structured WhatsApp
+      notification is sent to the admin in real time.
+    </li>
+  </ol>
+</div>
+
+        <!-- Outcomes -->
+        <div class="experience-block">
+          <div class="experience-company">
+            <i class="fa-solid fa-chart-line" style="color:var(--accent);"></i>
+            Outcomes
+          </div>
+
+          <ul>
+            <li>Reduced manual back-and-forth by enforcing a structured order flow.</li>
+            <li>Improved order quality by validating required fields and prompting clarifications.</li>
+            <li>Enabled faster operations through instant admin notifications and standardized summaries.</li>
+          </ul>
+        </div>
+
+      </section>
     </main>
   </div>
 </body>
