@@ -174,12 +174,8 @@
       background: #ffffff;
     }
 
-    .card-header {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 1rem;
-    }
+    /* CHANGED: make header vertical so "View project" sits under title */
+    .card-header { display: block; }
 
     .card-title {
       font-weight: 700;
@@ -191,8 +187,18 @@
 
     .card-title i { color: var(--accent); }
 
+    .view-link {
+      display: inline-block;
+      margin-top: 0.35rem;   /* sits right under the title */
+      font-size: 0.92rem;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .view-link span { border-bottom: 1px solid var(--accent-soft); }
+    .view-link:hover span { border-bottom-color: var(--accent); }
+
     .card-desc {
-      margin-top: 0.55rem;
+      margin-top: 0.6rem;
       color: var(--text-muted);
       line-height: 1.65;
       text-align: justify;
@@ -226,8 +232,8 @@
       margin-top: 1rem;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
+      justify-content: flex-start;
+      gap: 1.25rem;
       flex-wrap: wrap;
     }
 
@@ -239,15 +245,6 @@
       color: var(--text-muted);
     }
     .tag i { color: var(--accent-soft); }
-
-    .view-link {
-      display: inline-block;
-      font-size: 0.92rem;
-      color: var(--accent);
-      text-decoration: none;
-    }
-    .view-link span { border-bottom: 1px solid var(--accent-soft); }
-    .view-link:hover span { border-bottom-color: var(--accent); }
 
     @media (min-width: 980px) {
       .cards { grid-template-columns: 1fr 1fr; }
@@ -277,10 +274,7 @@
         <div><b>Status:</b> Active portfolio</div>
       </div>
 
-      <div class="sidebar-item">
-        <i class="fa-solid fa-bullseye"></i>
-        <div><b>Goal:</b> Reduce manual admin work and improve governance via automation</div>
-      </div>
+      <!-- REMOVED: Goal (as requested) -->
 
       <div class="sidebar-item">
         <i class="fa-solid fa-diagram-project"></i>
@@ -312,7 +306,7 @@
           Jira Cloud Automation (Hub)
         </h2>
 
-        <!-- Overview -->
+        <!-- Overview (UPDATED COPY) -->
         <div class="experience-block">
           <div class="experience-company">
             <i class="fa-solid fa-circle-info" style="color:var(--accent);"></i>
@@ -320,9 +314,9 @@
           </div>
 
           <p class="muted" style="margin-top:0.9rem;">
-            This hub groups my Jira Cloud automation work into standalone projects. Each child page follows the same structure:
-            <b>Problem (real context)</b> → <b>Solution (step-by-step)</b> → <b>Screenshots</b> → <b>Flows</b> → <b>CSVs</b> → <b>Logs</b> → <b>Lessons learned</b>.
-            The goal is to make each project easy to scan at a high level here, and easy to audit in depth in the child pages.
+            This page groups my Jira Cloud work into independent projects. Each card is a quick summary (what it solves and how).
+            The full detail lives in the child pages, including step-by-step implementation, screenshots, flows, CSV outputs (when applicable),
+            execution logs, and lessons learned.
           </p>
         </div>
 
@@ -338,18 +332,18 @@
             <!-- Card: Weekly Issue Generator -->
             <article class="card">
               <div class="card-header">
-                <div>
-                  <div class="card-title">
-                    <i class="fa-solid fa-calendar-check"></i>
-                    Weekly Issue Generator
-                  </div>
-                  <p class="card-desc">
-                    Automated weekly Jira task creation using a scheduled Groovy job (ScriptRunner). Designed for consistent execution,
-                    predictable issue structure, and operational traceability.
-                  </p>
+                <div class="card-title">
+                  <i class="fa-solid fa-calendar-check"></i>
+                  Weekly Issue Generator
                 </div>
 
+                <!-- MOVED: now directly under the title -->
                 <a class="view-link" href="jira-weekly-issue-generator.html"><span>View project →</span></a>
+
+                <p class="card-desc">
+                  Automated weekly Jira task creation using a scheduled Groovy job (ScriptRunner). Designed for consistent execution,
+                  predictable issue structure, and operational traceability.
+                </p>
               </div>
 
               <div class="card-mini">
@@ -370,18 +364,17 @@
             <!-- Card: Permission Schemes Audit (placeholder text) -->
             <article class="card">
               <div class="card-header">
-                <div>
-                  <div class="card-title">
-                    <i class="fa-solid fa-key"></i>
-                    Permission Schemes Audit
-                  </div>
-                  <p class="card-desc">
-                    Audit and comparison tooling to identify duplicates, orphans, and deviations from a preferred permission model.
-                    Produces evidence artifacts for governance decisions.
-                  </p>
+                <div class="card-title">
+                  <i class="fa-solid fa-key"></i>
+                  Permission Schemes Audit
                 </div>
 
                 <a class="view-link" href="jira-permission-schemes-audit.html"><span>View project →</span></a>
+
+                <p class="card-desc">
+                  Audit and comparison tooling to identify duplicates, orphans, and deviations from a preferred permission model.
+                  Produces evidence artifacts for governance decisions.
+                </p>
               </div>
 
               <div class="card-mini">
@@ -402,17 +395,16 @@
             <!-- Card: Custom Fields Inventory (placeholder text) -->
             <article class="card">
               <div class="card-header">
-                <div>
-                  <div class="card-title">
-                    <i class="fa-solid fa-table"></i>
-                    Custom Fields Inventory
-                  </div>
-                  <p class="card-desc">
-                    Custom field inventory export to support cleanup prioritization and governance. Built to be rerunnable and easy to review.
-                  </p>
+                <div class="card-title">
+                  <i class="fa-solid fa-table"></i>
+                  Custom Fields Inventory
                 </div>
 
                 <a class="view-link" href="jira-custom-fields-inventory.html"><span>View project →</span></a>
+
+                <p class="card-desc">
+                  Custom field inventory export to support cleanup prioritization and governance. Built to be rerunnable and easy to review.
+                </p>
               </div>
 
               <div class="card-mini">
@@ -433,17 +425,16 @@
             <!-- Card: JCMA Validation Pack (placeholder text) -->
             <article class="card">
               <div class="card-header">
-                <div>
-                  <div class="card-title">
-                    <i class="fa-solid fa-right-left"></i>
-                    JCMA Validation Pack
-                  </div>
-                  <p class="card-desc">
-                    Repeatable post-migration validation approach with evidence artifacts (screenshots, logs, exports) to support sign-off.
-                  </p>
+                <div class="card-title">
+                  <i class="fa-solid fa-right-left"></i>
+                  JCMA Validation Pack
                 </div>
 
                 <a class="view-link" href="jira-jcma-validation.html"><span>View project →</span></a>
+
+                <p class="card-desc">
+                  Repeatable post-migration validation approach with evidence artifacts (screenshots, logs, exports) to support sign-off.
+                </p>
               </div>
 
               <div class="card-mini">
