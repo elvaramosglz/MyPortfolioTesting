@@ -8,559 +8,464 @@
   <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-  <!-- Font Awesome (icons) -->
+  <!-- Font Awesome -->
   <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkfPWZC1Vjz6pJQdYx04FbFhFhFj5V9A6V8WqkC7H5YkPqU5V7o7RF7xA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        crossorigin="anonymous" />
 
   <style>
-    :root{
-      --bg:#0b1220;
-      --panel:#0f1a2f;
-      --panel2:#0e1830;
-      --text:#e9eefc;
-      --muted:#b7c3e6;
-      --muted2:#93a3cc;
-      --accent:#7aa2ff;
-      --accent2:#69eacb;
-      --border:rgba(255,255,255,.10);
-      --shadow: 0 10px 25px rgba(0,0,0,.35);
-      --radius:18px;
-      --radius2:14px;
+    :root {
+      --bg-main: #f5f5f7;
+      --bg-sidebar: #e5edf4;
+      --accent: #1f4f7b;
+      --accent-soft: #88a8c6;
+      --text-main: #1a1a1a;
+      --text-muted: #555;
+      --border-light: #d0d7e2;
     }
 
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family:"Source Sans Pro", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: radial-gradient(1200px 800px at 20% 10%, rgba(122,162,255,.22), transparent 55%),
-                  radial-gradient(900px 700px at 85% 30%, rgba(105,234,203,.18), transparent 60%),
-                  var(--bg);
-      color:var(--text);
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Source Sans Pro", system-ui, sans-serif;
+      background-color: var(--bg-main);
+      color: var(--text-main);
     }
 
-    a{color:inherit; text-decoration:none}
-    .wrap{
-      display:grid;
-      grid-template-columns: 290px 1fr;
-      min-height:100vh;
+    .page {
+      max-width: 1200px;
+      margin: 2rem auto;
+      background: #ffffff;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      min-height: 80vh;
     }
 
     /* Sidebar */
-    .sidebar{
-      padding:26px 18px;
-      border-right:1px solid var(--border);
-      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
-      position:sticky;
-      top:0;
-      height:100vh;
-    }
-    .brand{
-      padding:14px 14px 18px;
-      border:1px solid var(--border);
-      border-radius: var(--radius);
-      background: rgba(255,255,255,.03);
-      box-shadow: var(--shadow);
-    }
-    .brand h1{
-      margin:0;
-      font-size:18px;
-      letter-spacing:.2px;
-    }
-    .brand p{
-      margin:6px 0 0;
-      color:var(--muted);
-      font-size:13px;
-      line-height:1.3;
+    .sidebar {
+      background: linear-gradient(180deg, var(--bg-sidebar), #dde7f2);
+      padding: 2.5rem 2rem;
+      border-right: 1px solid var(--border-light);
     }
 
-    .nav{
-      margin-top:16px;
-      padding:10px 10px;
-      border-radius: var(--radius);
-      border:1px solid var(--border);
-      background: rgba(255,255,255,.02);
+    .back-link {
+      display: inline-block;
+      font-size: 0.85rem;
+      margin-bottom: 2rem;
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid var(--accent-soft);
     }
-    .nav-title{
-      font-size:12px;
-      color:var(--muted2);
-      text-transform:uppercase;
-      letter-spacing:.12em;
-      padding:10px 10px 6px;
-    }
-    .nav-link{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      padding:10px 10px;
-      border-radius:12px;
-      color:var(--muted);
-      transition:.18s ease;
-      margin:2px 0;
-    }
-    .nav-link i{width:18px; text-align:center; color:rgba(122,162,255,.95)}
-    .nav-link:hover{
-      background: rgba(122,162,255,.10);
-      color:var(--text);
-    }
-    .nav-link.active{
-      background: rgba(122,162,255,.16);
-      color:var(--text);
-      border:1px solid rgba(122,162,255,.22);
+    .back-link:hover { border-bottom-color: var(--accent); }
+
+    .project-title {
+      font-size: 2.3rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      line-height: 1.1;
+      margin-bottom: 0.6rem;
+      text-transform: uppercase;
     }
 
-    /* Main */
-    .main{
-      padding:28px 26px 50px;
-    }
-    .header{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:18px;
-      margin-bottom:16px;
-    }
-    .title-block h2{
-      margin:0;
-      font-size:28px;
-      letter-spacing:.2px;
-    }
-    .subtitle{
-      margin:8px 0 0;
-      color:var(--muted);
-      max-width:860px;
-      line-height:1.5;
-      font-size:15px;
+    .project-subtitle {
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 2.2rem;
     }
 
-    .chips{
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-      margin-top:12px;
-    }
-    .chip{
-      font-size:12px;
-      color:rgba(233,238,252,.92);
-      padding:7px 10px;
-      border-radius:999px;
-      border:1px solid var(--border);
-      background: rgba(255,255,255,.03);
+    .sidebar-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+      margin-bottom: 0.95rem;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.35;
     }
 
-    .hero{
-      margin-top:14px;
-      border-radius: var(--radius);
-      border:1px solid var(--border);
-      background: linear-gradient(135deg, rgba(122,162,255,.12), rgba(105,234,203,.08));
-      padding:16px 16px;
-      display:flex;
-      gap:14px;
-      align-items:flex-start;
-    }
-    .hero i{
-      font-size:20px;
-      margin-top:2px;
-      color:rgba(105,234,203,.95);
-    }
-    .hero strong{display:block; margin-bottom:4px}
-    .hero p{
-      margin:0;
-      color:var(--muted);
-      line-height:1.45;
-      font-size:14px;
+    .sidebar-item i {
+      color: var(--accent);
+      margin-top: 0.15rem;
+      font-size: 1.05rem;
+      width: 18px;
+      text-align: center;
     }
 
-    /* Section */
-    .section{
-      margin-top:22px;
-    }
-    .section-header{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      margin-bottom:10px;
-    }
-    .section-header h3{
-      margin:0;
-      font-size:16px;
-      color:rgba(233,238,252,.96);
-      letter-spacing:.2px;
-    }
-    .section-header .hint{
-      color:var(--muted2);
-      font-size:12px;
+    .divider {
+      height: 1px;
+      background: var(--border-light);
+      margin: 2rem 0 1.5rem;
     }
 
-    /* Cards grid */
-    .grid{
-      display:grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap:14px;
-    }
-    @media (max-width: 980px){
-      .wrap{grid-template-columns: 1fr}
-      .sidebar{position:relative; height:auto}
-      .grid{grid-template-columns: 1fr}
+    .nav-title {
+      font-size: 0.9rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 1rem;
     }
 
-    .card{
-      border-radius: var(--radius);
-      border:1px solid var(--border);
-      background: rgba(255,255,255,.03);
-      box-shadow: var(--shadow);
-      overflow:hidden;
-      display:flex;
-      flex-direction:column;
-      min-height: 250px;
+    .nav-link {
+      display: block;
+      margin-bottom: 0.65rem;
+      font-size: 0.98rem;
+      color: var(--text-main);
+      text-decoration: none;
     }
-    .card-top{
-      padding:14px 14px 10px;
-      border-bottom:1px solid rgba(255,255,255,.06);
-      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.01));
-    }
-    .card-top .kicker{
-      display:flex;
-      align-items:center;
-      gap:8px;
-      color:rgba(122,162,255,.95);
-      font-size:12px;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      margin-bottom:6px;
-    }
-    .card-top h4{
-      margin:0;
-      font-size:17px;
-      letter-spacing:.2px;
-    }
-    .card-top p{
-      margin:8px 0 0;
-      color:var(--muted);
-      line-height:1.4;
-      font-size:14px;
+    .nav-link span { border-bottom: 1px solid var(--accent-soft); }
+    .nav-link:hover span {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
     }
 
-    .card-body{
-      padding:12px 14px 14px;
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-      flex:1;
-    }
-    .mini{
-      display:grid;
-      grid-template-columns: 72px 1fr;
-      gap:10px;
-      align-items:start;
-    }
-    .label{
-      font-size:12px;
-      color:var(--muted2);
-      text-transform:uppercase;
-      letter-spacing:.12em;
-      padding-top:2px;
-    }
-    .value{
-      font-size:14px;
-      color:rgba(233,238,252,.92);
-      line-height:1.35;
+    /* Main content */
+    .content { padding: 2.5rem 3rem; }
+
+    .section-title {
+      font-size: 0.9rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 1.2rem;
     }
 
-    .outcomes{
-      margin:0;
-      padding-left:16px;
-      color:var(--muted);
-      font-size:13px;
-      line-height:1.35;
-    }
-    .outcomes li{margin:5px 0}
+    .experience-block { margin-bottom: 3rem; }
 
-    .card-footer{
-      padding:12px 14px 14px;
-      display:flex;
-      justify-content:space-between;
-      gap:10px;
-      align-items:center;
-      border-top:1px solid rgba(255,255,255,.06);
-    }
-    .stack{
-      display:flex;
-      flex-wrap:wrap;
-      gap:6px;
-    }
-    .badge{
-      font-size:11px;
-      color:rgba(233,238,252,.9);
-      padding:6px 9px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.12);
+    .experience-company {
+      font-weight: 700;
+      font-size: 1.15rem;
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
     }
 
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:9px 11px;
-      border-radius:12px;
-      background: rgba(122,162,255,.16);
-      border:1px solid rgba(122,162,255,.24);
-      color:var(--text);
-      font-weight:600;
-      font-size:13px;
-      transition:.18s ease;
-      white-space:nowrap;
-    }
-    .btn:hover{
-      transform: translateY(-1px);
-      background: rgba(122,162,255,.22);
+    .muted {
+      color: var(--text-muted);
+      line-height: 1.7;
+      text-align: justify;
     }
 
-    /* Category blocks */
-    .category{
-      margin-top:14px;
-      border-radius: var(--radius);
-      border:1px solid rgba(255,255,255,.08);
-      background: rgba(255,255,255,.02);
-      padding:14px;
+    ul {
+      margin-left: 2.2rem;
+      margin-top: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.65;
     }
-    .category-title{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      margin:0 0 10px;
-      color:rgba(233,238,252,.92);
-      font-size:14px;
-      letter-spacing:.2px;
-    }
-    .category-title i{color:rgba(105,234,203,.95)}
-    .category-desc{
-      margin:-4px 0 12px;
-      color:var(--muted2);
-      font-size:13px;
-      line-height:1.4;
+    ul li { margin-bottom: 0.55rem; }
+
+    /* Hub cards */
+    .cards {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.15rem;
+      margin-top: 1rem;
     }
 
-    /* Footer note */
-    .note{
-      margin-top:18px;
-      color:var(--muted2);
-      font-size:12px;
-      line-height:1.45;
-      border-top:1px solid rgba(255,255,255,.08);
-      padding-top:14px;
+    .card {
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      padding: 1.25rem 1.25rem 1.15rem;
+      background: #ffffff;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .card-title {
+      font-weight: 700;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .card-title i { color: var(--accent); }
+
+    .card-desc {
+      margin-top: 0.55rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      text-align: justify;
+    }
+
+    .card-mini {
+      margin-top: 0.85rem;
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 0.85rem;
+      align-items: start;
+    }
+
+    .mini-label {
+      font-size: 0.78rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--accent);
+      margin-top: 0.2rem;
+    }
+
+    .mini-value {
+      color: var(--text-muted);
+      line-height: 1.65;
+      text-align: justify;
+      font-size: 0.98rem;
+    }
+
+    .card-footer {
+      margin-top: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    .tag i { color: var(--accent-soft); }
+
+    .view-link {
+      display: inline-block;
+      font-size: 0.92rem;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .view-link span { border-bottom: 1px solid var(--accent-soft); }
+    .view-link:hover span { border-bottom-color: var(--accent); }
+
+    @media (min-width: 980px) {
+      .cards { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 900px) {
+      .page { grid-template-columns: 1fr; }
+      .sidebar { border-right: none; border-bottom: 1px solid var(--border-light); }
+      .content { padding: 2rem 1.75rem 2.5rem; }
+      .card-mini { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 
 <body>
-  <div class="wrap">
+  <div class="page">
 
-    <!-- Sidebar -->
+    <!-- LEFT SIDEBAR -->
     <aside class="sidebar">
-      <div class="brand">
-        <h1>Jira Cloud Automation</h1>
-        <p>Portfolio hub — overview of end-to-end Jira Cloud projects, automation utilities, and governance tooling.</p>
+      <a href="index.html" class="back-link">← Back to Home</a>
+
+      <div class="project-title">Jira<br>Cloud</div>
+      <div class="project-subtitle">Automation Hub</div>
+
+      <div class="sidebar-item">
+        <i class="fa-solid fa-rocket"></i>
+        <div><b>Status:</b> Active portfolio</div>
       </div>
 
-      <nav class="nav" aria-label="Sidebar navigation">
-        <div class="nav-title">Navigation</div>
-
-        <a class="nav-link" href="index.html">
-          <i class="fa-solid fa-house"></i>
-          <span>Home / Resume</span>
-        </a>
-
-        <a class="nav-link active" href="jira-cloud-automation.html">
-          <i class="fa-solid fa-diagram-project"></i>
-          <span>Jira Cloud Automation (Hub)</span>
-        </a>
-
-        <!-- Add more hubs later if you want -->
-        <!--
-        <div class="nav-title">Other</div>
-        <a class="nav-link" href="whatsapp-api-automation.html"><i class="fa-brands fa-whatsapp"></i><span>WhatsApp Bot API</span></a>
-        -->
-      </nav>
-
-      <div class="note">
-        Tip: keep this page short. Each card links to a deep-dive child page with:
-        <strong>Problem → Solution → Screenshots → Flows → CSVs → Logs → Lessons learned</strong>.
+      <div class="sidebar-item">
+        <i class="fa-solid fa-bullseye"></i>
+        <div><b>Goal:</b> Reduce manual admin work and improve governance via automation</div>
       </div>
+
+      <div class="sidebar-item">
+        <i class="fa-solid fa-diagram-project"></i>
+        <div><b>Scope:</b> Utilities · Governance · Migration validation · Audits</div>
+      </div>
+
+      <div class="sidebar-item">
+        <i class="fa-solid fa-layer-group"></i>
+        <div><b>Stack:</b> Jira Cloud REST API · Groovy (ScriptRunner) · Python · CSV/Logs</div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="nav-title">Project Pages</div>
+      <!-- Hub -->
+      <a class="nav-link" href="jira-cloud-automation.html"><span>Overview (Hub)</span></a>
+
+      <!-- Child pages (add as you create them) -->
+      <a class="nav-link" href="jira-weekly-issue-generator.html"><span>Weekly Issue Generator</span></a>
+      <a class="nav-link" href="jira-permission-schemes-audit.html"><span>Permission Schemes Audit</span></a>
+      <a class="nav-link" href="jira-custom-fields-inventory.html"><span>Custom Fields Inventory</span></a>
+      <a class="nav-link" href="jira-jcma-validation.html"><span>JCMA Validation Pack</span></a>
     </aside>
 
-    <!-- Main content -->
-    <main class="main">
-      <header class="header">
-        <div class="title-block">
-          <h2>Jira Cloud Automation</h2>
-          <p class="subtitle">
-            This page is the entry point to my Jira Cloud work. Each project below is a standalone deep dive with real context,
-            implementation details, artifacts, and outcomes. The goal is to show scalable governance + automation that reduces manual admin work and risk.
-          </p>
+    <!-- RIGHT CONTENT -->
+    <main class="content">
+      <section class="experience">
+        <h2 class="section-title" style="letter-spacing:0.18em; margin-bottom:2.2rem;">
+          Jira Cloud Automation (Hub)
+        </h2>
 
-          <div class="chips">
-            <span class="chip"><i class="fa-solid fa-cloud"></i>&nbsp;Jira Cloud</span>
-            <span class="chip"><i class="fa-solid fa-robot"></i>&nbsp;Automation</span>
-            <span class="chip"><i class="fa-solid fa-shield-halved"></i>&nbsp;Governance</span>
-            <span class="chip"><i class="fa-solid fa-code"></i>&nbsp;Groovy / Python</span>
-            <span class="chip"><i class="fa-solid fa-link"></i>&nbsp;REST APIs</span>
-            <span class="chip"><i class="fa-solid fa-file-csv"></i>&nbsp;Audits (CSV + logs)</span>
+        <!-- Overview -->
+        <div class="experience-block">
+          <div class="experience-company">
+            <i class="fa-solid fa-circle-info" style="color:var(--accent);"></i>
+            Overview
+          </div>
+
+          <p class="muted" style="margin-top:0.9rem;">
+            This hub groups my Jira Cloud automation work into standalone projects. Each child page follows the same structure:
+            <b>Problem (real context)</b> → <b>Solution (step-by-step)</b> → <b>Screenshots</b> → <b>Flows</b> → <b>CSVs</b> → <b>Logs</b> → <b>Lessons learned</b>.
+            The goal is to make each project easy to scan at a high level here, and easy to audit in depth in the child pages.
+          </p>
+        </div>
+
+        <!-- Projects -->
+        <div class="experience-block">
+          <div class="experience-company">
+            <i class="fa-solid fa-folder-open" style="color:var(--accent);"></i>
+            Projects
+          </div>
+
+          <div class="cards">
+
+            <!-- Card: Weekly Issue Generator -->
+            <article class="card">
+              <div class="card-header">
+                <div>
+                  <div class="card-title">
+                    <i class="fa-solid fa-calendar-check"></i>
+                    Weekly Issue Generator
+                  </div>
+                  <p class="card-desc">
+                    Automated weekly Jira task creation using a scheduled Groovy job (ScriptRunner). Designed for consistent execution,
+                    predictable issue structure, and operational traceability.
+                  </p>
+                </div>
+
+                <a class="view-link" href="jira-weekly-issue-generator.html"><span>View project →</span></a>
+              </div>
+
+              <div class="card-mini">
+                <div class="mini-label">Problem</div>
+                <div class="mini-value">Weekly operational tasks were created manually, leading to missed deadlines and inconsistent structure across weeks.</div>
+
+                <div class="mini-label">Solution</div>
+                <div class="mini-value">Implemented a scheduled ScriptRunner Groovy job to generate standardized weekly issues with guardrails and logs.</div>
+              </div>
+
+              <div class="card-footer">
+                <div class="tag"><i class="fa-solid fa-code"></i> Groovy</div>
+                <div class="tag"><i class="fa-solid fa-clock"></i> Scheduled job</div>
+                <div class="tag"><i class="fa-solid fa-file-lines"></i> Logs</div>
+              </div>
+            </article>
+
+            <!-- Card: Permission Schemes Audit (placeholder text) -->
+            <article class="card">
+              <div class="card-header">
+                <div>
+                  <div class="card-title">
+                    <i class="fa-solid fa-key"></i>
+                    Permission Schemes Audit
+                  </div>
+                  <p class="card-desc">
+                    Audit and comparison tooling to identify duplicates, orphans, and deviations from a preferred permission model.
+                    Produces evidence artifacts for governance decisions.
+                  </p>
+                </div>
+
+                <a class="view-link" href="jira-permission-schemes-audit.html"><span>View project →</span></a>
+              </div>
+
+              <div class="card-mini">
+                <div class="mini-label">Problem</div>
+                <div class="mini-value">Permission schemes proliferated after migration, making manual comparison slow and error-prone.</div>
+
+                <div class="mini-label">Solution</div>
+                <div class="mini-value">Automated extraction and reporting (CSV + logs) to validate differences and support controlled cleanup.</div>
+              </div>
+
+              <div class="card-footer">
+                <div class="tag"><i class="fa-solid fa-link"></i> REST API</div>
+                <div class="tag"><i class="fa-solid fa-file-csv"></i> CSV</div>
+                <div class="tag"><i class="fa-solid fa-shield-halved"></i> Governance</div>
+              </div>
+            </article>
+
+            <!-- Card: Custom Fields Inventory (placeholder text) -->
+            <article class="card">
+              <div class="card-header">
+                <div>
+                  <div class="card-title">
+                    <i class="fa-solid fa-table"></i>
+                    Custom Fields Inventory
+                  </div>
+                  <p class="card-desc">
+                    Custom field inventory export to support cleanup prioritization and governance. Built to be rerunnable and easy to review.
+                  </p>
+                </div>
+
+                <a class="view-link" href="jira-custom-fields-inventory.html"><span>View project →</span></a>
+              </div>
+
+              <div class="card-mini">
+                <div class="mini-label">Problem</div>
+                <div class="mini-value">Custom field sprawl increased admin complexity and slowed migration planning.</div>
+
+                <div class="mini-label">Solution</div>
+                <div class="mini-value">Extracted field metadata into a normalized CSV for review, ownership mapping, and cleanup decisions.</div>
+              </div>
+
+              <div class="card-footer">
+                <div class="tag"><i class="fa-solid fa-file-csv"></i> CSV</div>
+                <div class="tag"><i class="fa-solid fa-magnifying-glass"></i> Inventory</div>
+                <div class="tag"><i class="fa-solid fa-screwdriver-wrench"></i> Admin tooling</div>
+              </div>
+            </article>
+
+            <!-- Card: JCMA Validation Pack (placeholder text) -->
+            <article class="card">
+              <div class="card-header">
+                <div>
+                  <div class="card-title">
+                    <i class="fa-solid fa-right-left"></i>
+                    JCMA Validation Pack
+                  </div>
+                  <p class="card-desc">
+                    Repeatable post-migration validation approach with evidence artifacts (screenshots, logs, exports) to support sign-off.
+                  </p>
+                </div>
+
+                <a class="view-link" href="jira-jcma-validation.html"><span>View project →</span></a>
+              </div>
+
+              <div class="card-mini">
+                <div class="mini-label">Problem</div>
+                <div class="mini-value">Migration waves needed consistent validation and traceable evidence for approvals and troubleshooting.</div>
+
+                <div class="mini-label">Solution</div>
+                <div class="mini-value">Defined a standard validation pack and tooling to capture results, issues, and evidence systematically.</div>
+              </div>
+
+              <div class="card-footer">
+                <div class="tag"><i class="fa-solid fa-clipboard-check"></i> Validation</div>
+                <div class="tag"><i class="fa-solid fa-camera"></i> Screenshots</div>
+                <div class="tag"><i class="fa-solid fa-file-lines"></i> Logs</div>
+              </div>
+            </article>
+
           </div>
         </div>
-      </header>
 
-      <div class="hero">
-        <i class="fa-solid fa-circle-info"></i>
-        <div>
-          <strong>How to read this hub</strong>
-          <p>
-            Each card is intentionally lightweight. Click <em>View project</em> to open the full child page including screenshots, flows,
-            CSV outputs (when applicable), logs, and lessons learned.
-          </p>
-        </div>
-      </div>
-
-      <!-- Category: Automation Utilities -->
-      <section class="section category">
-        <h3 class="category-title"><i class="fa-solid fa-bolt"></i>Automation Utilities</h3>
-        <p class="category-desc">Recurring tasks, admin helpers, and small automations that remove manual operational work.</p>
-
-        <div class="grid">
-          <!-- Project Card 1 -->
-          <article class="card">
-            <div class="card-top">
-              <div class="kicker"><i class="fa-solid fa-calendar-check"></i><span>Groovy / ScriptRunner</span></div>
-              <h4>Weekly Issue Generator</h4>
-              <p>Automated creation of standardized weekly Jira tasks using a scheduled Groovy job.</p>
-            </div>
-
-            <div class="card-body">
-              <div class="mini">
-                <div class="label">Problem</div>
-                <div class="value">Weekly operational tasks were created manually, causing inconsistency and missed deadlines.</div>
-              </div>
-              <div class="mini">
-                <div class="label">Solution</div>
-                <div class="value">Implemented a scheduled ScriptRunner job to generate recurring issues with consistent fields and guardrails.</div>
-              </div>
-
-              <ul class="outcomes">
-                <li>Reduced manual admin work and improved consistency.</li>
-                <li>Audit-friendly: predictable issue structure week over week.</li>
-                <li>Added logs for troubleshooting and traceability.</li>
-              </ul>
-            </div>
-
-            <div class="card-footer">
-              <div class="stack">
-                <span class="badge">Groovy</span>
-                <span class="badge">ScriptRunner</span>
-                <span class="badge">Cron</span>
-              </div>
-              <a class="btn" href="jira-weekly-issue-generator.html">
-                View project <i class="fa-solid fa-arrow-right"></i>
-              </a>
-            </div>
-          </article>
-
-          <!-- Project Card 2 (placeholder) -->
-          <article class="card">
-            <div class="card-top">
-              <div class="kicker"><i class="fa-solid fa-user-gear"></i><span>Admin Automation</span></div>
-              <h4>Board Admin Helper</h4>
-              <p>Automations to reduce friction in board ownership, permissions, and repetitive admin tasks.</p>
-            </div>
-
-            <div class="card-body">
-              <div class="mini">
-                <div class="label">Problem</div>
-                <div class="value">Board administration tasks required frequent manual updates across multiple projects.</div>
-              </div>
-              <div class="mini">
-                <div class="label">Solution</div>
-                <div class="value">Built scripts/workflows to standardize admin actions and produce auditable outputs.</div>
-              </div>
-
-              <ul class="outcomes">
-                <li>Faster admin changes with fewer human errors.</li>
-                <li>Repeatable process and documentation for handoff.</li>
-                <li>Improved governance and compliance readiness.</li>
-              </ul>
-            </div>
-
-            <div class="card-footer">
-              <div class="stack">
-                <span class="badge">REST API</span>
-                <span class="badge">Automation</span>
-                <span class="badge">Governance</span>
-              </div>
-              <a class="btn" href="jira-board-admin-helper.html">
-                View project <i class="fa-solid fa-arrow-right"></i>
-              </a>
-            </div>
-          </article>
-        </div>
       </section>
-
-      <!-- Category: Migration & Governance -->
-      <section class="section category">
-        <h3 class="category-title"><i class="fa-solid fa-shield-halved"></i>Migration & Governance</h3>
-        <p class="category-desc">Projects focused on standardization, risk reduction, and post-migration validation.</p>
-
-        <div class="grid">
-          <!-- Project Card 3 (placeholder) -->
-          <article class="card">
-            <div class="card-top">
-              <div class="kicker"><i class="fa-solid fa-key"></i><span>Permissions</span></div>
-              <h4>Permission Schemes Audit & Cleanup</h4>
-              <p>Automated extraction and comparison of permission schemes to identify duplicates/orphans after migration.</p>
-            </div>
-
-            <div class="card-body">
-              <div class="mini">
-                <div class="label">Problem</div>
-                <div class="value">Manual comparisons were slow and error-prone across many projects and schemes.</div>
-              </div>
-              <div class="mini">
-                <div class="label">Solution</div>
-                <div class="value">Scripted auditing + reporting to standardize schemes and enable controlled rollout of a preferred model.</div>
-              </div>
-
-              <ul class="outcomes">
-                <li>Faster scheme validation with clear evidence artifacts.</li>
-                <li>Reduced governance risk (inconsistent access).</li>
-                <li>Repeatable process for future migrations.</li>
-              </ul>
-            </div>
-
-            <div class="card-footer">
-              <div class="stack">
-                <span class="badge">Python</span>
-                <span class="badge">CSV</span>
-                <span class="badge">Audit</span>
-              </div>
-              <a class="btn" href="jira-permission-schemes-audit.html">
-                View project <i class="fa-solid fa-arrow-right"></i>
-              </a>
-            </div>
-          </article>
-
-          <!-- Project Card 4 (placeholder) -->
-          <article class="card">
-            <div class="card-top">
-              <div class="kicker"><i class="fa-solid fa-right-left"></i><span>Migration</span></div>
-              <h4>JCMA Runs & Post-Migration Validation</h4>
-              <p>Structured validation approach for Jira Cloud migration waves with logs and evidence capture.</p>
-            </div>
-
-            <div class="card-body">
-              <div class="mini">
-                <div class="label">Problem</div>
-                <div class="value">Migration runs needed consistent validation and artifacts to support sign-off.</div>
-              </div>
-              <div class="mini">
-                <div c
+    </main>
+  </div>
+</body>
+</html>
