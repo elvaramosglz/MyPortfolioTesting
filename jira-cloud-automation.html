@@ -46,3 +46,521 @@
       grid-template-columns: 290px 1fr;
       min-height:100vh;
     }
+
+    /* Sidebar */
+    .sidebar{
+      padding:26px 18px;
+      border-right:1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+      position:sticky;
+      top:0;
+      height:100vh;
+    }
+    .brand{
+      padding:14px 14px 18px;
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.03);
+      box-shadow: var(--shadow);
+    }
+    .brand h1{
+      margin:0;
+      font-size:18px;
+      letter-spacing:.2px;
+    }
+    .brand p{
+      margin:6px 0 0;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.3;
+    }
+
+    .nav{
+      margin-top:16px;
+      padding:10px 10px;
+      border-radius: var(--radius);
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.02);
+    }
+    .nav-title{
+      font-size:12px;
+      color:var(--muted2);
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      padding:10px 10px 6px;
+    }
+    .nav-link{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 10px;
+      border-radius:12px;
+      color:var(--muted);
+      transition:.18s ease;
+      margin:2px 0;
+    }
+    .nav-link i{width:18px; text-align:center; color:rgba(122,162,255,.95)}
+    .nav-link:hover{
+      background: rgba(122,162,255,.10);
+      color:var(--text);
+    }
+    .nav-link.active{
+      background: rgba(122,162,255,.16);
+      color:var(--text);
+      border:1px solid rgba(122,162,255,.22);
+    }
+
+    /* Main */
+    .main{
+      padding:28px 26px 50px;
+    }
+    .header{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:18px;
+      margin-bottom:16px;
+    }
+    .title-block h2{
+      margin:0;
+      font-size:28px;
+      letter-spacing:.2px;
+    }
+    .subtitle{
+      margin:8px 0 0;
+      color:var(--muted);
+      max-width:860px;
+      line-height:1.5;
+      font-size:15px;
+    }
+
+    .chips{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:12px;
+    }
+    .chip{
+      font-size:12px;
+      color:rgba(233,238,252,.92);
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.03);
+    }
+
+    .hero{
+      margin-top:14px;
+      border-radius: var(--radius);
+      border:1px solid var(--border);
+      background: linear-gradient(135deg, rgba(122,162,255,.12), rgba(105,234,203,.08));
+      padding:16px 16px;
+      display:flex;
+      gap:14px;
+      align-items:flex-start;
+    }
+    .hero i{
+      font-size:20px;
+      margin-top:2px;
+      color:rgba(105,234,203,.95);
+    }
+    .hero strong{display:block; margin-bottom:4px}
+    .hero p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.45;
+      font-size:14px;
+    }
+
+    /* Section */
+    .section{
+      margin-top:22px;
+    }
+    .section-header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:10px;
+    }
+    .section-header h3{
+      margin:0;
+      font-size:16px;
+      color:rgba(233,238,252,.96);
+      letter-spacing:.2px;
+    }
+    .section-header .hint{
+      color:var(--muted2);
+      font-size:12px;
+    }
+
+    /* Cards grid */
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap:14px;
+    }
+    @media (max-width: 980px){
+      .wrap{grid-template-columns: 1fr}
+      .sidebar{position:relative; height:auto}
+      .grid{grid-template-columns: 1fr}
+    }
+
+    .card{
+      border-radius: var(--radius);
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+      min-height: 250px;
+    }
+    .card-top{
+      padding:14px 14px 10px;
+      border-bottom:1px solid rgba(255,255,255,.06);
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.01));
+    }
+    .card-top .kicker{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      color:rgba(122,162,255,.95);
+      font-size:12px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      margin-bottom:6px;
+    }
+    .card-top h4{
+      margin:0;
+      font-size:17px;
+      letter-spacing:.2px;
+    }
+    .card-top p{
+      margin:8px 0 0;
+      color:var(--muted);
+      line-height:1.4;
+      font-size:14px;
+    }
+
+    .card-body{
+      padding:12px 14px 14px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      flex:1;
+    }
+    .mini{
+      display:grid;
+      grid-template-columns: 72px 1fr;
+      gap:10px;
+      align-items:start;
+    }
+    .label{
+      font-size:12px;
+      color:var(--muted2);
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      padding-top:2px;
+    }
+    .value{
+      font-size:14px;
+      color:rgba(233,238,252,.92);
+      line-height:1.35;
+    }
+
+    .outcomes{
+      margin:0;
+      padding-left:16px;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.35;
+    }
+    .outcomes li{margin:5px 0}
+
+    .card-footer{
+      padding:12px 14px 14px;
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      align-items:center;
+      border-top:1px solid rgba(255,255,255,.06);
+    }
+    .stack{
+      display:flex;
+      flex-wrap:wrap;
+      gap:6px;
+    }
+    .badge{
+      font-size:11px;
+      color:rgba(233,238,252,.9);
+      padding:6px 9px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.12);
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:9px 11px;
+      border-radius:12px;
+      background: rgba(122,162,255,.16);
+      border:1px solid rgba(122,162,255,.24);
+      color:var(--text);
+      font-weight:600;
+      font-size:13px;
+      transition:.18s ease;
+      white-space:nowrap;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      background: rgba(122,162,255,.22);
+    }
+
+    /* Category blocks */
+    .category{
+      margin-top:14px;
+      border-radius: var(--radius);
+      border:1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.02);
+      padding:14px;
+    }
+    .category-title{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin:0 0 10px;
+      color:rgba(233,238,252,.92);
+      font-size:14px;
+      letter-spacing:.2px;
+    }
+    .category-title i{color:rgba(105,234,203,.95)}
+    .category-desc{
+      margin:-4px 0 12px;
+      color:var(--muted2);
+      font-size:13px;
+      line-height:1.4;
+    }
+
+    /* Footer note */
+    .note{
+      margin-top:18px;
+      color:var(--muted2);
+      font-size:12px;
+      line-height:1.45;
+      border-top:1px solid rgba(255,255,255,.08);
+      padding-top:14px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="brand">
+        <h1>Jira Cloud Automation</h1>
+        <p>Portfolio hub — overview of end-to-end Jira Cloud projects, automation utilities, and governance tooling.</p>
+      </div>
+
+      <nav class="nav" aria-label="Sidebar navigation">
+        <div class="nav-title">Navigation</div>
+
+        <a class="nav-link" href="index.html">
+          <i class="fa-solid fa-house"></i>
+          <span>Home / Resume</span>
+        </a>
+
+        <a class="nav-link active" href="jira-cloud-automation.html">
+          <i class="fa-solid fa-diagram-project"></i>
+          <span>Jira Cloud Automation (Hub)</span>
+        </a>
+
+        <!-- Add more hubs later if you want -->
+        <!--
+        <div class="nav-title">Other</div>
+        <a class="nav-link" href="whatsapp-api-automation.html"><i class="fa-brands fa-whatsapp"></i><span>WhatsApp Bot API</span></a>
+        -->
+      </nav>
+
+      <div class="note">
+        Tip: keep this page short. Each card links to a deep-dive child page with:
+        <strong>Problem → Solution → Screenshots → Flows → CSVs → Logs → Lessons learned</strong>.
+      </div>
+    </aside>
+
+    <!-- Main content -->
+    <main class="main">
+      <header class="header">
+        <div class="title-block">
+          <h2>Jira Cloud Automation</h2>
+          <p class="subtitle">
+            This page is the entry point to my Jira Cloud work. Each project below is a standalone deep dive with real context,
+            implementation details, artifacts, and outcomes. The goal is to show scalable governance + automation that reduces manual admin work and risk.
+          </p>
+
+          <div class="chips">
+            <span class="chip"><i class="fa-solid fa-cloud"></i>&nbsp;Jira Cloud</span>
+            <span class="chip"><i class="fa-solid fa-robot"></i>&nbsp;Automation</span>
+            <span class="chip"><i class="fa-solid fa-shield-halved"></i>&nbsp;Governance</span>
+            <span class="chip"><i class="fa-solid fa-code"></i>&nbsp;Groovy / Python</span>
+            <span class="chip"><i class="fa-solid fa-link"></i>&nbsp;REST APIs</span>
+            <span class="chip"><i class="fa-solid fa-file-csv"></i>&nbsp;Audits (CSV + logs)</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="hero">
+        <i class="fa-solid fa-circle-info"></i>
+        <div>
+          <strong>How to read this hub</strong>
+          <p>
+            Each card is intentionally lightweight. Click <em>View project</em> to open the full child page including screenshots, flows,
+            CSV outputs (when applicable), logs, and lessons learned.
+          </p>
+        </div>
+      </div>
+
+      <!-- Category: Automation Utilities -->
+      <section class="section category">
+        <h3 class="category-title"><i class="fa-solid fa-bolt"></i>Automation Utilities</h3>
+        <p class="category-desc">Recurring tasks, admin helpers, and small automations that remove manual operational work.</p>
+
+        <div class="grid">
+          <!-- Project Card 1 -->
+          <article class="card">
+            <div class="card-top">
+              <div class="kicker"><i class="fa-solid fa-calendar-check"></i><span>Groovy / ScriptRunner</span></div>
+              <h4>Weekly Issue Generator</h4>
+              <p>Automated creation of standardized weekly Jira tasks using a scheduled Groovy job.</p>
+            </div>
+
+            <div class="card-body">
+              <div class="mini">
+                <div class="label">Problem</div>
+                <div class="value">Weekly operational tasks were created manually, causing inconsistency and missed deadlines.</div>
+              </div>
+              <div class="mini">
+                <div class="label">Solution</div>
+                <div class="value">Implemented a scheduled ScriptRunner job to generate recurring issues with consistent fields and guardrails.</div>
+              </div>
+
+              <ul class="outcomes">
+                <li>Reduced manual admin work and improved consistency.</li>
+                <li>Audit-friendly: predictable issue structure week over week.</li>
+                <li>Added logs for troubleshooting and traceability.</li>
+              </ul>
+            </div>
+
+            <div class="card-footer">
+              <div class="stack">
+                <span class="badge">Groovy</span>
+                <span class="badge">ScriptRunner</span>
+                <span class="badge">Cron</span>
+              </div>
+              <a class="btn" href="jira-weekly-issue-generator.html">
+                View project <i class="fa-solid fa-arrow-right"></i>
+              </a>
+            </div>
+          </article>
+
+          <!-- Project Card 2 (placeholder) -->
+          <article class="card">
+            <div class="card-top">
+              <div class="kicker"><i class="fa-solid fa-user-gear"></i><span>Admin Automation</span></div>
+              <h4>Board Admin Helper</h4>
+              <p>Automations to reduce friction in board ownership, permissions, and repetitive admin tasks.</p>
+            </div>
+
+            <div class="card-body">
+              <div class="mini">
+                <div class="label">Problem</div>
+                <div class="value">Board administration tasks required frequent manual updates across multiple projects.</div>
+              </div>
+              <div class="mini">
+                <div class="label">Solution</div>
+                <div class="value">Built scripts/workflows to standardize admin actions and produce auditable outputs.</div>
+              </div>
+
+              <ul class="outcomes">
+                <li>Faster admin changes with fewer human errors.</li>
+                <li>Repeatable process and documentation for handoff.</li>
+                <li>Improved governance and compliance readiness.</li>
+              </ul>
+            </div>
+
+            <div class="card-footer">
+              <div class="stack">
+                <span class="badge">REST API</span>
+                <span class="badge">Automation</span>
+                <span class="badge">Governance</span>
+              </div>
+              <a class="btn" href="jira-board-admin-helper.html">
+                View project <i class="fa-solid fa-arrow-right"></i>
+              </a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Category: Migration & Governance -->
+      <section class="section category">
+        <h3 class="category-title"><i class="fa-solid fa-shield-halved"></i>Migration & Governance</h3>
+        <p class="category-desc">Projects focused on standardization, risk reduction, and post-migration validation.</p>
+
+        <div class="grid">
+          <!-- Project Card 3 (placeholder) -->
+          <article class="card">
+            <div class="card-top">
+              <div class="kicker"><i class="fa-solid fa-key"></i><span>Permissions</span></div>
+              <h4>Permission Schemes Audit & Cleanup</h4>
+              <p>Automated extraction and comparison of permission schemes to identify duplicates/orphans after migration.</p>
+            </div>
+
+            <div class="card-body">
+              <div class="mini">
+                <div class="label">Problem</div>
+                <div class="value">Manual comparisons were slow and error-prone across many projects and schemes.</div>
+              </div>
+              <div class="mini">
+                <div class="label">Solution</div>
+                <div class="value">Scripted auditing + reporting to standardize schemes and enable controlled rollout of a preferred model.</div>
+              </div>
+
+              <ul class="outcomes">
+                <li>Faster scheme validation with clear evidence artifacts.</li>
+                <li>Reduced governance risk (inconsistent access).</li>
+                <li>Repeatable process for future migrations.</li>
+              </ul>
+            </div>
+
+            <div class="card-footer">
+              <div class="stack">
+                <span class="badge">Python</span>
+                <span class="badge">CSV</span>
+                <span class="badge">Audit</span>
+              </div>
+              <a class="btn" href="jira-permission-schemes-audit.html">
+                View project <i class="fa-solid fa-arrow-right"></i>
+              </a>
+            </div>
+          </article>
+
+          <!-- Project Card 4 (placeholder) -->
+          <article class="card">
+            <div class="card-top">
+              <div class="kicker"><i class="fa-solid fa-right-left"></i><span>Migration</span></div>
+              <h4>JCMA Runs & Post-Migration Validation</h4>
+              <p>Structured validation approach for Jira Cloud migration waves with logs and evidence capture.</p>
+            </div>
+
+            <div class="card-body">
+              <div class="mini">
+                <div class="label">Problem</div>
+                <div class="value">Migration runs needed consistent validation and artifacts to support sign-off.</div>
+              </div>
+              <div class="mini">
+                <div c
