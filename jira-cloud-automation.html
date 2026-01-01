@@ -8,347 +8,41 @@
   <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-  <!-- Font Awesome -->
+  <!-- Font Awesome (icons) -->
   <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-        crossorigin="anonymous" />
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkfPWZC1Vjz6pJQdYx04FbFhFhFj5V9A6V8WqkC7H5YkPqU5V7o7RF7xA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <style>
-    :root {
-      --bg-main: #f5f5f7;
-      --bg-sidebar: #e5edf4;
-      --accent: #1f4f7b;
-      --accent-soft: #88a8c6;
-      --text-main: #1a1a1a;
-      --text-muted: #555;
-      --border-light: #d0d7e2;
+    :root{
+      --bg:#0b1220;
+      --panel:#0f1a2f;
+      --panel2:#0e1830;
+      --text:#e9eefc;
+      --muted:#b7c3e6;
+      --muted2:#93a3cc;
+      --accent:#7aa2ff;
+      --accent2:#69eacb;
+      --border:rgba(255,255,255,.10);
+      --shadow: 0 10px 25px rgba(0,0,0,.35);
+      --radius:18px;
+      --radius2:14px;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      font-family: "Source Sans Pro", system-ui, sans-serif;
-      background-color: var(--bg-main);
-      color: var(--text-main);
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:"Source Sans Pro", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(1200px 800px at 20% 10%, rgba(122,162,255,.22), transparent 55%),
+                  radial-gradient(900px 700px at 85% 30%, rgba(105,234,203,.18), transparent 60%),
+                  var(--bg);
+      color:var(--text);
     }
 
-    .page {
-      max-width: 1200px;
-      margin: 2rem auto;
-      background: #ffffff;
-      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
-      display: grid;
-      grid-template-columns: 320px 1fr;
-      min-height: 80vh;
+    a{color:inherit; text-decoration:none}
+    .wrap{
+      display:grid;
+      grid-template-columns: 290px 1fr;
+      min-height:100vh;
     }
-
-    /* Sidebar */
-    .sidebar {
-      background: linear-gradient(180deg, var(--bg-sidebar), #dde7f2);
-      padding: 2.5rem 2rem;
-      border-right: 1px solid var(--border-light);
-    }
-
-    .back-link {
-      display: inline-block;
-      font-size: 0.85rem;
-      margin-bottom: 2rem;
-      color: var(--accent);
-      text-decoration: none;
-      border-bottom: 1px solid var(--accent-soft);
-    }
-    .back-link:hover { border-bottom-color: var(--accent); }
-
-    .project-title {
-      font-size: 2.3rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      line-height: 1.1;
-      margin-bottom: 0.6rem;
-      text-transform: uppercase;
-    }
-
-    .project-subtitle {
-      font-size: 0.95rem;
-      font-weight: 600;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 2.2rem;
-    }
-
-    .sidebar-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.65rem;
-      margin-bottom: 0.95rem;
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      line-height: 1.35;
-    }
-
-    .sidebar-item i {
-      color: var(--accent);
-      margin-top: 0.15rem;
-      font-size: 1.05rem;
-      width: 18px;
-      text-align: center;
-    }
-
-    .divider {
-      height: 1px;
-      background: var(--border-light);
-      margin: 2rem 0 1.5rem;
-    }
-
-    /* Main content */
-    .content { padding: 2.5rem 3rem; }
-
-    .section-title {
-      font-size: 0.9rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--accent);
-      font-weight: 600;
-      margin-bottom: 1.2rem;
-    }
-
-    .experience-block { margin-bottom: 3rem; }
-
-    .experience-company {
-      font-weight: 700;
-      font-size: 1.15rem;
-      display: flex;
-      align-items: center;
-      gap: 0.55rem;
-    }
-
-    .muted {
-      color: var(--text-muted);
-      line-height: 1.7;
-      text-align: justify;
-    }
-
-    .spacer { height: 1.25rem; }
-
-    ul {
-      margin-left: 2.2rem;
-      margin-top: 0.9rem;
-      color: var(--text-muted);
-      line-height: 1.65;
-    }
-
-    ul li { margin-bottom: 0.55rem; }
-
-    .diagram-img {
-      width: 100%;
-      margin-top: 1rem;
-      border-radius: 6px;
-      border: 1px solid var(--border-light);
-    }
-
-    .note-box {
-      margin-top: 1.2rem;
-      padding: 1rem 1.1rem;
-      border: 1px solid var(--border-light);
-      border-radius: 8px;
-      background: #fafafa;
-      color: var(--text-muted);
-      line-height: 1.6;
-    }
-
-    .tag-row { margin-top: 0.9rem; }
-    .tag {
-      display: inline-block;
-      font-size: 0.85rem;
-      color: var(--accent);
-      border: 1px solid var(--border-light);
-      padding: 0.25rem 0.6rem;
-      border-radius: 999px;
-      margin-right: 0.4rem;
-      margin-bottom: 0.4rem;
-      background: #fff;
-    }
-
-    @media (max-width: 900px) {
-      .page { grid-template-columns: 1fr; }
-      .sidebar { border-right: none; border-bottom: 1px solid var(--border-light); }
-      .content { padding: 2rem 1.75rem 2.5rem; }
-    }
-  </style>
-</head>
-
-<body>
-  <div class="page">
-
-    <!-- LEFT SIDEBAR -->
-    <aside class="sidebar">
-      <a href="index.html" class="back-link">← Back to Home</a>
-
-      <div class="project-title">Jira Cloud<br>Automation</div>
-      <div class="project-subtitle">Admin Workflows · Governance · Migration Support</div>
-
-      <div class="sidebar-item">
-        <i class="fa-solid fa-rocket"></i>
-        <div><b>Status:</b> In use / Production-grade automation</div>
-      </div>
-
-      <div class="sidebar-item">
-        <i class="fa-solid fa-bullseye"></i>
-        <div><b>Goal:</b> Reduce manual Jira admin work and enforce scalable governance</div>
-      </div>
-
-      <div class="sidebar-item">
-        <i class="fa-solid fa-gears"></i>
-        <div><b>Scope:</b> Automation rules, REST API scripts, bulk admin operations</div>
-      </div>
-
-      <div class="sidebar-item">
-        <i class="fa-solid fa-layer-group"></i>
-        <div><b>Stack:</b> Jira Cloud · Automation · REST API · Groovy/Python · Reporting</div>
-      </div>
-
-      <div class="divider"></div>
-
-      <div class="note-box">
-        <b>Note:</b> This page summarizes high-impact Jira Cloud automation patterns and reusable tooling
-        used to support large-scale environments (governance, migrations, and operations).
-      </div>
-    </aside>
-
-    <!-- RIGHT CONTENT -->
-    <main class="content">
-      <section class="experience">
-        <h2 class="section-title" style="letter-spacing:0.18em; margin-bottom:2.8rem;">
-          Jira Cloud Automation
-        </h2>
-
-        <!-- Problem -->
-        <div class="experience-block">
-          <div class="experience-company">
-            <i class="fa-solid fa-triangle-exclamation" style="color:var(--accent);"></i>
-            Problem
-          </div>
-
-          <p class="muted" style="margin-top:0.9rem;">
-            <!-- TODO: Replace with your real story -->
-            Jira Cloud administration at scale introduces repetitive, high-volume tasks (permissions, workflows,
-            custom fields, boards, schemes, and audits). Manual execution is slow, error-prone, and difficult to
-            validate consistently—especially during large migrations and governance changes.
-          </p>
-        </div>
-
-        <!-- Common pain points -->
-        <div class="experience-block">
-          <div class="experience-company">
-            <i class="fa-solid fa-xmark" style="color:var(--accent);"></i>
-            Common pain points
-          </div>
-
-          <ul>
-            <li>Manual updates across hundreds/thousands of projects (time-consuming and inconsistent).</li>
-            <li>Permission scheme and configuration drift over time.</li>
-            <li>Migration-related duplicates (schemes, fields, groups) and audit gaps.</li>
-            <li>Limited visibility into “what changed, when, and why” without structured reporting.</li>
-          </ul>
-        </div>
-
-        <!-- Main idea -->
-        <div class="experience-block">
-          <div class="experience-company">
-            <i class="fa-solid fa-lightbulb" style="color:var(--accent);"></i>
-            Main idea
-          </div>
-
-          <p class="muted" style="margin-top:0.9rem;">
-            <!-- TODO -->
-            Build a reusable automation toolkit that combines Jira Cloud Automation and REST API-based scripts
-            to safely execute bulk admin operations, enforce governance standards, and generate audit-ready
-            outputs (CSV logs, summaries, and validation reports).
-          </p>
-
-          <div class="tag-row">
-            <span class="tag">Jira Cloud</span>
-            <span class="tag">Automation</span>
-            <span class="tag">REST API</span>
-            <span class="tag">Governance</span>
-            <span class="tag">Migrations</span>
-            <span class="tag">Reporting</span>
-          </div>
-        </div>
-
-        <!-- What the automation handles -->
-        <div class="experience-block">
-          <div class="experience-company">
-            <i class="fa-solid fa-list-check" style="color:var(--accent);"></i>
-            What the automation handles
-          </div>
-
-          <ul>
-            <li><b>Bulk configuration updates:</b> permissions, workflows, schemes, and project settings.</li>
-            <li><b>Governance enforcement:</b> standardization and cleanup of non-preferred configurations.</li>
-            <li><b>Migration support:</b> validations, comparisons, and post-migration remediation tasks.</li>
-            <li><b>Audit outputs:</b> CSV exports and logs for traceability and stakeholder reporting.</li>
-            <li><b>Admin efficiency:</b> repeatable jobs that reduce manual admin work significantly.</li>
-          </ul>
-        </div>
-
-        <!-- Architecture / Approach (placeholder diagram) -->
-        <div class="experience-block">
-          <div class="experience-company">
-            <i class="fa-solid fa-diagram-project" style="color:var(--accent);"></i>
-            Automation approach (high level)
-          </div>
-
-          <!-- TODO: Add your diagram later -->
-          <img
-            src="assets/Jira-Cloud-Automation.svg"
-            alt="Jira Cloud Automation Diagram (placeholder)"
-            class="diagram-img"
-          />
-
-          <div class="note-box">
-            <b>TODO:</b> Add a diagram that shows: Jira Cloud → Automation Rules / API Scripts → Logs/Reports → Admin actions.
-            (We can build this as SVG from Mermaid later, like you did for WhatsApp.)
-          </div>
-        </div>
-
-        <!-- Example automations (placeholders) -->
-        <div class="experience-block">
-          <div class="experience-company">
-            <i class="fa-solid fa-wand-magic-sparkles" style="color:var(--accent);"></i>
-            Example automations (high impact)
-          </div>
-
-          <ul>
-            <li><b>Permission scheme alignment:</b> identify drift and apply standardized schemes at scale.</li>
-            <li><b>Bulk cleanup:</b> remove or consolidate duplicate configurations created during migrations.</li>
-            <li><b>Board/admin operations:</b> assign ownership, generate admin inventories, export board metadata.</li>
-            <li><b>Scheduled reporting:</b> produce weekly CSV snapshots for monitoring and audits.</li>
-          </ul>
-
-          <div class="note-box">
-            <b>We’ll fill this with your real bullets:</b> the “before/after,” what tools you used (Groovy, REST API, Automation),
-            and a measurable impact where possible.
-          </div>
-        </div>
-
-        <!-- Outcomes -->
-        <div class="experience-block">
-          <div class="experience-company">
-            <i class="fa-solid fa-chart-line" style="color:var(--accent);"></i>
-            Outcomes
-          </div>
-
-          <ul>
-            <li><!-- TODO --> Reduced manual administration effort through repeatable automation jobs.</li>
-            <li><!-- TODO --> Improved governance consistency by enforcing standard configurations.</li>
-            <li><!-- TODO --> Increased auditability via structured exports, logs, and validation reporting.</li>
-          </ul>
-        </div>
-
-      </section>
-    </main>
-  </div>
-</body>
-</html>
