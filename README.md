@@ -1,37 +1,87 @@
-# Elva Ramos – Automation Engineering Portfolio  
-### Tech Architecture Senior Analyst · Jira Cloud · Python · GitHub Actions · Automation Architecture
+# MyPortfolio
 
-Welcome to my automation engineering portfolio.  
-This space documents a collection of real automation solutions I’ve designed and implemented across Jira Cloud, REST APIs, ScriptRunner, Python, and GitHub Actions.
+This repository contains my **personal technical portfolio**, showcasing selected projects I’ve built across **analytics, automation, and product-focused engineering**.
 
----
-
-## 🏗 Automation Areas Showcased
-
-### **1. Jira Cloud Automation**
-Demonstrations of:
-- ScriptRunner Groovy automation  
-- Dynamic issue creation and validation  
-- Field replication, workflow transitions, and user governance  
-- Permission model automation  
-- Migration tools used in large enterprise environments  
-
-### **2. Python + GitHub Actions Integrations**
-Examples of:
-- Python scripts interfacing with Jira Cloud REST API  
-- Automated issue creation pipelines  
-- Secure Secrets Management in GitHub  
-- Dispatchable workflows for demo environments  
-
-### **3. WhatsApp API Automation (WIP)**
-Architecture and experiments around:
-- Meta Developer account configuration  
-- Webhook validation and tunneling (ngrok)  
-- Future conversational bot pipeline  
+The projects here are **real-world, production-oriented solutions**, designed to reduce manual work, improve operational reliability, and support governance and decision-making in complex environments.
 
 ---
 
-## 📁 Repository Structure
+## 🧠 What you’ll find in this portfolio
 
-This repository contains:
+The portfolio focuses on **how problems were identified, solved, and operationalized**, not just on code.
 
+Projects typically include:
+- Clear problem statements
+- Practical, automated solutions
+- Evidence artifacts (logs, CSVs, screenshots)
+- Emphasis on reliability, traceability, and scalability
+
+---
+
+## 🔧 Areas of focus
+
+- **Jira Cloud Automation**
+  - ScriptRunner (Groovy) tooling
+  - Bulk issue creation and validation
+  - Governance and audit utilities
+  - Migration and post-migration support
+
+- **Analytics & Data Workflows**
+  - Structured data extraction and reporting
+  - Repeatable, auditable processes
+  - Decision-support tooling
+
+- **Operational & Governance Tooling**
+  - Evidence generation for approvals and audits
+  - Standardized validation approaches
+  - Admin-focused utilities designed to scale
+
+---
+
+## 📌 Project examples
+
+Some representative projects included in this portfolio:
+
+- **Weekly Issue Generator**  
+  Automation to generate recurring Jira issues with validations and traceable logs, eliminating manual weekly work.
+
+- **Permission Schemes Audit**  
+  Tooling to compare and audit Jira permission schemes, supporting governance and controlled cleanup decisions.
+
+- **Custom Fields Inventory**  
+  Inventory extraction to support cleanup prioritization, ownership mapping, and migration planning.
+
+- **JCMA Validation Pack**  
+  A repeatable post-migration validation approach with structured evidence for sign-off and troubleshooting.
+
+---
+
+## 🎯 Design principles
+
+Across all projects, I prioritize:
+
+- **Automation over manual processes**
+- **Clarity over complexity**
+- **Traceability and auditability**
+- **Rerunnable, safe tooling**
+- **Solutions that work in real operational environments**
+
+---
+
+## 📂 Repository structure
+
+Each project typically includes:
+- A concise overview (problem & solution)
+- Supporting artifacts (scripts, exports, logs)
+- Documentation explaining purpose and usage
+
+Some code may be **sanitized or partial** when required, focusing on patterns and logic rather than proprietary details.
+
+---
+
+## 🚀 About this portfolio
+
+This portfolio is intentionally curated.  
+It reflects **how I think, design, and execute solutions**, not just the final output.
+
+If you’re interested in a specific project, approach, or implementation detail, feel free to explore the individual sections.
