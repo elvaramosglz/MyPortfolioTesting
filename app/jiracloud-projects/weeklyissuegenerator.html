@@ -180,7 +180,7 @@
       <!-- ⚠️ Cambia MyPortfolio2 si tu repo se llama distinto -->
       <a href="/MyPortfolioTesting/index.html" class="back-link">← Back to Home</a>
 
-      <div class="project-title">Weekly<br>Issue</div>
+      <div class="project-title"><br>Issue</div>
       <div class="project-subtitle">Jira Automation</div>
 
       <div class="sidebar-item">
@@ -190,7 +190,7 @@
 
       <div class="sidebar-item">
         <i class="fa-solid fa-clock"></i>
-        <div><b>Trigger:</b> Weekly (cron)</div>
+        <div><b>Trigger:</b>  (cron)</div>
       </div>
 
       <div class="sidebar-item">
@@ -204,7 +204,7 @@
     <!-- RIGHT CONTENT -->
     <main class="content">
       <section>
-        <h2 class="section-title">Weekly Issue Generator</h2>
+        <h2 class="section-title"> Issue Generator</h2>
 
         <!-- Problem -->
         <div class="experience-block">
@@ -214,7 +214,7 @@
           </div>
 
           <p class="muted">
-            Weekly operational Jira tasks were created manually. This resulted in inconsistent
+             operational Jira tasks were created manually. This resulted in inconsistent
             issue structure, delayed creation, and limited traceability when reviewing historical execution.
           </p>
         </div>
@@ -229,7 +229,7 @@
           <ul>
             <li>Scheduled Groovy job using ScriptRunner.</li>
             <li>Dynamic calculation of week key and due date.</li>
-            <li>Idempotency check to prevent duplicate weekly issues.</li>
+            <li>Idempotency check to prevent duplicate  issues.</li>
             <li>Standardized issue fields and ownership.</li>
             <li>Execution logging for audit and debugging.</li>
           </ul>
@@ -243,7 +243,7 @@
           </div>
 
           <div class="placeholder">[Add screenshot: ScriptRunner scheduled job configuration]</div>
-          <div class="placeholder">[Add screenshot: Example weekly Jira issue]</div>
+          <div class="placeholder">[Add screenshot: Example  Jira issue]</div>
         </div>
 
         <!-- Flows -->
@@ -254,7 +254,7 @@
           </div>
 
           <ol style="margin-left:2.4rem; margin-top:1rem; color:var(--text-muted); line-height:1.7;">
-            <li>Weekly cron trigger executes the job</li>
+            <li> cron trigger executes the job</li>
             <li>Week key and due date are calculated</li>
             <li>Guardrail check prevents duplicates</li>
             <li>Issue is created in Jira Cloud</li>
@@ -283,7 +283,7 @@
           </div>
 
           <div class="codebox">
-[2025-01-06 08:00] START WeeklyIssueGenerator
+[2025-01-06 08:00] START IssueGenerator
 Computed week=2025-W02
 Created issue OPS-1234
 SUCCESS
