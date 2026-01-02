@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Jira Cloud Automation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        crossorigin="anonymous" />
+
+  <style>
+    :root {
+      --bg-main: #f5f5f7;
+      --bg-sidebar: #e5edf4;
+      --accent: #1f4f7b;
+      --accent-soft: #88a8c6;
+      --text-main: #1a1a1a;
+      --text-muted: #555;
+      --border-light: #d0d7e2;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Source Sans Pro", system-ui, sans-serif;
+      background-color: var(--bg-main);
+      color: var(--text-main);
+    }
+
+    .page {
+      max-width: 1200px;
+      margin: 2rem auto;
+      background: #ffffff;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      min-height: 80vh;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      background: linear-gradient(180deg, var(--bg-sidebar), #dde7f2);
+      padding: 2.5rem 2rem;
+      border-right: 1px solid var(--border-light);
+    }
+
+    .back-link {
+      display: inline-block;
+      font-size: 0.85rem;
+      margin-bottom: 2rem;
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid var(--accent-soft);
+    }
+    .back-link:hover { border-bottom-color: var(--accent); }
+
+    .project-title {
+      font-size: 2.3rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      line-height: 1.1;
+      margin-bottom: 0.6rem;
+      text-transform: uppercase;
+    }
+
+    .project-subtitle {
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 2.2rem;
+    }
+
+    .sidebar-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+      margin-bottom: 0.95rem;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.35;
+    }
+
+    .sidebar-item i {
+      color: var(--accent);
+      margin-top: 0.15rem;
+      font-size: 1.05rem;
+      width: 18px;
+      text-align: center;
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--border-light);
+      margin: 2rem 0 1.5rem;
+    }
+
+    .nav-title {
+      font-size: 0.9rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .nav-link {
+      display: block;
+      margin-bottom: 0.65rem;
+      font-size: 0.98rem;
+      color: var(--text-main);
+      text-decoration: none;
+    }
+    .nav-link span { border-bottom: 1px solid var(--accent-soft); }
+    .nav-link:hover span {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    /* Main content */
+    .content { padding: 2.5rem 3rem; }
+
+    .section-title {
+      font-size: 0.9rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 1.2rem;
+    }
+
+    .experience-block { margin-bottom: 3rem; }
+
+    .experience-company {
+      font-weight: 700;
+      font-size: 1.15rem;
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+    }
+
+    .muted {
+      color: var(--text-muted);
+      line-height: 1.7;
+      text-align: justify;
+    }
+
+    ul {
+      margin-left: 2.2rem;
+      margin-top: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+    ul li { margin-bottom: 0.55rem; }
+
+    /* Hub cards */
+    .cards {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.15rem;
+      margin-top: 1rem;
+    }
+
+    .card {
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      padding: 1.25rem 1.25rem 1.15rem;
+      background: #ffffff;
+    }
+
+    /* CHANGED: make header vertical so "View project" sits under title */
+    .card-header { display: block; }
+
+    .card-title {
+      font-weight: 700;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .card-title i { color: var(--accent); }
+
+    .view-link {
+      display: inline-block;
+      margin-top: 0.35rem;   /* sits right under the title */
+      font-size: 0.92rem;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .view-link span { border-bottom: 1px solid var(--accent-soft); }
+    .view-link:hover span { border-bottom-color: var(--accent); }
+
+    .card-desc {
+      margin-top: 0.6rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      text-align: justify;
+    }
+
+    .card-mini {
+      margin-top: 0.85rem;
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 0.85rem;
+      align-items: start;
+    }
+
+    .mini-label {
+      font-size: 0.78rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--accent);
+      margin-top: 0.2rem;
+    }
+
+    .mini-value {
+      color: var(--text-muted);
+      line-height: 1.65;
+      text-align: justify;
+      font-size: 0.98rem;
+    }
+
+    .card-footer {
+      margin-top: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    .tag i { color: var(--accent-soft); }
+
+    @media (min-width: 980px) {
+      .cards { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 900px) {
+      .page { grid-template-columns: 1fr; }
+      .sidebar { border-right: none; border-bottom: 1px solid var(--border-light); }
+      .content { padding: 2rem 1.75rem 2.5rem; }
+      .card-mini { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar">
+      <a href="index.html" class="back-link">← Back to Home</a>
+
+      <div class="project-title">Jira<br>Cloud</div>
+      <div class="project-subtitle">Automation Hub</div>
+
+      <div class="sidebar-item">
+        <i class="fa-solid fa-rocket"></i>
+        <div><b>Status:</b> Active portfolio</div>
+      </div>
+
+      <!-- REMOVED: Goal (as requested) -->
+
+      <div class="sidebar-item">
+        <i class="fa-solid fa-diagram-project"></i>
+        <div><b>Scope:</b> Utilities · Governance · Migration validation · Audits</div>
+      </div>
+
+      <div class="sidebar-item">
+        <i class="fa-solid fa-layer-group"></i>
+        <div><b>Stack:</b> Jira Cloud REST API · Groovy (ScriptRunner) · Python · CSV/Logs</div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="nav-title">Project Pages</div>
+      <!-- Hub -->
+      <a class="nav-link" href="jira-cloud-automation.html"><span>Overview (Hub)</span></a>
+
+      <!-- Child pages (add as you create them) -->
+      <a class="nav-link" href="jira-weekly-issue-generator.html"><span>Weekly Issue Generator</span></a>
+      <a class="nav-link" href="jira-permission-schemes-audit.html"><span>Permission Schemes Audit</span></a>
+      <a class="nav-link" href="jira-custom-fields-inventory.html"><span>Custom Fields Inventory</span></a>
+      <a class="nav-link" href="jira-jcma-validation.html"><span>JCMA Validation Pack</span></a>
+    </aside>
+
+    <!-- RIGHT CONTENT -->
+    <main class="content">
+      <section class="experience">
+        <h2 class="section-title" style="letter-spacing:0.18em; margin-bottom:2.2rem;">
+          Jira Cloud Automation (Hub)
+        </h2>
+
+        <!-- Overview (UPDATED COPY) -->
+        <div class="experience-block">
+          <div class="experience-company">
+            <i class="fa-solid fa-circle-info" style="color:var(--accent);"></i>
+            Overview
+          </div>
+
+          <p class="muted" style="margin-top:0.9rem;">
+            This page groups my Jira Cloud work into independent projects. Each card is a quick summary (what it solves and how).
+            The full detail lives in the child pages, including step-by-step implementation, screenshots, flows, CSV outputs (when applicable),
+            execution logs, and lessons learned.
+          </p>
+        </div>
+
+        <!-- Projects -->
+        <div class="experience-block">
+          <div class="experience-company">
+            <i class="fa-solid fa-folder-open" style="color:var(--accent);"></i>
+            Projects
+          </div>
+
+          <div class="cards">
+
+            <!-- Card: Weekly Issue Generator -->
+            <article class="card">
+              <div class="card-header">
+                <div class="card-title">
+                  <i class="fa-solid fa-calendar-check"></i>
+                  Weekly Issue Generator
+                </div>
+
+                <!-- MOVED: now directly under the title -->
+                <a class="view-link" href="jira-weekly-issue-generator.html"><span>View project →</span></a>
+
+                <p class="card-desc">
+                  Automated weekly Jira task creation using a scheduled Groovy job (ScriptRunner). Designed for consistent execution,
+                  predictable issue structure, and operational traceability.
+                </p>
+              </div>
+
+              <div class="card-mini">
+                <div class="mini-label">Problem</div>
+                <div class="mini-value">Weekly operational tasks were created manually, leading to missed deadlines and inconsistent structure across weeks.</div>
+
+                <div class="mini-label">Solution</div>
+                <div class="mini-value">Implemented a scheduled ScriptRunner Groovy job to generate standardized weekly issues with guardrails and logs.</div>
+              </div>
+
+              <div class="card-footer">
+                <div class="tag"><i class="fa-solid fa-code"></i> Groovy</div>
+                <div class="tag"><i class="fa-solid fa-clock"></i> Scheduled job</div>
+                <div class="tag"><i class="fa-solid fa-file-lines"></i> Logs</div>
+              </div>
+            </article>
+
+            <!-- Card: Permission Schemes Audit (placeholder text) -->
+            <article class="card">
+              <div class="card-header">
+                <div class="card-title">
+                  <i class="fa-solid fa-key"></i>
+                  Permission Schemes Audit
+                </div>
+
+                <a class="view-link" href="jira-permission-schemes-audit.html"><span>View project →</span></a>
+
+                <p class="card-desc">
+                  Audit and comparison tooling to identify duplicates, orphans, and deviations from a preferred permission model.
+                  Produces evidence artifacts for governance decisions.
+                </p>
+              </div>
+
+              <div class="card-mini">
+                <div class="mini-label">Problem</div>
+                <div class="mini-value">Permission schemes proliferated after migration, making manual comparison slow and error-prone.</div>
+
+                <div class="mini-label">Solution</div>
+                <div class="mini-value">Automated extraction and reporting (CSV + logs) to validate differences and support controlled cleanup.</div>
+              </div>
+
+              <div class="card-footer">
+                <div class="tag"><i class="fa-solid fa-link"></i> REST API</div>
+                <div class="tag"><i class="fa-solid fa-file-csv"></i> CSV</div>
+                <div class="tag"><i class="fa-solid fa-shield-halved"></i> Governance</div>
+              </div>
+            </article>
+
+            <!-- Card: Custom Fields Inventory (placeholder text) -->
+            <article class="card">
+              <div class="card-header">
+                <div class="card-title">
+                  <i class="fa-solid fa-table"></i>
+                  Custom Fields Inventory
+                </div>
+
+                <a class="view-link" href="jira-custom-fields-inventory.html"><span>View project →</span></a>
+
+                <p class="card-desc">
+                  Custom field inventory export to support cleanup prioritization and governance. Built to be rerunnable and easy to review.
+                </p>
+              </div>
+
+              <div class="card-mini">
+                <div class="mini-label">Problem</div>
+                <div class="mini-value">Custom field sprawl increased admin complexity and slowed migration planning.</div>
+
+                <div class="mini-label">Solution</div>
+                <div class="mini-value">Extracted field metadata into a normalized CSV for review, ownership mapping, and cleanup decisions.</div>
+              </div>
+
+              <div class="card-footer">
+                <div class="tag"><i class="fa-solid fa-file-csv"></i> CSV</div>
+                <div class="tag"><i class="fa-solid fa-magnifying-glass"></i> Inventory</div>
+                <div class="tag"><i class="fa-solid fa-screwdriver-wrench"></i> Admin tooling</div>
+              </div>
+            </article>
+
+            <!-- Card: JCMA Validation Pack (placeholder text) -->
+            <article class="card">
+              <div class="card-header">
+                <div class="card-title">
+                  <i class="fa-solid fa-right-left"></i>
+                  JCMA Validation Pack
+                </div>
+
+                <a class="view-link" href="jira-jcma-validation.html"><span>View project →</span></a>
+
+                <p class="card-desc">
+                  Repeatable post-migration validation approach with evidence artifacts (screenshots, logs, exports) to support sign-off.
+                </p>
+              </div>
+
+              <div class="card-mini">
+                <div class="mini-label">Problem</div>
+                <div class="mini-value">Migration waves needed consistent validation and traceable evidence for approvals and troubleshooting.</div>
+
+                <div class="mini-label">Solution</div>
+                <div class="mini-value">Defined a standard validation pack and tooling to capture results, issues, and evidence systematically.</div>
+              </div>
+
+              <div class="card-footer">
+                <div class="tag"><i class="fa-solid fa-clipboard-check"></i> Validation</div>
+                <div class="tag"><i class="fa-solid fa-camera"></i> Screenshots</div>
+                <div class="tag"><i class="fa-solid fa-file-lines"></i> Logs</div>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+      </section>
+    </main>
+  </div>
+</body>
+</html>
