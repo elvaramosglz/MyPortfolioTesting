@@ -8,7 +8,7 @@
   <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-  <!-- Font Awesome -->
+  <!-- Font Awesome  -->
   <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         crossorigin="anonymous" />
@@ -74,46 +74,8 @@
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 1.25rem; /* was 2.2rem, reduced to make room for difficulty bar */
+      margin-bottom: 2.2rem;
     }
-
-    /* ===== Difficulty bar (added) ===== */
-    .difficulty-bar {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      margin-bottom: 2.2rem; /* matches original spacing */
-      flex-wrap: wrap;
-    }
-
-    .difficulty-label {
-      font-weight: 700;
-      color: var(--text-main);
-      margin-right: 2px;
-    }
-
-    .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #d7dee9;
-      border: 1px solid rgba(0,0,0,0.04);
-      display: inline-block;
-    }
-
-    .dot.filled { background: var(--accent); }
-
-    .difficulty-text {
-      margin-left: 6px;
-      font-weight: 700;
-      color: var(--accent);
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      font-size: 0.78rem;
-    }
-    /* ===== end difficulty bar ===== */
 
     .sidebar-item {
       display: flex;
@@ -220,23 +182,10 @@
 
     <!-- LEFT SIDEBAR -->
     <aside class="sidebar">
-      <a href="/MyPortfolioTesting/index.html" class="back-link">← Back to Home</a>
+      <a href="/MyPortfolio/index.html" class="back-link">← Back to Home</a>
 
       <div class="project-title">WhatsApp<br>Bot API</div>
       <div class="project-subtitle">Conversational Ordering Automation</div>
-
-      <!-- ===== Difficulty bar (added, top + clean) ===== -->
-      <div class="difficulty-bar" aria-label="Project difficulty">
-        <span class="difficulty-label">Difficulty:</span>
-        <!-- Edit filled dots to match your level -->
-        <span class="dot filled"></span>
-        <span class="dot filled"></span>
-        <span class="dot filled"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-        <span class="difficulty-text">Medium</span>
-      </div>
-      <!-- ===== end difficulty bar ===== -->
 
       <div class="sidebar-item">
         <i class="fa-solid fa-rocket"></i>
@@ -335,13 +284,8 @@
         <div class="experience-block">
           <div class="experience-company">
             <i class="fa-solid fa-diagram-project" style="color:var(--accent);"></i>
-            Architecture Diagram
+            Architecture overview
           </div>
-
-          <p class="muted" style="margin-top:0.9rem;">
-            High-level overview of how inbound messages are routed through the state machine, validated,
-            persisted, and surfaced to the admin as structured notifications.
-          </p>
 
           <!-- IMPORTANT:
                Put your exported SVG file in the same folder as this HTML,
@@ -355,90 +299,89 @@
         </div>
 
         <div class="experience-block">
-          <div class="experience-company">
-            <i class="fa-solid fa-circle-info" style="color:var(--accent);"></i>
-            Architecture breakdown
-          </div>
+  <div class="experience-company">
+    <i class="fa-solid fa-circle-info" style="color:var(--accent);"></i>
+    Architecture breakdown
+  </div>
+<p class="muted" style="margin-top:0.8rem;">
+  The following steps describe the execution flow shown in the architecture diagram above:
+</p>
 
-          <p class="muted" style="margin-top:0.8rem;">
-            The following steps describe the execution flow shown in the architecture diagram above:
-          </p>
+  <ol style="margin-left: 2.4rem; margin-top: 1.1rem; color: var(--text-muted); line-height: 1.75;">
+    <li>
+      <b>Customer (WhatsApp User)</b><br>
+      The customer initiates the interaction by sending a WhatsApp message using natural,
+      unstructured language.
+    </li>
 
-          <ol style="margin-left: 2.4rem; margin-top: 1.1rem; color: var(--text-muted); line-height: 1.75;">
-            <li>
-              <b>Customer (WhatsApp User)</b><br>
-              The customer initiates the interaction by sending a WhatsApp message using natural,
-              unstructured language.
-            </li>
+    <li>
+      <b>Twilio WhatsApp Messaging</b><br>
+      Twilio receives the inbound message and forwards it to the backend webhook
+      configured for the WhatsApp number.
+    </li>
 
-            <li>
-              <b>Twilio WhatsApp Messaging</b><br>
-              Twilio receives the inbound message and forwards it to the backend webhook
-              configured for the WhatsApp number.
-            </li>
+    <li>
+      <b>Webhook API (FastAPI on Railway)</b><br>
+      The webhook endpoint receives the message, normalizes the input,
+      and hands control to the conversation router.
+    </li>
 
-            <li>
-              <b>Webhook API (FastAPI on Railway)</b><br>
-              The webhook endpoint receives the message, normalizes the input,
-              and hands control to the conversation router.
-            </li>
+    <li>
+      <b>Conversation Router (State Machine)</b><br>
+      The state machine determines the current step of the conversation,
+      validates required information, and decides the next action.
+    </li>
 
-            <li>
-              <b>Conversation Router (State Machine)</b><br>
-              The state machine determines the current step of the conversation,
-              validates required information, and decides the next action.
-            </li>
+    <li>
+      <b>Database (PostgreSQL)</b><br>
+      Customer data, order details, and session-related information
+      are persisted for traceability and operational continuity.
+    </li>
 
-            <li>
-              <b>Database (PostgreSQL)</b><br>
-              Customer data, order details, and session-related information
-              are persisted for traceability and operational continuity.
-            </li>
-
-            <li>
-              <b>Admin Notifications</b><br>
-              When an order is confirmed or requires attention, a structured WhatsApp
-              notification is sent to the admin in real time.
-            </li>
-          </ol>
-        </div>
+    <li>
+      <b>Admin Notifications</b><br>
+      When an order is confirmed or requires attention, a structured WhatsApp
+      notification is sent to the admin in real time.
+    </li>
+  </ol>
+</div>
 
         <!-- ===================== -->
-        <!-- Production flow video -->
-        <!-- ===================== -->
-        <div class="experience-block">
-          <div class="experience-company">
-            <i class="fa-solid fa-video" style="color:var(--accent);"></i>
-            Production flow (live system)
-          </div>
+<!-- Production flow video -->
+<!-- ===================== -->
+<div class="experience-block">
+  <div class="experience-company">
+    <i class="fa-solid fa-video" style="color:var(--accent);"></i>
+    Production flow (live system)
+  </div>
 
-          <p class="muted" style="margin-top:0.9rem;">
-            The video below shows the WhatsApp bot running in a production environment, interacting with
-            real users and processing real orders using the same architecture and state machine
-            described above.
-          </p>
+  <p class="muted" style="margin-top:0.9rem;">
+    The video below shows the WhatsApp bot running in a production environment, interacting with
+    real users and processing real orders using the same architecture and state machine
+    described above.
+  </p>
 
-          <p class="muted" style="margin-top:0.6rem;">
-            This recording reflects the bot operating live, including message intake through Twilio,
-            conversation state handling, validations, order confirmation, database persistence,
-            and real-time admin notifications.
-          </p>
+  <p class="muted" style="margin-top:0.6rem;">
+    This recording reflects the bot operating live, including message intake through Twilio,
+    conversation state handling, validations, order confirmation, database persistence,
+    and real-time admin notifications.
+  </p>
 
-          <div
-            style="
-              margin-top: 1.6rem;
-              padding: 2.6rem;
-              border: 2px dashed var(--border-light);
-              border-radius: 8px;
-              text-align: center;
-              color: var(--text-muted);
-              background: #fafafa;
-              font-style: italic;
-            "
-          >
-            [Attach video here]
-          </div>
-        </div>
+  <div
+    style="
+      margin-top: 1.6rem;
+      padding: 2.6rem;
+      border: 2px dashed var(--border-light);
+      border-radius: 8px;
+      text-align: center;
+      color: var(--text-muted);
+      background: #fafafa;
+      font-style: italic;
+    "
+  >
+    [Attach video here]
+  </div>
+</div>
 
         <!-- Outcomes -->
         <div class="experience-block">
