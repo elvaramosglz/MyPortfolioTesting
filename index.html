@@ -5,6 +5,11 @@
   <title>Elva Ramos – Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+  <!-- ✅ FIX (ONLY WHAT'S NECESSARY):
+       Force correct base for GitHub Pages so relative links NEVER get "stuck" under /app/
+       This makes "app/..." always resolve from /MyPortfolioTesting/ (repo root). -->
+  <base href="/MyPortfolioTesting/">
+
   <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
 
@@ -229,16 +234,19 @@
       <!-- Projects -->
       <div>
         <div class="section-title">Projects</div>
+
         <a class="project-link" href="https://www.salesforce.com/trailblazer/oc8d87jq3cm38dufqz">
-        <span>Salesforce Trailhead</span>
+          <span>Salesforce Trailhead</span>
         </a>
+
+        <!-- ✅ These stay the same; base href makes them resolve from /MyPortfolioTesting/ -->
         <a class="project-link" href="app/jiracloud-projects/jiracloud-automation.html">
           <span>Jira Cloud Automation</span>
         </a>
-        <a class="project-link" href="app/whatsapp-api-automation.html">
-        <span>WhatsApp API Automation</span>
-        </a>
 
+        <a class="project-link" href="app/whatsapp-api-automation.html">
+          <span>WhatsApp API Automation</span>
+        </a>
       </div>
 
       <div class="divider"></div>
@@ -372,4 +380,3 @@
   </div>
 </body>
 </html>
- 
