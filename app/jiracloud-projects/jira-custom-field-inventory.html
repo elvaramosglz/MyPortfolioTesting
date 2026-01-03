@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Jira Custom Fields Inventory</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        crossorigin="anonymous" />
+
+  <style>
+    :root {
+      --bg-main: #f5f5f7;
+      --bg-sidebar: #e5edf4;
+      --accent: #1f4f7b;
+      --accent-soft: #88a8c6;
+      --text-main: #1a1a1a;
+      --text-muted: #555;
+      --border-light: #d0d7e2;
+      --code-bg: #0f172a;
+      --code-text: #e5e7eb;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Source Sans Pro", system-ui, sans-serif;
+      background-color: var(--bg-main);
+      color: var(--text-main);
+    }
+
+    .page {
+      max-width: 1200px;
+      margin: 2rem auto;
+      background: #ffffff;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      min-height: 80vh;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      background: linear-gradient(180deg, var(--bg-sidebar), #dde7f2);
+      padding: 2.5rem 2rem;
+      border-right: 1px solid var(--border-light);
+    }
+
+    .back-link {
+      display: inline-block;
+      font-size: 0.85rem;
+      margin-bottom: 2rem;
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid var(--accent-soft);
+    }
+
+    .project-title {
+      font-size: 2.3rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      line-height: 1.1;
+      margin-bottom: 0.6rem;
+      text-transform: uppercase;
+    }
+
+    .project-subtitle {
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.25rem;
+    }
+
+    /* Difficulty bar */
+    .difficulty-bar {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 1.6rem;
+      flex-wrap: wrap;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #d7dee9;
+      display: inline-block;
+    }
+    .dot.filled { background: var(--accent); }
+
+    .difficulty-text {
+      margin-left: 6px;
+      font-weight: 700;
+      color: var(--accent);
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .sidebar-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+      margin-bottom: 0.95rem;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.35;
+    }
+
+    .sidebar-item i {
+      color: var(--accent);
+      margin-top: 0.15rem;
+      width: 18px;
+      text-align: center;
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--border-light);
+      margin: 1.6rem 0 1.4rem;
+    }
+
+    /* Main content */
+    .content { padding: 2.5rem 3rem; }
+
+    .experience-block { margin-bottom: 3rem; }
+
+    .experience-company {
+      font-weight: 700;
+      font-size: 1.15rem;
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+    }
+
+    .experience-company i { color: var(--accent); }
+
+    .muted {
+      color: var(--text-muted);
+      line-height: 1.7;
+      text-align: justify;
+    }
+
+    ul {
+      margin-left: 2.2rem;
+      margin-top: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    ul li { margin-bottom: 0.55rem; }
+
+    pre {
+      margin-top: 1.4rem;
+      padding: 1.4rem;
+      background: var(--code-bg);
+      color: var(--code-text);
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 0.85rem;
+      line-height: 1.55;
+    }
+
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+
+    .diagram-img {
+      width: 100%;
+      margin-top: 1rem;
+      border-radius: 6px;
+      border: 1px solid var(--border-light);
+    }
+
+    @media (max-width: 900px) {
+      .page { grid-template-columns: 1fr; }
+      .sidebar { border-right: none; border-bottom: 1px solid var(--border-light); }
+      .content { padding: 2rem 1.75rem 2.5rem; }
+    }
+  </style>
+</head>
+
+<body>
+<div class="page">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <a href="/MyPortfolioTesting/index.html" class="back-link">← Back to Home</a>
+
+    <div class="project-title">Jira<br>Custom Fields<br>Inventory</div>
+    <div class="project-subtitle">Audit · Governance · CSV Export</div>
+
+    <div class="difficulty-bar">
+      <span>Difficulty:</span>
+      <span class="dot filled"></span>
+      <span class="dot filled"></span>
+      <span class="dot filled"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="difficulty-text">Medium</span>
+    </div>
+
+    <div class="sidebar-item">
+      <i class="fa-solid fa-rocket"></i>
+      <div><b>Status:</b> Production</div>
+    </div>
+
+    <div class="sidebar-item">
+      <i class="fa-solid fa-bullseye"></i>
+      <div><b>Purpose:</b> Create a complete inventory of Jira custom fields</div>
+    </div>
+
+    <div class="sidebar-item">
+      <i class="fa-solid fa-file-csv"></i>
+      <div><b>Output:</b> CSV report for audit & migration planning</div>
+    </div>
+
+    <div class="sidebar-item">
+      <i class="fa-solid fa-layer-group"></i>
+      <div><b>Stack:</b> ScriptRunner · Groovy · Jira APIs</div>
+    </div>
+
+    <div class="divider"></div>
+  </aside>
+
+  <!-- CONTENT -->
+  <main class="content">
+
+    <!-- Problem -->
+    <div class="experience-block">
+      <div class="experience-company">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        Problem
+      </div>
+
+      <p class="muted" style="margin-top:0.9rem;">
+        Jira instances often accumulate hundreds (or thousands) of custom fields over time.
+        Without an inventory, teams struggle to understand which fields are actually used, where they appear,
+        and who owns them. This creates governance risk, breaks reporting consistency, and becomes a blocker
+        during Jira Cloud/DC migrations.
+      </p>
+    </div>
+
+    <!-- Main idea -->
+    <div class="experience-block">
+      <div class="experience-company">
+        <i class="fa-solid fa-lightbulb"></i>
+        Main idea
+      </div>
+
+      <p class="muted" style="margin-top:0.9rem;">
+        Build an automated inventory job that extracts custom field metadata from Jira, enriches it with usage
+        and configuration context, and exports a structured CSV. The output becomes the single source of truth
+        for governance, cleanup, and migration planning.
+      </p>
+    </div>
+
+    <!-- What it handles -->
+    <div class="experience-block">
+      <div class="experience-company">
+        <i class="fa-solid fa-list-check"></i>
+        What the automation handles
+      </div>
+
+      <ul>
+        <li><b>Discovery:</b> scans all custom fields in the Jira instance.</li>
+        <li><b>Metadata:</b> captures name, ID, type, and configuration details.</li>
+        <li><b>Context:</b> maps fields to relevant screens / contexts (where applicable).</li>
+        <li><b>Governance support:</b> highlights candidates for cleanup or standardization.</li>
+        <li><b>Export:</b> writes a structured CSV for audit and migration workstreams.</li>
+      </ul>
+    </div>
+
+    <!-- Code (NO huge script) -->
+    <div class="experience-block">
+      <div class="experience-company">
+        <i class="fa-solid fa-code"></i>
+        Code snapshot
+      </div>
+
+      <p class="muted" style="margin-top:0.9rem;">
+        The full ScriptRunner implementation is intentionally not pasted here because it is extensive and includes
+        environment-specific handling. Instead, I provide a short code snapshot and a link to the full script file
+        for review.
+      </p>
+
+      <p class="muted" style="margin-top:0.6rem;">
+        <a href="PUT-YOUR-GITHUB-SCRIPT-URL-HERE" target="_blank">
+          View full script on GitHub
+        </a>
+      </p>
+
+      <!-- Replace this placeholder with an <img> to show a small code section screenshot -->
+      <div
+        style="
+          margin-top: 1.4rem;
+          padding: 2.2rem;
+          border: 2px dashed var(--border-light);
+          border-radius: 8px;
+          text-align: center;
+          color: var(--text-muted);
+          background: #fafafa;
+          font-style: italic;
+        "
+      >
+        [Code screenshot – custom fields inventory script]
+      </div>
+    </div>
+
+    <!-- Logs -->
+    <div class="experience-block">
+      <div class="experience-company">
+        <i class="fa-solid fa-terminal"></i>
+        Execution logs (sample)
+      </div>
+
+      <p class="muted" style="margin-top:0.9rem;">
+        Sample output confirming extraction progress and export completion.
+      </p>
+
+      <pre><code>[Place your log snippets here]</code></pre>
+    </div>
+
+    <!-- CSV output -->
+    <div class="experience-block">
+      <div class="experience-company">
+        <i class="fa-solid fa-file-csv"></i>
+        CSV output (sample)
+      </div>
+
+      <p class="muted" style="margin-top:0.9rem;">
+        The job exports a CSV that can be used for governance reviews and migration planning.
+        Typical columns include custom field ID, name, type, context/screen mapping, and notes
+        for cleanup or standardization.
+      </p>
+
+      <!-- CSV screenshot placeholder -->
+      <div
+        style="
+          margin-top: 1.4rem;
+          padding: 2.2rem;
+          border: 2px dashed var(--border-light);
+          border-radius: 8px;
+          text-align: center;
+          color: var(--text-muted);
+          background: #fafafa;
+          font-style: italic;
+        "
+      >
+        [CSV screenshot – custom fields inventory export]
+      </div>
+
+      <!-- Optional: link to a sample CSV (sanitized) -->
+      <p class="muted" style="margin-top:0.9rem;">
+        <a href="PUT-YOUR-SANITIZED-CSV-URL-HERE" target="_blank">
+          Download sanitized CSV sample
+        </a>
+      </p>
+    </div>
+
+    <!-- Outcomes -->
+    <div class="experience-block" style="margin-bottom:0;">
+      <div class="experience-company">
+        <i class="fa-solid fa-chart-line"></i>
+        Outcomes
+      </div>
+
+      <ul>
+        <li>Created a single source of truth for custom fields across the Jira instance.</li>
+        <li>Enabled governance cleanup decisions (remove, merge, standardize) with evidence.</li>
+        <li>Reduced migration risk by identifying fields and configurations ahead of time.</li>
+        <li>Improved reporting consistency by detecting redundant or misconfigured fields.</li>
+      </ul>
+    </div>
+
+  </main>
+</div>
+</body>
+</html>
