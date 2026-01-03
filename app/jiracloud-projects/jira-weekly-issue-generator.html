@@ -119,6 +119,8 @@
       gap: 0.55rem;
     }
 
+    .experience-company i { color: var(--accent); }
+
     .muted {
       color: var(--text-muted);
       line-height: 1.7;
@@ -132,12 +134,7 @@
       line-height: 1.65;
     }
 
-    .diagram-img {
-      width: 100%;
-      margin-top: 1rem;
-      border-radius: 6px;
-      border: 1px solid var(--border-light);
-    }
+    ul li { margin-bottom: 0.55rem; }
 
     pre {
       margin-top: 1.4rem;
@@ -151,6 +148,13 @@
     }
 
     code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+
+    .diagram-img {
+      width: 100%;
+      margin-top: 1rem;
+      border-radius: 6px;
+      border: 1px solid var(--border-light);
+    }
 
     @media (max-width: 900px) {
       .page { grid-template-columns: 1fr; }
@@ -187,37 +191,38 @@
     <!-- Problem -->
     <div class="experience-block">
       <div class="experience-company">
-        <i class="fa-solid fa-triangle-exclamation"></i> Problem
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        Problem
       </div>
       <p class="muted" style="margin-top:0.9rem;">
-        Recurring Jira issues were being created manually every week, leading to delays,
-        inconsistencies in fields, and occasional missing tickets. This impacted reporting,
-        governance routines, and created unnecessary manual overhead for admins.
+        Weekly Jira issues were created manually, often late or inconsistently,
+        leading to missing tasks, broken reporting, and unnecessary admin effort.
       </p>
     </div>
 
     <!-- Main idea -->
     <div class="experience-block">
       <div class="experience-company">
-        <i class="fa-solid fa-lightbulb"></i> Main idea
+        <i class="fa-solid fa-lightbulb"></i>
+        Main idea
       </div>
       <p class="muted" style="margin-top:0.9rem;">
-        Use a ScriptRunner Groovy job to automatically generate standardized Jira issues
-        on a recurring basis, ensuring consistent metadata, traceability, and zero manual effort.
+        Automate the creation of standardized weekly Jira issues using a ScriptRunner
+        Groovy job, ensuring consistency, traceability, and zero manual overhead.
       </p>
     </div>
 
     <!-- Code -->
     <div class="experience-block">
       <div class="experience-company">
-        <i class="fa-solid fa-code"></i> Automation script (Groovy)
+        <i class="fa-solid fa-code"></i>
+        Automation script
       </div>
 
       <p class="muted" style="margin-top:0.9rem;">
-        This ScriptRunner job builds a dynamic issue summary using the current timestamp,
-        constructs a Jira-compatible payload, and calls the Jira REST API to create a task.
-        The script also logs success or failure, enabling traceability and safe execution
-        in production environments.
+        This ScriptRunner job dynamically builds a Jira issue payload, generates
+        a timestamped summary, and creates the issue via Jira REST APIs while logging
+        the execution result.
       </p>
 
 <pre><code>import groovy.json.JsonOutput
@@ -229,10 +234,10 @@ def now    = new Date()
 def nowStr = now.format("yyyy-MM-dd HH:mm")
 
 def summary = "Issue created with ScriptRunner - ${nowStr}"
+
 def descriptionText = """
 This issue was generated automatically by a ScriptRunner job
 as part of the Jira Automation Portfolio.
-
 Created by Elva Ramos.
 """.stripIndent()
 
@@ -258,44 +263,46 @@ def response = post("/rest/api/3/issue")
   .asObject(Map)
 
 if (response.status == 201) {
-  logger.info("✅ Issue created: ${response.body.key}")
+  logger.info("✅ Demo issue created: ${response.body.key}")
 } else {
-  logger.warn("❌ Issue not created: ${response.status}")
+  logger.warn("❌ Demo issue was not created. Status: ${response.status}")
 }</code></pre>
     </div>
 
-    <!-- Jira issue output -->
+    <!-- Logs -->
     <div class="experience-block">
       <div class="experience-company">
-        <i class="fa-solid fa-ticket"></i> Automatically created Jira issue
+        <i class="fa-solid fa-terminal"></i>
+        Execution logs (sample)
+      </div>
+
+<pre><code>"Serializing object into 'interface java.util.Map'"
+"POST /rest/api/3/issue asObject Request Duration: 1624ms"
+"✅ Demo issue created: AS-6"</code></pre>
+    </div>
+
+    <!-- Output -->
+    <div class="experience-block">
+      <div class="experience-company">
+        <i class="fa-solid fa-ticket"></i>
+        Automatically created Jira issue
       </div>
 
       <p class="muted" style="margin-top:0.9rem;">
-        Example of a Jira ticket generated automatically by the weekly job.
-        The issue follows a standardized format and links back to this portfolio
-        for documentation and traceability.
+        Example of a Jira issue generated automatically by the weekly job.
       </p>
 
       <p class="muted" style="margin-top:0.6rem;">
-        <b>Jira instance:</b>
-        <a href="PUT-YOUR-JIRA-URL-HERE" target="_blank">PUT-YOUR-JIRA-URL-HERE</a>
+        <a href="https://elvaramosglz.atlassian.net/browse/AS-6" target="_blank">
+          View Jira Issue (AS-6)
+        </a>
       </p>
 
-      <!-- Screenshot placeholder -->
-      <div
-        style="
-          margin-top: 1.4rem;
-          padding: 2.2rem;
-          border: 2px dashed var(--border-light);
-          border-radius: 8px;
-          text-align: center;
-          color: var(--text-muted);
-          background: #fafafa;
-          font-style: italic;
-        "
-      >
-        [Screenshot of automatically created Jira issue]
-      </div>
+      <img
+        src="../assets/issue-as-6.png"
+        alt="Automatically created Jira issue AS-6"
+        class="diagram-img"
+      />
     </div>
 
   </main>
