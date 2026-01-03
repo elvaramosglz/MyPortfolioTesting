@@ -2,18 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Weekly Issue Generator</title>
+  <title>Jira Weekly Issue Generator</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
 
   <!-- Font Awesome -->
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    crossorigin="anonymous"
-  />
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        crossorigin="anonymous" />
 
   <style>
     :root {
@@ -59,6 +57,7 @@
       text-decoration: none;
       border-bottom: 1px solid var(--accent-soft);
     }
+    .back-link:hover { border-bottom-color: var(--accent); }
 
     .project-title {
       font-size: 2.3rem;
@@ -75,11 +74,50 @@
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 2.2rem;
+      margin-bottom: 1.25rem; /* room for difficulty bar */
     }
+
+    /* ===== Difficulty bar ===== */
+    .difficulty-bar {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 2.2rem;
+      flex-wrap: wrap;
+    }
+
+    .difficulty-label {
+      font-weight: 700;
+      color: var(--text-main);
+      margin-right: 2px;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #d7dee9;
+      border: 1px solid rgba(0,0,0,0.04);
+      display: inline-block;
+    }
+
+    .dot.filled { background: var(--accent); }
+
+    .difficulty-text {
+      margin-left: 6px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+    }
+    /* ===== end difficulty bar ===== */
 
     .sidebar-item {
       display: flex;
+      align-items: flex-start;
       gap: 0.65rem;
       margin-bottom: 0.95rem;
       font-size: 0.95rem;
@@ -90,6 +128,7 @@
     .sidebar-item i {
       color: var(--accent);
       margin-top: 0.15rem;
+      font-size: 1.05rem;
       width: 18px;
       text-align: center;
     }
@@ -109,7 +148,7 @@
       text-transform: uppercase;
       color: var(--accent);
       font-weight: 600;
-      margin-bottom: 2.8rem;
+      margin-bottom: 1.2rem;
     }
 
     .experience-block { margin-bottom: 3rem; }
@@ -126,7 +165,6 @@
       color: var(--text-muted);
       line-height: 1.7;
       text-align: justify;
-      margin-top: 0.9rem;
     }
 
     ul {
@@ -138,35 +176,16 @@
 
     ul li { margin-bottom: 0.55rem; }
 
-    .codebox {
+    .diagram-img {
+      width: 100%;
       margin-top: 1rem;
+      border-radius: 6px;
       border: 1px solid var(--border-light);
-      border-radius: 8px;
-      background: #fbfbfc;
-      padding: 1rem 1.1rem;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-      font-size: 0.9rem;
-      white-space: pre;
-      overflow-x: auto;
-    }
-
-    .placeholder {
-      margin-top: 1.2rem;
-      padding: 2.2rem;
-      border: 2px dashed var(--border-light);
-      border-radius: 8px;
-      text-align: center;
-      color: var(--text-muted);
-      background: #fafafa;
-      font-style: italic;
     }
 
     @media (max-width: 900px) {
       .page { grid-template-columns: 1fr; }
-      .sidebar {
-        border-right: none;
-        border-bottom: 1px solid var(--border-light);
-      }
+      .sidebar { border-right: none; border-bottom: 1px solid var(--border-light); }
       .content { padding: 2rem 1.75rem 2.5rem; }
     }
   </style>
@@ -177,147 +196,190 @@
 
     <!-- LEFT SIDEBAR -->
     <aside class="sidebar">
-      <!-- FIXED ROUTE: this file lives in app/jiracloud-projects/, so go up 2 levels to root -->
       <a href="/MyPortfolioTesting/index.html" class="back-link">← Back to Home</a>
 
+      <div class="project-title">Jira<br>Weekly Issue<br>Generator</div>
+      <div class="project-subtitle">Automation · ScriptRunner · Groovy</div>
 
-      <div class="project-title"><br>Issue</div>
-      <div class="project-subtitle">Jira Automation</div>
-
-      <div class="sidebar-item">
-        <i class="fa-solid fa-code"></i>
-        <div><b>Type:</b> ScriptRunner Scheduled Job</div>
+      <!-- Difficulty bar -->
+      <div class="difficulty-bar" aria-label="Project difficulty">
+        <span class="difficulty-label">Difficulty:</span>
+        <!-- Example: 4/5 = Hard -->
+        <span class="dot filled"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="difficulty-text">Very Easy</span>
       </div>
 
       <div class="sidebar-item">
-        <i class="fa-solid fa-clock"></i>
-        <div><b>Trigger:</b> (cron)</div>
+        <i class="fa-solid fa-rocket"></i>
+        <div><b>Status:</b> Production</div>
       </div>
 
       <div class="sidebar-item">
-        <i class="fa-solid fa-shield-halved"></i>
-        <div><b>Focus:</b> Consistency · Idempotency · Traceability</div>
+        <i class="fa-solid fa-bullseye"></i>
+        <div><b>Goal:</b> Automatically create weekly Jira issues from a standardized template</div>
+      </div>
+
+      <div class="sidebar-item">
+        <i class="fa-solid fa-diagram-project"></i>
+        <div><b>Flow:</b> Scheduler → Groovy job → JQL lookup → Issue creation → Logging</div>
+      </div>
+
+      <div class="sidebar-item">
+        <i class="fa-solid fa-layer-group"></i>
+        <div><b>Stack:</b> Jira DC · ScriptRunner · Groovy · Jira REST API</div>
       </div>
 
       <div class="divider"></div>
-
-      <!-- Optional: handy local navigation (same folder) -->
-      <!--
-      <div class="sidebar-item">
-        <i class="fa-solid fa-folder-open"></i>
-        <div>
-          <b>Other pages:</b><br />
-          <a href="jiracloud-automation.html" style="color:var(--accent); text-decoration:none; border-bottom:1px solid var(--accent-soft);">
-            Jira Cloud Automation
-          </a><br />
-          <a href="whatsapp-api-automation.html" style="color:var(--accent); text-decoration:none; border-bottom:1px solid var(--accent-soft);">
-            WhatsApp API Automation
-          </a>
-        </div>
-      </div>
-      -->
     </aside>
 
     <!-- RIGHT CONTENT -->
     <main class="content">
-      <section>
-        <h2 class="section-title">Issue Generator</h2>
+      <section class="experience">
+        <h2 class="section-title" style="letter-spacing:0.18em; margin-bottom:2.8rem;">
+          Jira Weekly Issue Generator
+        </h2>
 
         <!-- Problem -->
         <div class="experience-block">
           <div class="experience-company">
             <i class="fa-solid fa-triangle-exclamation" style="color:var(--accent);"></i>
-            Problem (real context)
+            Problem
           </div>
 
-          <p class="muted">
-            Operational Jira tasks were created manually. This resulted in inconsistent
-            issue structure, delayed creation, and limited traceability when reviewing historical execution.
+          <p class="muted" style="margin-top:0.9rem;">
+            Teams needed recurring weekly Jira issues (status updates, operational checklists, governance tasks)
+            created consistently across multiple projects. When handled manually, tickets were often created late,
+            assigned inconsistently, duplicated, or missing key fields—leading to confusion, broken reporting,
+            and extra coordination work for admins and project leads.
           </p>
         </div>
 
-        <!-- Solution -->
+        <!-- Common pain points -->
         <div class="experience-block">
           <div class="experience-company">
-            <i class="fa-solid fa-lightbulb" style="color:var(--accent);"></i>
-            Solution (step by step)
+            <i class="fa-solid fa-xmark" style="color:var(--accent);"></i>
+            Common pain points
           </div>
 
           <ul>
-            <li>Scheduled Groovy job using ScriptRunner.</li>
-            <li>Dynamic calculation of week key and due date.</li>
-            <li>Idempotency check to prevent duplicate issues.</li>
-            <li>Standardized issue fields and ownership.</li>
-            <li>Execution logging for audit and debugging.</li>
+            <li>Weekly tickets created late (or forgotten) during peak workload weeks.</li>
+            <li>Inconsistent fields (components, labels, due dates, assignees) breaking dashboards.</li>
+            <li>Duplicate issues across projects or incorrect issue types.</li>
+            <li>No audit trail of what was created, skipped, or failed.</li>
           </ul>
         </div>
 
-        <!-- Screenshots -->
+        <!-- Main idea -->
         <div class="experience-block">
           <div class="experience-company">
-            <i class="fa-solid fa-camera" style="color:var(--accent);"></i>
-            Screenshots
+            <i class="fa-solid fa-lightbulb" style="color:var(--accent);"></i>
+            Main idea
           </div>
 
-          <div class="placeholder">[Add screenshot: ScriptRunner scheduled job configuration]</div>
-          <div class="placeholder">[Add screenshot: Example Jira issue]</div>
-        </div>
-
-        <!-- Flows -->
-        <div class="experience-block">
-          <div class="experience-company">
-            <i class="fa-solid fa-diagram-project" style="color:var(--accent);"></i>
-            Flows
-          </div>
-
-          <ol style="margin-left:2.4rem; margin-top:1rem; color:var(--text-muted); line-height:1.7;">
-            <li>Cron trigger executes the job</li>
-            <li>Week key and due date are calculated</li>
-            <li>Guardrail check prevents duplicates</li>
-            <li>Issue is created in Jira Cloud</li>
-            <li>Execution result is logged</li>
-          </ol>
-        </div>
-
-        <!-- CSVs -->
-        <div class="experience-block">
-          <div class="experience-company">
-            <i class="fa-solid fa-file-csv" style="color:var(--accent);"></i>
-            CSVs
-          </div>
-
-          <p class="muted">
-            Not applicable. This automation writes directly to Jira and relies on logs
-            rather than CSV artifacts.
+          <p class="muted" style="margin-top:0.9rem;">
+            Implement a scheduled ScriptRunner (Groovy) automation that generates weekly issues using
+            a controlled template. The job runs on a cadence, queries Jira using JQL to identify the
+            scope (projects/boards/owners), creates the issues with standardized metadata, and writes
+            logs/outputs for traceability—ensuring consistency without manual overhead.
           </p>
         </div>
 
-        <!-- Logs -->
+        <!-- What the automation handles -->
         <div class="experience-block">
           <div class="experience-company">
-            <i class="fa-solid fa-file-lines" style="color:var(--accent);"></i>
-            Logs
-          </div>
-
-          <div class="codebox">
-[2025-01-06 08:00] START IssueGenerator
-Computed week=2025-W02
-Created issue OPS-1234
-SUCCESS
-          </div>
-        </div>
-
-        <!-- Lessons learned -->
-        <div class="experience-block">
-          <div class="experience-company">
-            <i class="fa-solid fa-graduation-cap" style="color:var(--accent);"></i>
-            Lessons learned
+            <i class="fa-solid fa-list-check" style="color:var(--accent);"></i>
+            What the automation handles
           </div>
 
           <ul>
-            <li>Recurring automations must be idempotent.</li>
-            <li>Standardization improves adoption and reporting.</li>
-            <li>Logs are first-class operational artifacts.</li>
+            <li><b>Scheduling:</b> runs weekly via ScriptRunner job scheduler (no manual triggers).</li>
+            <li><b>JQL targeting:</b> identifies which projects/boards need weekly issues.</li>
+            <li><b>Standardization:</b> sets issue type, summary format, labels, components, and due dates.</li>
+            <li><b>Assignments:</b> routes tickets to owners (or fallback assignee rules).</li>
+            <li><b>Idempotency:</b> avoids duplicates by checking existing tickets for the same week.</li>
+            <li><b>Auditability:</b> produces logs for created/skipped/failed tickets for admin review.</li>
+          </ul>
+        </div>
+
+        <!-- Architecture Diagram -->
+        <div class="experience-block">
+          <div class="experience-company">
+            <i class="fa-solid fa-diagram-project" style="color:var(--accent);"></i>
+            Architecture Diagram
+          </div>
+
+          <p class="muted" style="margin-top:0.9rem;">
+            High-level overview of how the scheduled ScriptRunner job queries Jira, applies rules,
+            generates weekly issues, and produces traceable outputs.
+          </p>
+
+          <!-- Put your exported image/SVG in assets and update the path -->
+          <img
+            src="../assets/jira-weekly-issue-generator-architecture.svg"
+            alt="Jira Weekly Issue Generator Architecture Diagram"
+            class="diagram-img"
+          />
+        </div>
+
+        <!-- Architecture breakdown -->
+        <div class="experience-block">
+          <div class="experience-company">
+            <i class="fa-solid fa-circle-info" style="color:var(--accent);"></i>
+            Architecture breakdown
+          </div>
+
+          <p class="muted" style="margin-top:0.8rem;">
+            The following steps describe the execution flow shown in the architecture diagram above:
+          </p>
+
+          <ol style="margin-left: 2.4rem; margin-top: 1.1rem; color: var(--text-muted); line-height: 1.75;">
+            <li>
+              <b>ScriptRunner Scheduler</b><br>
+              The job runs automatically on a weekly cadence (e.g., every Monday morning).
+            </li>
+
+            <li>
+              <b>Groovy Automation Job</b><br>
+              The Groovy script loads configuration (projects, issue type, templates, rules),
+              and starts the generation workflow.
+            </li>
+
+            <li>
+              <b>JQL Scope Discovery</b><br>
+              The job runs JQL searches to identify the targets (projects/boards) and checks
+              if a weekly ticket already exists to prevent duplicates.
+            </li>
+
+            <li>
+              <b>Issue Creation (Jira APIs)</b><br>
+              For each target, the job creates a standardized Jira issue with predefined fields,
+              summary format, due date, labels, and assignment rules.
+            </li>
+
+            <li>
+              <b>Logging & Audit Output</b><br>
+              The job writes a traceable record of created/skipped/failed issues for admin monitoring
+              and easy troubleshooting.
+            </li>
+          </ol>
+        </div>
+
+        <!-- Outcomes -->
+        <div class="experience-block">
+          <div class="experience-company">
+            <i class="fa-solid fa-chart-line" style="color:var(--accent);"></i>
+            Outcomes
+          </div>
+
+          <ul>
+            <li>Eliminated manual weekly ticket creation and reduced missed recurring tasks.</li>
+            <li>Improved reporting consistency by enforcing standardized fields across projects.</li>
+            <li>Reduced duplicate issues with “already-created” checks per week.</li>
+            <li>Enabled auditing and faster troubleshooting via structured logs.</li>
           </ul>
         </div>
 
