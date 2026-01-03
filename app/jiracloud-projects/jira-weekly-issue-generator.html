@@ -85,7 +85,7 @@
       gap: 6px;
       font-size: 0.9rem;
       color: var(--text-muted);
-      margin-bottom: 2.2rem;
+      margin-bottom: 1.6rem;
     }
 
     .dot {
@@ -104,6 +104,29 @@
       font-size: 0.78rem;
       letter-spacing: 0.06em;
       text-transform: uppercase;
+    }
+
+    .sidebar-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+      margin-bottom: 0.95rem;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.35;
+    }
+
+    .sidebar-item i {
+      color: var(--accent);
+      margin-top: 0.15rem;
+      width: 18px;
+      text-align: center;
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--border-light);
+      margin: 1.6rem 0 1.4rem;
     }
 
     /* Main content */
@@ -147,7 +170,9 @@
       line-height: 1.55;
     }
 
-    code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
 
     .diagram-img {
       width: 100%;
@@ -177,12 +202,34 @@
     <div class="difficulty-bar">
       <span>Difficulty:</span>
       <span class="dot filled"></span>
+      <span class="dot filled"></span>
+      <span class="dot filled"></span>
+      <span class="dot filled"></span>
       <span class="dot"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
-      <span class="difficulty-text">Very Easy</span>
+      <span class="difficulty-text">Hard</span>
     </div>
+
+    <div class="sidebar-item">
+      <i class="fa-solid fa-rocket"></i>
+      <div><b>Status:</b> Production</div>
+    </div>
+
+    <div class="sidebar-item">
+      <i class="fa-solid fa-clock"></i>
+      <div><b>Trigger:</b> Weekly scheduled job</div>
+    </div>
+
+    <div class="sidebar-item">
+      <i class="fa-solid fa-bullseye"></i>
+      <div><b>Purpose:</b> Generate standardized weekly Jira issues</div>
+    </div>
+
+    <div class="sidebar-item">
+      <i class="fa-solid fa-ticket"></i>
+      <div><b>Output:</b> Jira Task created automatically</div>
+    </div>
+
+    <div class="divider"></div>
   </aside>
 
   <!-- CONTENT -->
@@ -195,8 +242,8 @@
         Problem
       </div>
       <p class="muted" style="margin-top:0.9rem;">
-        Weekly Jira issues were created manually, often late or inconsistently,
-        leading to missing tasks, broken reporting, and unnecessary admin effort.
+        Weekly Jira issues were created manually and inconsistently, leading to
+        missing tasks, broken reporting, and unnecessary operational overhead.
       </p>
     </div>
 
@@ -207,8 +254,8 @@
         Main idea
       </div>
       <p class="muted" style="margin-top:0.9rem;">
-        Automate the creation of standardized weekly Jira issues using a ScriptRunner
-        Groovy job, ensuring consistency, traceability, and zero manual overhead.
+        Use a ScriptRunner Groovy job to automatically generate standardized Jira
+        issues on a weekly cadence using the Jira REST API.
       </p>
     </div>
 
@@ -218,12 +265,6 @@
         <i class="fa-solid fa-code"></i>
         Automation script
       </div>
-
-      <p class="muted" style="margin-top:0.9rem;">
-        This ScriptRunner job dynamically builds a Jira issue payload, generates
-        a timestamped summary, and creates the issue via Jira REST APIs while logging
-        the execution result.
-      </p>
 
 <pre><code>import groovy.json.JsonOutput
 
@@ -264,8 +305,6 @@ def response = post("/rest/api/3/issue")
 
 if (response.status == 201) {
   logger.info("✅ Demo issue created: ${response.body.key}")
-} else {
-  logger.warn("❌ Demo issue was not created. Status: ${response.status}")
 }</code></pre>
     </div>
 
@@ -289,10 +328,6 @@ if (response.status == 201) {
       </div>
 
       <p class="muted" style="margin-top:0.9rem;">
-        Example of a Jira issue generated automatically by the weekly job.
-      </p>
-
-      <p class="muted" style="margin-top:0.6rem;">
         <a href="https://elvaramosglz.atlassian.net/browse/AS-6" target="_blank">
           View Jira Issue (AS-6)
         </a>
